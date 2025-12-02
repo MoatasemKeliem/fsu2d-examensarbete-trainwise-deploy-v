@@ -89,3 +89,19 @@ export const nativeLogin = async (req: Request, res: Response) => {
     }
 }
 
+export const nativeLogout = async (req: Request, res: Response) => {
+    try {
+        res.cookie("token", "", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            maxAge: 0
+        })
+    } catch (error) {
+        console.error("Couldn't logout user")
+        return res.json({
+            status: 500,
+            message: "Couldn't logout user"
+        })
+    }
+}

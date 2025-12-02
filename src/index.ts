@@ -1,8 +1,13 @@
 import express from "express"
 import { AppDataSource } from "./data-source";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const PORT = 3000;
+
+app.use(express.json())
+app.use(cookieParser())
+
 
 app.get("/", (req, res) => {
     res.send("Hello Examensarbetet!")
