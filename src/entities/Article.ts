@@ -1,15 +1,18 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class TrainingLog {
-    @PrimaryGeneratedColumn()
+export class Article {
+    @PrimaryGeneratedColumn("uuid")
     id!: string;
 
     @Column()
-    workoutSummary!: string;
+    title!: String;
 
     @Column()
-    aiFeedback!: string;
+    category!: String;
+
+    @Column()
+    content!: string;
 
     @CreateDateColumn()
     createdAt!: Date;
