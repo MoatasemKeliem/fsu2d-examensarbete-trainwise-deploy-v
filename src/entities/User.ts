@@ -1,4 +1,8 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { TrainingPlan } from "./TrainingPlan";
+import { NutritionPlan } from "./NutritionPlan";
+import { TrainingLog } from "./TrainingLog";
+import { Subscription } from "./Subscription";
 
 @Entity()
 export class User {
@@ -19,4 +23,16 @@ export class User {
 
     @CreateDateColumn()
     createdAt!: Date
+
+    @OneToMany(() => TrainingPlan, (trainingPlan) => trainingPlan.user)
+    trainingPlans!: TrainingPlan[];
+
+    @OneToMany(() => NutritionPlan, (nutritionPlan) => nutritionPlan.user)
+    nutritionPlans!: NutritionPlan[];
+
+    @OneToMany(() => TrainingLog, (trainingLog) => trainingLog.user)
+    trainingLogs!: TrainingLog[];
+
+    @OneToMany(() => Subscription, (subscription) => subscription.user)
+    subscriptions!: Subscription[];
 }

@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./User";
 
 
 @Entity()
@@ -15,4 +16,7 @@ export class NutritionPlan {
 
     @CreateDateColumn()
     createdAt!: Date;
+
+    @ManyToOne(() => User, (user) => user.nutritionPlans, { onDelete: "CASCADE" })
+    user!: User;
 }

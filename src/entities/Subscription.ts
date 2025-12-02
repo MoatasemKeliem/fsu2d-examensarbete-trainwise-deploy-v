@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./User";
 
 @Entity()
 export class Subscription {
@@ -19,4 +20,7 @@ export class Subscription {
 
     @Column()
     stripeCustomerId!: string;
+
+    @ManyToOne(() => User, (user) => user.subscriptions, { onDelete: "CASCADE" })
+    user!: User;
 }

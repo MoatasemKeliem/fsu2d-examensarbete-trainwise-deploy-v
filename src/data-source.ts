@@ -1,6 +1,11 @@
 import * as dotenv from "dotenv"
 import { DataSource } from "typeorm"
-import { User } from "./entities/User.js"
+import { User } from "./entities/User"
+import { TrainingPlan } from "./entities/TrainingPlan"
+import { NutritionPlan } from "./entities/NutritionPlan"
+import { TrainingLog } from "./entities/TrainingLog"
+import { Article } from "./entities/Article"
+import { Subscription } from "./entities/Subscription"
 
 dotenv.config({ quiet: true })
 
@@ -23,5 +28,5 @@ export const AppDataSource = new DataSource({
     password: DB_PASSWORD!,
     database: DB_DATABASE,
     synchronize: true,
-    entities: [User]
+    entities: [User, TrainingPlan, NutritionPlan, TrainingLog, Article, Subscription]
 })
