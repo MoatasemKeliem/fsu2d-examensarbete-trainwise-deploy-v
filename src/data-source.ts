@@ -1,11 +1,11 @@
 import * as dotenv from "dotenv"
 import { DataSource } from "typeorm"
-import { User } from "./entities/User"
 import { TrainingPlan } from "./entities/TrainingPlan"
 import { NutritionPlan } from "./entities/NutritionPlan"
 import { TrainingLog } from "./entities/TrainingLog"
 import { Article } from "./entities/Article"
 import { Subscription } from "./entities/Subscription"
+import { User } from "./entities/User"
 
 dotenv.config({ quiet: true })
 

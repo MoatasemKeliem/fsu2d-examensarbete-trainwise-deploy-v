@@ -21,6 +21,12 @@ export class User {
     @Column("varchar", { default: "user" })
     role!: "user" | "admin"
 
+    @Column("varchar", { nullable: true })
+    provider!: string;
+
+    @Column("varchar", { nullable: true })
+    providerId!: string | null;
+
     @CreateDateColumn()
     createdAt!: Date
 
