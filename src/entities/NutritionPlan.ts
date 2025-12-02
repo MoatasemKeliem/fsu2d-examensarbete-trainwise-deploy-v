@@ -1,17 +1,18 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+
 @Entity()
-export class TrainingPlan {
+export class NutritionPlan {
+
     @PrimaryGeneratedColumn("uuid")
     id!: string;
 
     @Column()
-    title!: string
+    title!: string;
 
     @Column()
-    plan!: string
+    meals!: string;
 
     @Column()
     createdAt!: Date;
-
 }
