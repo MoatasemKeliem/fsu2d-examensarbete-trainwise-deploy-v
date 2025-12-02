@@ -1,5 +1,5 @@
 import express from "express"
-import { AppDataSource } from "./data-source.js";
+import { AppDataSource } from "./data-source";
 
 const app = express();
 const PORT = 3000;
