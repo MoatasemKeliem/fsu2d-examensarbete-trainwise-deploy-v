@@ -2,6 +2,7 @@ import express from "express"
 import { AppDataSource } from "./data-source";
 import cookieParser from "cookie-parser";
 import nativeRoute from "./routes/native-auth";
+import { authMiddleware } from "./middleware/auth-middleware";
 
 const app = express();
 const PORT = 3000;
@@ -11,7 +12,7 @@ app.use(cookieParser())
 app.use("/native-auth", nativeRoute)
 
 
-app.get("/", (req, res) => {
+app.get("/", authMiddleware, (req, res) => {
     res.send("Hello Examensarbetet!")
 })
 

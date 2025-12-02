@@ -62,7 +62,7 @@ export const nativeLogin = async (req: Request, res: Response) => {
 
         }
 
-        const token = jwt.sign({ email, userId: user.id, role: user.role }, process.env.JET_SECRET!, { expiresIn: "1d" })
+        const token = jwt.sign({ email, userId: user.id, role: user.role }, process.env.JWT_SECRET!, { expiresIn: "1d" })
 
         res.cookie("token", token, {
             httpOnly: true,
@@ -96,6 +96,10 @@ export const nativeLogout = async (req: Request, res: Response) => {
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",
             maxAge: 0
+        })
+        return res.json({
+            status: 200,
+            message: "User was logged out successfully"
         })
     } catch (error) {
         console.error("Couldn't logout user")
