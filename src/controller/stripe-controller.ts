@@ -56,3 +56,28 @@ export const stripePayment = async (req: Request, res: Response) => {
         return res.json({ status: 500, message: "Couldn't create payment" })
     }
 }
+
+export const stripeWebhook = async (req: Request, res: Response) => {
+    const signal = req.body["stripe-signature"];
+    const webhooksSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+
+    try {
+        const event = stripe.webhooks.constructEvent(req.body, signal, webhooksSecret)
+
+        if (event.type == "invoice.paid") {
+            console.log("Invoice paid: ", event.data.object)
+        } else if (event.type == "customer.subscription.deleted") {
+            console.log("Subscription deleted: ", event.data.object)
+        } else {
+            console.log("Incomplete event: ", event.type)
+        }
+
+        return res.json({ status: 200, message: "Event accomplished" })
+
+    } catch (error) {
+        console.error("Webhook failed", error)
+        return res.json({ status: 400, message: "Webook failed to verify" })
+    }
+
+}
+
