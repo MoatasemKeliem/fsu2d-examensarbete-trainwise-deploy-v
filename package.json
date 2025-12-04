@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@stripe/stripe-js": "^8.5.3",
     "@types/passport-discord": "^0.1.15",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
@@ -22,6 +23,7 @@
     "passport": "^0.7.0",
     "passport-discord": "^0.1.4",
     "passport-google-oauth20": "^2.0.0",
+    "stripe": "^20.0.0",
     "typeorm": "^0.3.27"
   },
   "devDependencies": {

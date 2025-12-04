@@ -13,7 +13,7 @@ export class Subscription {
     planId!: string;
 
     @Column({ default: "inactive" })
-    status!: "inactive" | "actice";
+    status!: "inactive" | "active";
 
     @CreateDateColumn()
     createdAt!: string;
