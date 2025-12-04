@@ -1,15 +1,14 @@
 import { GoogleGenAI } from "@google/genai"
 import dotenv from "dotenv"
 import { AppDataSource } from "../../data-source"
-import { TrainingPlan } from "../../entities/TrainingPlan"
 import { User } from "../../entities/User"
-import { ITrainingPlan } from "../../model/TrainingPlan-model"
+import { NutritionPlan } from "../../entities/NutritionPlan"
 
 dotenv.config({ quiet: true })
 
 const ai = new GoogleGenAI({})
 
-export const generateTrainingPlan = async (userData: ITrainingPlan, userId: string) => {
+export const generateNutritionPlan = async (userData: any, userId: string) => {
 
     const model = "gemini-2.5-flash-lite"
 
@@ -27,11 +26,11 @@ export const generateTrainingPlan = async (userData: ITrainingPlan, userId: stri
             ],
 
             config: {
-                systemInstruction: "You are a certified fitness coach specializing in personlized workout"
+                systemInstruction: "You are a certified nutrition expert specializing in personlized nutrition plan"
             }
         });
 
-        const trainingPlanRepository = AppDataSource.getRepository(TrainingPlan)
+        const nutritionPlanRepository = AppDataSource.getRepository(NutritionPlan)
         const userRepository = AppDataSource.getRepository(User)
 
         const user = await userRepository.findOne({ where: { id: userId } })
@@ -40,18 +39,18 @@ export const generateTrainingPlan = async (userData: ITrainingPlan, userId: stri
             throw new Error("User not found")
         }
 
-        const newTrainingPlan = trainingPlanRepository.create({
+        const newNutritionPlan = nutritionPlanRepository.create({
             title: `${userData.title}`,
-            plan: response.text,
+            meals: response.text,
             user
         })
 
-        await trainingPlanRepository.save(newTrainingPlan)
+        await nutritionPlanRepository.save(newNutritionPlan)
 
-        return newTrainingPlan
+        return newNutritionPlan
 
     } catch (error) {
-        console.error("Couldn't generate training plan")
-        return "ERROR: Couldn't generate training plan"
+        console.error("Couldn't generate nutrition plan")
+        return "ERROR: Couldn't generate nutrition plan"
     }
 }
