@@ -76,8 +76,29 @@ export const stripeWebhook = async (req: Request, res: Response) => {
 
     } catch (error) {
         console.error("Webhook failed", error)
-        return res.json({ status: 400, message: "Webook failed to verify" })
+        return res.json({ status: 500, message: "Webook failed to verify" })
     }
 
+}
+
+export const cancelSubscription = async (req: Request, res: Response) => {
+    const { subscriptionId } = req.body
+
+    if (!subscriptionId) {
+        return res.json({ status: 400, message: "Subscription ID not found" })
+    }
+
+    try {
+        const deleteSubscription = await stripe.subscriptions.update(subscriptionId, { cancel_at_period_end: true })
+
+        return res.json({
+            status: 200,
+            message: "Subscription canceled successfully",
+            subscription: deleteSubscription
+        })
+    } catch (error) {
+        console.error("Cancel subscription failed", error)
+        return res.json({ status: 500, message: "Couldn't cancel subscription" })
+    }
 }
 
