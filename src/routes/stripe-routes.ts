@@ -1,10 +1,11 @@
-import { Router } from "express"
-import { stripePayment } from "../controller/stripe-controller"
+import express, { Router } from "express"
+import { cancelSubscription, stripePayment } from "../controller/stripe-controller"
 
 const stripeRoute = Router()
 
 
 stripeRoute.post("/create-payment", stripePayment)
+stripeRoute.post("/cancel-payment", cancelSubscription)
 
 
-export default stripePayment;
+export default stripeRoute;

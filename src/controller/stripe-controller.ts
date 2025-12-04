@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import Stripe from "stripe"
 import { AppDataSource } from "../data-source"
 import { User } from "../entities/User"
+import { Subscription } from "../entities/Subscription"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
@@ -15,6 +16,8 @@ export const stripePayment = async (req: Request, res: Response) => {
 
     try {
         const userRepository = AppDataSource.getRepository(User)
+        const subscriptionRepository = AppDataSource.getRepository(Subscription)
+
 
         const user = await userRepository.findOne({ where: { id: userId } })
 
@@ -49,6 +52,16 @@ export const stripePayment = async (req: Request, res: Response) => {
         const invoice = session.latest_invoice as Stripe.Invoice & { payment_intent?: Stripe.PaymentIntent }
         const clientSecret = invoice.payment_intent?.client_secret
 
+        const subscriptionTable = subscriptionRepository.create({
+            stripeSubscription: session.id,
+            stripeCustomerId,
+            user,
+            planId: priceId,
+            status: "inactive"
+        })
+
+        await subscriptionRepository.save(subscriptionTable);
+
         return res.json({ subscriptionId: session.id, clientSecret })
 
     } catch (error) {
@@ -58,16 +71,42 @@ export const stripePayment = async (req: Request, res: Response) => {
 }
 
 export const stripeWebhook = async (req: Request, res: Response) => {
-    const signal = req.body["stripe-signature"];
+    const signal = req.headers["stripe-signature"] as string;
     const webhooksSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
     try {
         const event = stripe.webhooks.constructEvent(req.body, signal, webhooksSecret)
 
-        if (event.type == "invoice.paid") {
-            console.log("Invoice paid: ", event.data.object)
-        } else if (event.type == "customer.subscription.deleted") {
-            console.log("Subscription deleted: ", event.data.object)
+        const subscriptionRepository = AppDataSource.getRepository(Subscription)
+
+        if (event.type === "invoice.paid") {
+            const invoice = event.data.object as Stripe.Invoice & { subscription?: string }
+            const subscriptionId = invoice.subscription
+
+            if (subscriptionId) {
+                const subscription = await subscriptionRepository.findOne({ where: { stripeSubscription: subscriptionId } })
+
+                if (subscription) {
+                    subscription.status = "active";
+                    await subscriptionRepository.save(subscription)
+                    console.log("Subscription atcivated: ", event.data.object)
+
+                }
+            }
+
+        } else if (event.type === "customer.subscription.updated") {
+            const deletedSubscription = event.data.object as Stripe.Subscription
+            const subscriptionId = deletedSubscription.id
+
+            if (subscriptionId) {
+                const subscription = await subscriptionRepository.findOne({ where: { stripeSubscription: subscriptionId } })
+
+                if (subscription) {
+                    subscription.status = "inactive";
+                    await subscriptionRepository.save(subscription)
+                    console.log("Subscription deleted: ", event.data.object)
+                }
+            }
         } else {
             console.log("Incomplete event: ", event.type)
         }

@@ -6,17 +6,21 @@ import { authMiddleware } from "./middleware/auth-middleware";
 import OAuthRouter from "./routes/OAuth-routes";
 import passport from "passport";
 import "./config/passport"
-import { stripePayment } from "./controller/stripe-controller";
+import stripeRoute from "./routes/stripe-routes";
+import { stripeWebhook } from "./controller/stripe-controller";
 
 const app = express();
 const PORT = 3000;
 
+
+
+app.post("/stripe/webhook", express.raw({ type: "application/json" }), stripeWebhook)
 app.use(express.json())
 app.use(cookieParser())
 app.use(passport.initialize())
 app.use("/native-auth", nativeRoute)
 app.use(OAuthRouter)
-app.use("/stripe", stripePayment)
+app.use("/stripe", stripeRoute)
 
 app.get("/", authMiddleware, (req, res) => {
     res.send("Hello Examensarbetet!")
