@@ -27,6 +27,9 @@ export class User {
     @Column("varchar", { nullable: true })
     providerId!: string | null;
 
+    @Column("varchar", { nullable: true })
+    stripeCustomerId?: string | null;
+
     @CreateDateColumn()
     createdAt!: Date
 
