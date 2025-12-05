@@ -9,6 +9,7 @@ import "./config/passport"
 import stripeRoute from "./routes/stripe-routes";
 import { stripeWebhook } from "./controller/stripe-controller";
 import AIroutes from "./routes/AI-routes";
+import trainingPlanRoutes from "./routes/trainingPlan-routes";
 
 const app = express();
 const PORT = 3000;
@@ -23,6 +24,7 @@ app.use("/native-auth", nativeRoute)
 app.use(OAuthRouter)
 app.use("/stripe", stripeRoute)
 app.use("/ai", AIroutes)
+app.use("/training-plan", trainingPlanRoutes)
 
 app.get("/", authMiddleware, (req, res) => {
     res.send("Hello Examensarbetet!")
