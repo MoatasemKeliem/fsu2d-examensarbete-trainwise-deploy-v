@@ -10,6 +10,7 @@ import stripeRoute from "./routes/stripe-routes";
 import { stripeWebhook } from "./controller/stripe-controller";
 import AIroutes from "./routes/AI-routes";
 import trainingPlanRoutes from "./routes/trainingPlan-routes";
+import nutritionPlanRoutes from "./routes/nutritionPlan-routes";
 
 const app = express();
 const PORT = 3000;
@@ -25,6 +26,7 @@ app.use(OAuthRouter)
 app.use("/stripe", stripeRoute)
 app.use("/ai", AIroutes)
 app.use("/training-plan", trainingPlanRoutes)
+app.use("/nutrition-plan", nutritionPlanRoutes)
 
 app.get("/", authMiddleware, (req, res) => {
     res.send("Hello Examensarbetet!")
