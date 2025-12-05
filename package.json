@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/genai": "^1.31.0",
+    "@google/generative-ai": "^0.24.1",
     "@stripe/stripe-js": "^8.5.3",
     "@types/passport-discord": "^0.1.15",
     "bcrypt": "^6.0.0",
