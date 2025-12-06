@@ -12,6 +12,7 @@ import AIroutes from "./routes/AI-routes";
 import trainingPlanRoutes from "./routes/trainingPlan-routes";
 import nutritionPlanRoutes from "./routes/nutritionPlan-routes";
 import trainingLogRoutes from "./routes/trainingLog-routes";
+import articleRoute from "./routes/article-routes";
 
 const app = express();
 const PORT = 3000;
@@ -29,6 +30,7 @@ app.use("/ai", AIroutes)
 app.use("/training-plan", trainingPlanRoutes)
 app.use("/nutrition-plan", nutritionPlanRoutes)
 app.use("/training-log", trainingLogRoutes)
+app.use("/article", articleRoute)
 
 app.get("/", authMiddleware, (req, res) => {
     res.send("Hello Examensarbetet!")
