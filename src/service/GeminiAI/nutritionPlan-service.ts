@@ -25,6 +25,21 @@ export const generateNutritionPlan = async (userData: any, userId: string) => {
 - Preferred style: ${userData.style || ""}
 - Allergies or dietary restrictions: ${userData.allergies || ""}
 
+The nutrition plan **must follow this JSON structure exactly**:
+
+{
+  "week1": {day1: [{"meal": "string", "items": ["string"], "calories": 0, "macros": {"protein": 0, "carbs": 0, "fat": 0}}], day2: [{"meal": "string", "items": ["string"], "calories": 0, "macros": {"protein": 0, "carbs": 0, "fat": 0}}]...},
+  "week2": {day1: [{"meal": "string", "items": ["string"], "calories": 0, "macros": {"protein": 0, "carbs": 0, "fat": 0}}], day2: [{"meal": "string", "items": ["string"], "calories": 0, "macros": {"protein": 0, "carbs": 0, "fat": 0}}]...},
+  "week3": {day1: [{"meal": "string", "items": ["string"], "calories": 0, "macros": {"protein": 0, "carbs": 0, "fat": 0}}], day2: [{"meal": "string", "items": ["string"], "calories": 0, "macros": {"protein": 0, "carbs": 0, "fat": 0}}]...},
+  "week4": {day1: [{"meal": "string", "items": ["string"], "calories": 0, "macros": {"protein": 0, "carbs": 0, "fat": 0}}], day2: [{"meal": "string", "items": ["string"], "calories": 0, "macros": {"protein": 0, "carbs": 0, "fat": 0}}]...},
+  "daily_estimates": {"calories": 0, "macros": {"protein": 0, "carbs": 0, "fat": 0}},
+  "snacks": [],
+  "snack_suggestions": [],
+  "drinks": [],
+  "drink_suggestions": [],
+  "meal_prep_tips": [],
+  "motivation_tips": []
+}
 
 - Include macro breakdowns (protein, carbs, fat) for every meal.
 - 4 weeks each day should have there own nutrition plan for the day
