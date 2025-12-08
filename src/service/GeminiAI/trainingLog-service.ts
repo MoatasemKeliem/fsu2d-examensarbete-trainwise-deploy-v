@@ -13,7 +13,19 @@ export const generateTrainingLog = async (userData: ITrainingLog, userId: string
 
     const model = "gemini-2.5-flash-lite"
 
-    const userPrompt = ``;
+    const userPrompt = `
+   This is User has workout and nutrition summary:
+
+"${userData.workoutSummary}"
+
+Analyze the summary log and provide feedback based on its content. Include:
+- Positive aspects (what the user did well)
+- Improvements (what can be optimized)
+- One motivational tip for next session or day
+
+Focus on workout and/or nutrition depending on what the user logged.
+Return only plain text, no markdown or formatting.
+    `;
 
 
     try {
@@ -41,7 +53,7 @@ export const generateTrainingLog = async (userData: ITrainingLog, userId: string
         }
 
         const newTrainingLog = trainingLogRepository.create({
-            workoutSummary: response.text,
+            workoutSummary: userData.workoutSummary,
             aiFeedback: response.text,
             user
         })
