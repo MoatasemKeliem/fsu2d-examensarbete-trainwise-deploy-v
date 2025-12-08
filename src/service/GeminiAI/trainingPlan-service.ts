@@ -79,7 +79,10 @@ Example output:
             }
         });
 
-
+        let clearPlan = response.text || "";
+        clearPlan = clearPlan?.replace(/^```json\s*/i, '')
+        clearPlan = clearPlan?.replace(/\s*```\s*$/i, '');
+        const traninigPlan = JSON.parse(clearPlan)
 
         const trainingPlanRepository = AppDataSource.getRepository(TrainingPlan)
         const userRepository = AppDataSource.getRepository(User)
@@ -92,7 +95,7 @@ Example output:
 
         const newTrainingPlan = trainingPlanRepository.create({
             title: `${userData.title}`,
-            plan: response.text,
+            plan: traninigPlan,
             user
         })
 
