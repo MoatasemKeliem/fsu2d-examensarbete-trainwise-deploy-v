@@ -11,7 +11,7 @@ export class Article {
     @Column()
     category!: String;
 
-    @Column()
+    @Column("json")
     content!: string;
 
     @CreateDateColumn()
