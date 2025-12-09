@@ -11,8 +11,8 @@ export class NutritionPlan {
     @Column()
     title!: string;
 
-    @Column("json")
-    meals!: string;
+    @Column({ type: "json", nullable: true })
+    meals!: any;
 
     @CreateDateColumn()
     createdAt!: Date;
