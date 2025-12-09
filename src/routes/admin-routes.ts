@@ -4,6 +4,7 @@ import { AdminDeletetrainingPlanById, AdminGetAllTrainingPlans, AdminGetTraining
 import { AdminDeletetNutritionPlanById, AdminGetAllNutritionPlans, AdminGetNutritionPlanById } from "../service/admin/nutritionPlan-Admin-service";
 import { AdminDeletetrainingLogById, AdminGetAllTrainingLogs, AdminGetTrainingLogById } from "../service/admin/trainingLog-Admin-service";
 import { adminMiddleware } from "../middleware/adminMiddleware";
+import { deleteUsersById, getAllUsers, getUsersById } from "../service/admin/userAdmin";
 
 
 
@@ -20,5 +21,9 @@ adminRoutes.delete("/nutrition-plan/:id", authMiddleware, adminMiddleware, Admin
 adminRoutes.get("/training-log/", authMiddleware, adminMiddleware, AdminGetAllTrainingLogs)
 adminRoutes.get("/training-log/:id", authMiddleware, adminMiddleware, AdminGetTrainingLogById)
 adminRoutes.delete("/training-log/:id", authMiddleware, adminMiddleware, AdminDeletetrainingLogById)
+
+adminRoutes.get("/user/", authMiddleware, adminMiddleware, getAllUsers)
+adminRoutes.get("/user/:id", authMiddleware, adminMiddleware, getUsersById)
+adminRoutes.delete("/user/:id", authMiddleware, adminMiddleware, deleteUsersById)
 
 export default adminRoutes;
