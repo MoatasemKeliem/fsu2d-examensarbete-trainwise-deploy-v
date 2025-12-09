@@ -9,8 +9,8 @@ export class TrainingPlan {
     @Column()
     title!: string
 
-    @Column()
-    plan!: string
+    @Column("json")
+    plan!: any
 
     @CreateDateColumn()
     createdAt!: Date;

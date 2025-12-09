@@ -6,10 +6,10 @@ export class TrainingLog {
     @PrimaryGeneratedColumn()
     id!: string;
 
-    @Column()
+    @Column("text")
     workoutSummary!: string;
 
-    @Column()
+    @Column("json")
     aiFeedback!: string;
 
     @CreateDateColumn()

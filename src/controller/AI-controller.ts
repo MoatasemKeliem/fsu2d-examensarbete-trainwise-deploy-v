@@ -5,6 +5,8 @@ import { generateNutritionPlan } from "../service/GeminiAI/nutritionPlan-service
 import { INutritionPlan } from "../model/NutritionPlan-model";
 import { ITrainingLog } from "../model/TrainingLog-model";
 import { generateTrainingLog } from "../service/GeminiAI/trainingLog-service";
+import { generateArticle } from "../service/GeminiAI/article-service";
+import { IArticle } from "../model/Article-model";
 
 export const handelTrainingPlanGenerator = async (req: Request, res: Response) => {
     const userId = (req as any).userId
@@ -60,6 +62,25 @@ export const handelTrainingLogGenerator = async (req: Request, res: Response) =>
         res.json({ status: 200, training_log: generatedTrainingLog })
     } catch (error) {
         console.error("Error from handelTrainingLogGenerator in controller")
+        res.json({ status: 500, message: "Couldn't generate error from controller" })
+    }
+}
+
+
+export const handelArticleGenerator = async (req: Request, res: Response) => {
+
+    try {
+        const userData: IArticle = req.body
+
+        if (!userData) {
+            return res.json({ status: 400, message: "No valid input to create article" })
+        }
+
+        const generatedArticle = await generateArticle(userData)
+
+        res.json({ status: 200, article: generatedArticle })
+    } catch (error) {
+        console.error("Error from handelArticleGenerator in controller")
         res.json({ status: 500, message: "Couldn't generate error from controller" })
     }
 }
