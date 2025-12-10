@@ -14,12 +14,16 @@ import nutritionPlanRoutes from "./routes/nutritionPlan-routes";
 import trainingLogRoutes from "./routes/trainingLog-routes";
 import articleRoute from "./routes/article-routes";
 import adminRoutes from "./routes/admin-routes";
+import cors from "cors"
 
 const app = express();
 const PORT = 3000;
 
 
-
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}))
 app.post("/stripe/webhook", express.raw({ type: "application/json" }), stripeWebhook)
 app.use(express.json())
 app.use(cookieParser())

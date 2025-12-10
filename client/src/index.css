@@ -28,3 +28,18 @@
   padding: 0.4em;
   border-radius: 10px;
 }
+
+input {
+  width: 14em;
+  padding: 0.2em;
+  border-radius: 10px;
+  border: 0.25em solid lightgray;
+}
+
+button {
+  padding: 0.5em;
+  height: 3em;
+  width: 12em;
+  border: 0.25em solid lightgray;
+  border-radius: 15px;
+}
