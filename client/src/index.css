@@ -42,4 +42,5 @@ button {
   width: 12em;
   border: 0.25em solid lightgray;
   border-radius: 15px;
+  cursor: pointer;
 }
