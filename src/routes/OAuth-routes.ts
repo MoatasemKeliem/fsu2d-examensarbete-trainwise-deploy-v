@@ -13,11 +13,12 @@ OAuthRouter.get("/auth/google",
 )
 
 OAuthRouter.get("/auth/google/callback",
-    passport.authenticate("google", { session: false, failureRedirect: "/login" }),
+    passport.authenticate("google", { session: false, failureRedirect: `${process.env.FRONTEND_URL}/login` }),
     (req, res) => {
         const user = req.user as User
 
         if (!user) {
+            res.redirect(`${process.env.FRONTEND_URL}/login`)
             return res.json({ status: 401, message: "Couldn't find user in Google" })
         }
 
@@ -29,8 +30,10 @@ OAuthRouter.get("/auth/google/callback",
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",
-            maxAge: 0
+            maxAge: 24 * 60 * 60 * 1000
         })
+
+        res.redirect(`${process.env.FRONTEND_URL}/dashboard`)
     }
 )
 
@@ -40,11 +43,12 @@ OAuthRouter.get("/auth/discord",
 )
 
 OAuthRouter.get("/auth/discord/callback",
-    passport.authenticate("discord", { session: false, failureRedirect: "/login" }),
+    passport.authenticate("discord", { session: false }),
     (req, res) => {
         const user = req.user as User
 
         if (!user) {
+            res.redirect(`${process.env.FRONTEND_URL}/login`)
             return res.json({ status: 401, message: "Couldn't find user in Discord" })
         }
 
@@ -56,8 +60,11 @@ OAuthRouter.get("/auth/discord/callback",
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",
-            maxAge: 0
+            maxAge: 24 * 60 * 60 * 1000
         })
+
+        res.redirect(`${process.env.FRONTEND_URL}/dashboard`)
+
     }
 )
 
