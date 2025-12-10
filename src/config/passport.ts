@@ -14,13 +14,10 @@ const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_CALLBACK_URL,
 passport.serializeUser((user: any, done) => done(null, user));
 passport.deserializeUser((obj: any, done) => done(null, obj));
 
-const createOrFetchuser = async (profile: Profile, provider: string) => {
+const createOrFetchuser = async (profile: any, provider: string) => {
     const userRepository = AppDataSource.getRepository(User);
-    const email = profile.emails?.[0].value
+    const email = profile.emails?.[0].value || profile.email
 
-    if (!email) {
-        throw new Error("No email found in Google profile")
-    }
 
     let user = await userRepository.findOne({ where: { email } })
 
@@ -41,7 +38,7 @@ passport.use(
         {
             clientID: GOOGLE_CLIENT_ID!,
             clientSecret: GOOGLE_CLIENT_SECRET!,
-            callbackURL: GOOGLE_CALLBACK_URL
+            callbackURL: GOOGLE_CALLBACK_URL,
         },
         async (accessToken: string, refreshToken: string, profile: Profile, done: any) => {
             try {
@@ -59,7 +56,8 @@ passport.use(
         {
             clientID: DISCORD_CLIENT_ID!,
             clientSecret: DISCORD_CLIENT_SECRET!,
-            callbackURL: DISCORD_CALLBACK_URL
+            callbackURL: DISCORD_CALLBACK_URL,
+            scope: ["identify", "email"]
         },
         async (accessToken: string, refreshToken: string, profile: Profile, done: any) => {
             try {

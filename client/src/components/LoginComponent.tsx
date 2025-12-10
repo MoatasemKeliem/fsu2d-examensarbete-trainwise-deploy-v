@@ -1,9 +1,9 @@
-import React, { useState, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import useAccount from '../hooks/useAccount'
 import type { ILogin } from '../model/ILogin'
 
 const LoginComponent = () => {
-    const { loginUser } = useAccount()
+    const { loginUser, loginWithDiscord, loginWithGoogle } = useAccount()
     const [login, setLogin] = useState<ILogin>({
         email: "",
         password: ""
@@ -15,6 +15,13 @@ const LoginComponent = () => {
         await loginUser(login)
     }
 
+    const handleGoogleLogin = () => {
+        loginWithGoogle()
+    }
+
+    const handleDiscordLogin = () => {
+        loginWithDiscord()
+    }
 
     return (
         <div>
@@ -28,6 +35,9 @@ const LoginComponent = () => {
                 </label> <br />
                 <button type='submit'>Login</button>
             </form>
+
+            <button onClick={handleGoogleLogin}>Login with Google</button><br />
+            <button onClick={handleDiscordLogin}>Login with Discord</button> <br />
         </div>
     )
 }

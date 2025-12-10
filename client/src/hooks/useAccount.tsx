@@ -27,9 +27,16 @@ const useAccount = () => {
         }
     }
 
+    const loginWithGoogle = () => {
+        window.location.href = `${Backend_URL}/auth/google`
+    }
+
+    const loginWithDiscord = () => {
+        window.location.href = `${Backend_URL}/auth/discord`
+    }
 
 
-    return { registerUser, loginUser }
+    return { registerUser, loginUser, loginWithGoogle, loginWithDiscord }
 }
 
 export default useAccount
