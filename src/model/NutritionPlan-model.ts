@@ -11,7 +11,7 @@ export interface INutritionPlan {
     workoutDaysPerWeek: number;
     style?: "bodybuildning" | "crossfit" | "powerlift" | "cardio" | "mixed";
     mealsPerDay?: number
-    dietaryPreferences?: string[];
-    allergies?: string[];
+    dietaryPreferences?: string;
+    allergies?: string;
     activetyLevel?: "light" | "moderate" | "active" | "very_active"
 }

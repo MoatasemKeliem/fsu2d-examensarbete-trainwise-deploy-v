@@ -1,7 +1,7 @@
 export const Backend_URL = "http://localhost:3000"
-import { FaDumbbell, FaFemale, FaHome, FaMale, FaRunning } from "react-icons/fa"
-import { MdSignalCellular1Bar, MdSignalCellular3Bar, MdSignalCellular4Bar } from "react-icons/md"
-import { GiStrong } from "react-icons/gi";
+import { FaDrumstickBite, FaDumbbell, FaFemale, FaFish, FaHome, FaLeaf, FaMale, FaRunning } from "react-icons/fa"
+import { MdSignalCellular1Bar, MdSignalCellular2Bar, MdSignalCellular3Bar, MdSignalCellular4Bar } from "react-icons/md"
+import { GiBowlOfRice, GiFruitBowl, GiMilkCarton, GiPeanut, GiStrong, GiSugarCane, GiWheat } from "react-icons/gi";
 
 
 export const gender = [
@@ -37,3 +37,25 @@ export const style = [
     { label: "Powerlift", value: "strength", icon: <GiStrong /> },
     { label: "Cardio", value: "cardio", icon: <FaRunning /> }
 ]
+
+export const activityLevel = [
+    { label: "Light", value: "light", icon: <MdSignalCellular1Bar /> },
+    { label: "Moderate", value: "moderate", icon: <MdSignalCellular2Bar /> },
+    { label: "Active", value: "active", icon: <MdSignalCellular3Bar /> },
+    { label: "Very active", value: "very_active", icon: <MdSignalCellular4Bar /> },
+]
+
+export const dietaryPreferences = [
+    { label: "None", value: "", icon: "" },
+    { label: "Vegetarian", value: "vegetarian", icon: <FaLeaf /> },
+    { label: "Vegan", value: "vegan", icon: <GiFruitBowl /> },
+    { label: "Halal", value: "halal", icon: <FaDrumstickBite /> },
+    { label: "Kosher", value: "kosher", icon: <GiBowlOfRice /> },
+    { label: "Gluten-Free", value: "gluten-free", icon: <GiWheat /> },
+    { label: "Lactose-Free", value: "lactose-free", icon: <GiMilkCarton /> },
+    { label: "Nut-Free", value: "nut-free", icon: <GiPeanut /> },
+    { label: "Sugar-Free", value: "sugar-free", icon: <GiSugarCane /> },
+    { label: "Pescatarian", value: "pescatarian", icon: <FaFish /> },
+    { label: "Diabetic-Friendly", value: "diabetic-friendly", icon: <MdSignalCellular1Bar /> },
+]
+
