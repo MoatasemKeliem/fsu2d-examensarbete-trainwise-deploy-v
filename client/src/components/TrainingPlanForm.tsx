@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useState, type FormEvent } from "react"
 import type { ITrainingPlan } from "../model/IPlans"
 import { gender, goal, level, preferredWorkoutType, style } from "../utils"
+import useGenerate from "../hooks/useGenerate"
 
 const TrainingPlanForm = () => {
+    const { generateTrainingPlan } = useGenerate()
     const [createTraining, setCreateTraining] = useState<ITrainingPlan>({
         gender: "male",
         age: 18,
@@ -17,14 +19,20 @@ const TrainingPlanForm = () => {
         injuries: "",
     })
 
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault()
+
+        generateTrainingPlan(createTraining)
+
+    }
 
     return (
         <div>
             <h2>Create Training Plan</h2>
-            <form action="">
+            <form onSubmit={handleSubmit}>
                 <br />
                 <label>Title <br />
-                    <input type="text" min={1} name="title" value={createTraining.title} onChange={(e) => { setCreateTraining({ ...createTraining, title: e.target.value }) }} />
+                    <input type="text" min={1} name="title" value={createTraining.title} onChange={(e) => { setCreateTraining({ ...createTraining, title: e.target.value }) }} required />
                 </label><br /><br />
                 <span>Gender</span> <br />
                 {
@@ -124,7 +132,7 @@ const TrainingPlanForm = () => {
                 }
                 <br />
 
-                <span>Style</span> <br />
+                <span>Style (Optional)</span> <br />
                 {
                     style.map((option) => {
                         return (
@@ -144,10 +152,10 @@ const TrainingPlanForm = () => {
                 }
                 <br />
                 <br />
-                <label>Injuries<br />
+                <label>Injuries (Optional)<br />
                     <input type="text" min={1} max={7} name="injuries" value={createTraining.injuries} onChange={(e) => { setCreateTraining({ ...createTraining, injuries: e.target.value }) }} />
                 </label><br /> <br />
-
+                <button type="submit">Create Training Plan</button>
             </form>
         </div>
     )
