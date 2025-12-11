@@ -1,4 +1,4 @@
-import type { INutritionPlan, ITrainingPlan } from '../model/IPlans'
+import type { INutritionPlan, ITrainingLog, ITrainingPlan } from '../model/IPlans'
 import axios from 'axios'
 import { Backend_URL } from '../utils'
 import { useNavigate } from 'react-router-dom'
@@ -28,9 +28,20 @@ const useGenerate = () => {
     }
 
 
+    const generateTrainingLog = async (payload: ITrainingLog) => {
+        try {
+            await axios.post(`${Backend_URL}/ai/generate-training-log`, payload, { withCredentials: true })
+            navigate("/training-logs")
+        } catch (error) {
+            console.error("Couldn't generate training log", error)
+            throw new Error()
+        }
+    }
 
 
-    return { generateTrainingPlan, generateNutritionPlan }
+
+
+    return { generateTrainingPlan, generateNutritionPlan, generateTrainingLog }
 }
 
 export default useGenerate

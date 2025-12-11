@@ -44,3 +44,13 @@ button {
   border-radius: 15px;
   cursor: pointer;
 }
+
+textarea {
+  width: 30em;
+  max-width: 55em;
+  height: 30em;
+  max-height: 50em;
+  padding: 0.2em;
+  border-radius: 10px;
+  border: 0.25em solid lightgray;
+}
