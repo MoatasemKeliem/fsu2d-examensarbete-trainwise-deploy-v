@@ -28,3 +28,7 @@ export interface INutritionPlan {
     allergies?: string;
     activetyLevel?: "light" | "moderate" | "active" | "very_active"
 }
+
+export interface ITrainingLog {
+    workoutSummary: string;
+}
