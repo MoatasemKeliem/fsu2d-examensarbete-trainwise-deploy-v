@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useState, type FormEvent } from "react"
 import type { INutritionPlan } from "../model/IPlans"
 import { gender, level, goal, style, dietaryPreferences, activityLevel } from "../utils"
+import useGenerate from "../hooks/useGenerate"
 
 const NutritionPlanForm = () => {
+    const { generateNutritionPlan } = useGenerate()
     const [createNutrition, setCreateNutrition] = useState<INutritionPlan>({
         gender: "male",
         age: 18,
@@ -18,10 +20,18 @@ const NutritionPlanForm = () => {
         allergies: "",
         activetyLevel: "moderate"
     })
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault()
+
+        generateNutritionPlan(createNutrition)
+    }
+
+
     return (
         <div>
             <h2>Create Nutrition Plan</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <br />
                 <label>Title <br />
                     <input type="text" min={1} name="title" value={createNutrition.title} onChange={(e) => { setCreateNutrition({ ...createNutrition, title: e.target.value }) }} required />
@@ -171,13 +181,13 @@ const NutritionPlanForm = () => {
 
                 <br />
                 <br />
-                <label>AlLergies (Optional)<br />
+                <label>Allergies (Optional)<br />
                     <input type="text" min={1} max={7} name="allergies" value={createNutrition.allergies} onChange={(e) => { setCreateNutrition({ ...createNutrition, allergies: e.target.value }) }} />
                 </label><br /> <br />
 
 
 
-                <button type="submit">Create Training Plan</button>
+                <button type="submit">Create Nutrition Plan</button>
             </form>
         </div>
     )

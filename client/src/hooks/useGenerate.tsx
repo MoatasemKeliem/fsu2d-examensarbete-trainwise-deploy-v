@@ -1,4 +1,4 @@
-import type { ITrainingPlan } from '../model/IPlans'
+import type { INutritionPlan, ITrainingPlan } from '../model/IPlans'
 import axios from 'axios'
 import { Backend_URL } from '../utils'
 import { useNavigate } from 'react-router-dom'
@@ -17,8 +17,20 @@ const useGenerate = () => {
     }
 
 
+    const generateNutritionPlan = async (payload: INutritionPlan) => {
+        try {
+            await axios.post(`${Backend_URL}/ai/generate-nutrition-plan`, payload, { withCredentials: true })
+            navigate("/nutritions")
+        } catch (error) {
+            console.error("Couldn't generate nutrition plan", error)
+            throw new Error()
+        }
+    }
 
-    return { generateTrainingPlan }
+
+
+
+    return { generateTrainingPlan, generateNutritionPlan }
 }
 
 export default useGenerate
