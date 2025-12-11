@@ -5,6 +5,7 @@ import useGenerate from "../hooks/useGenerate"
 
 const TrainingPlanForm = () => {
     const { generateTrainingPlan } = useGenerate()
+    const [loading, setLoading] = useState(false)
     const [createTraining, setCreateTraining] = useState<ITrainingPlan>({
         gender: "male",
         age: 18,
@@ -19,12 +20,26 @@ const TrainingPlanForm = () => {
         injuries: "",
     })
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
+        setLoading(true)
 
-        generateTrainingPlan(createTraining)
-
+        try {
+            await generateTrainingPlan(createTraining)
+        } finally {
+            setLoading(false)
+        }
     }
+
+    if (loading) {
+        return (
+            <div>
+                <span className="loader"></span>
+                <h2>Training plan is loading. Please wait...</h2>
+            </div>
+        )
+    }
+
 
     return (
         <div>

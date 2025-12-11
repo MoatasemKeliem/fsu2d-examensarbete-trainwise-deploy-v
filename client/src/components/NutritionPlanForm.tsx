@@ -5,6 +5,7 @@ import useGenerate from "../hooks/useGenerate"
 
 const NutritionPlanForm = () => {
     const { generateNutritionPlan } = useGenerate()
+    const [loading, setLoading] = useState(false)
     const [createNutrition, setCreateNutrition] = useState<INutritionPlan>({
         gender: "male",
         age: 18,
@@ -21,10 +22,25 @@ const NutritionPlanForm = () => {
         activetyLevel: "moderate"
     })
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
 
-        generateNutritionPlan(createNutrition)
+        setLoading(true)
+        try {
+            await generateNutritionPlan(createNutrition)
+        } finally {
+            setLoading(false)
+        }
+
+    }
+
+    if (loading) {
+        return (
+            <div>
+                <span className="loader"></span>
+                <h2>Nutrition plan is loading. Please wait...</h2>
+            </div>
+        )
     }
 
 

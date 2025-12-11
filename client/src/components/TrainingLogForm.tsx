@@ -4,14 +4,32 @@ import useGenerate from '../hooks/useGenerate'
 
 const TrainingLogForm = () => {
     const { generateTrainingLog } = useGenerate()
+    const [loading, setLoading] = useState(false)
     const [createTrainingLog, setCreateTrainingLog] = useState<ITrainingLog>({
         workoutSummary: ""
     })
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
 
-        generateTrainingLog(createTrainingLog)
+        setLoading(true)
+
+        try {
+            await generateTrainingLog(createTrainingLog)
+        } finally {
+            setLoading(false)
+        }
+
+
+    }
+
+    if (loading) {
+        return (
+            <div>
+                <span className="loader"></span>
+                <h2>Training Log feedback is loading. Please wait...</h2>
+            </div>
+        )
     }
 
 
