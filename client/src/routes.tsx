@@ -19,7 +19,10 @@ import SingleTrainingLog from "./pages/SingleTrainingLog";
 import Admin from "./pages/Admin";
 import Unauthorized from "./pages/Unauthorized";
 import NotFound from "./pages/NotFound";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import Users from "./pages/Users";
 
+const ADMIN = "admin"
 
 export const router = createBrowserRouter([{
     path: "/",
@@ -49,40 +52,40 @@ export const router = createBrowserRouter([{
         },
         {
             path: "/my-journey",
-            element: <MyJourney />
+            element: <ProtectedRoutes><MyJourney /></ProtectedRoutes>
         }, {
             path: "/dashboard",
-            element: <UserDashboard />
+            element: <ProtectedRoutes><UserDashboard /></ProtectedRoutes>
         }, {
             path: "/articles",
-            element: <Articles />
+            element: <ProtectedRoutes><Articles /></ProtectedRoutes>
         }, {
             path: "/articles/:id",
-            element: <SingleArticle />
+            element: <ProtectedRoutes><SingleArticle /></ProtectedRoutes>
         }, {
             path: "/training-plans",
-            element: <TrainingPlans />
+            element: <ProtectedRoutes><TrainingPlans /></ProtectedRoutes>
         }, {
             path: "/training-plans/:id",
-            element: <SingleTrainingPlan />
+            element: <ProtectedRoutes><SingleTrainingPlan /></ProtectedRoutes>
         }, {
             path: "/nutritions",
-            element: <NutritionPlans />
+            element: <ProtectedRoutes><NutritionPlans /></ProtectedRoutes>
         }, {
             path: "/nutritions/:id",
-            element: <SingleNutritionPlan />
+            element: <ProtectedRoutes><SingleNutritionPlan /></ProtectedRoutes>
         }, {
             path: "/training-logs",
-            element: <TrainingLogs />
+            element: <ProtectedRoutes><TrainingLogs /></ProtectedRoutes>
         }, {
             path: "/training-logs/:id",
-            element: <SingleTrainingLog />
+            element: <ProtectedRoutes><SingleTrainingLog /></ProtectedRoutes>
         }, {
             path: "/admin",
-            element: <Admin />
+            element: <ProtectedRoutes usersRole={ADMIN}><Admin /></ProtectedRoutes>
         }, {
             path: "/users",
-            element: <SingleTrainingLog />
+            element: <ProtectedRoutes usersRole={ADMIN}><Users /></ProtectedRoutes>
         },
         {
             path: "/unauthorized",

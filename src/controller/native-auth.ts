@@ -116,18 +116,18 @@ export const veirfyUser = async (req: Request, res: Response) => {
         const token = req.cookies.token;
 
         if (!token) {
-            return res.json({ status: 401, message: "Token was not found" })
+            return res.status(401).json({ message: "Token was not found" })
         }
 
         const userRepository = AppDataSource.getRepository(User)
         const decode = jwt.verify(token, process.env.JWT_SECRET!) as ITokenData
-        const user = await userRepository.findOne({ where: { id: decode.id } })
+        const user = await userRepository.findOne({ where: { id: decode.userId } })
 
         if (!user) {
-            return res.json({ status: 401, message: "user not found" })
+            return res.status(401).json({ message: "user not found" })
         }
 
-        return res.json({ status: 200, email: user?.email, id: user?.id, role: user?.role })
+        return res.status(200).json({ email: user.email, id: user.id, role: user.role })
 
     } catch (error) {
         console.error("Couldn't verify user", error)

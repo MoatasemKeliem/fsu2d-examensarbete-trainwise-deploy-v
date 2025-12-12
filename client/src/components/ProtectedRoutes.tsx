@@ -5,27 +5,34 @@ import { Navigate } from 'react-router-dom'
 import type { IProtectedRoutes } from '../model/IProtectedRoutes'
 
 const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
-    const [isAuth, setIsAuth] = useState(false)
-    const [role, setRole] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [isAuth, setIsAuth] = useState({
+        isAuthenticated: false,
+        role: null,
+        loading: true
+    })
+
 
     useEffect(() => {
         const verifyUser = async () => {
             try {
                 const response = await axios.get(`${Backend_URL}/native-auth/verify`, { withCredentials: true })
-                setIsAuth(true)
-                setRole(response.data.role)
-                setLoading(false)
+                setIsAuth({
+                    isAuthenticated: true,
+                    role: response.data.role,
+                    loading: false
+                })
             } catch (error) {
-                setIsAuth(false)
-                setRole(null)
-                setLoading(false)
+                setIsAuth({
+                    isAuthenticated: false,
+                    role: null,
+                    loading: false
+                })
             }
         }
         verifyUser()
     }, [])
 
-    if (loading) {
+    if (isAuth.loading) {
         return (
             <div>
                 <span className="loader"></span>
@@ -34,15 +41,15 @@ const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
         )
     }
 
-    if (!isAuth) {
+    if (!isAuth.isAuthenticated) {
         return (
-            <Navigate to={"/login"} />
+            <Navigate to={"/login"} replace />
         )
     }
 
-    if (usersRole && role !== usersRole) {
+    if (usersRole && isAuth.role !== usersRole) {
         return (
-            <Navigate to={"/unauthorized"} />
+            <Navigate to={"/unauthorized"} replace />
         )
     }
 
