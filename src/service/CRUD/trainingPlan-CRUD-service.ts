@@ -18,7 +18,7 @@ export const getAllTrainingPlans = async (req: Request, res: Response) => {
 
         const allTrainingPlans = await trainingPlanRepository.find({ where: { user: { id: userId } } })
 
-        return res.json({ status: 200, trainingPlan: allTrainingPlans })
+        return res.status(200).json({ trainingPlan: allTrainingPlans })
     } catch (error) {
         console.error(`Error: Couldn't fetch training plans: ${error} `)
         res.json({ status: 500, message: "Couldn't get training plan." })
