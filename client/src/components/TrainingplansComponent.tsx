@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import useTrainingPlan from '../hooks/useTrainingPlan'
+import { Link } from 'react-router-dom'
 
 const TrainingplansComponent = () => {
     const { getAllTrainingPlans, allTrainingPlans } = useTrainingPlan()
@@ -8,10 +9,14 @@ const TrainingplansComponent = () => {
         getAllTrainingPlans()
     }, [])
 
+    if (!allTrainingPlans) {
+        return <p>There is no training plans</p>
+    }
+
     return (
         <div>
             {
-                allTrainingPlans ? allTrainingPlans.trainingPlan.map((plan) => {
+                allTrainingPlans.map((plan) => {
                     return (
                         <div key={plan.id}>
                             <h2>{plan.title}</h2>
@@ -53,9 +58,11 @@ const TrainingplansComponent = () => {
                                 }
 
                             </div>
+                            <Link to={`/training-plans/${plan.id}`}><button>View Training Plan</button></Link>
+
                         </div>
                     )
-                }) : <p>There is no training plans</p>
+                })
             }
         </div>
     )

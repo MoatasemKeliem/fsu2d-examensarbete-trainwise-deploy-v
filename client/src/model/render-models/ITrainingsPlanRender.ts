@@ -2,7 +2,11 @@ export interface IRenderTrainingPlans {
     trainingPlan: TrainingPlans[]
 }
 
-interface TrainingPlans {
+export interface IRenderSingleTrainingPlan {
+    trainingPlan: TrainingPlans
+}
+
+export interface TrainingPlans {
     id: string;
     title: string;
     plan: TrainingWeek[];
