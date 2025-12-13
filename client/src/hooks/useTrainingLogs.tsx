@@ -30,10 +30,20 @@ const useTrainingLogs = () => {
         }
     }
 
+    const deleteTrainingLogById = async (id: number) => {
+        try {
+            await axios.delete(`${Backend_URL}/training-log/${id}`, { withCredentials: true })
+        } catch (error) {
+            console.log("Couldn't delete training log")
+            throw new Error()
+        }
+    }
+
+
 
 
     return {
-        getAllTrainingLogs, getTrainingLogById,
+        getAllTrainingLogs, getTrainingLogById, deleteTrainingLogById,
         allTrainingLogs, trainingLogById
     }
 }

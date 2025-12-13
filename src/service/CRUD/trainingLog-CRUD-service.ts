@@ -74,7 +74,7 @@ export const deletetrainingLogById = async (req: Request, res: Response) => {
 
         await trainingLogRepository.delete(trainingLogId)
 
-        res.status(200).json({ message: `Training log with the ID of: ${trainingLogId} was deleted` })
+        return res.status(200).json({ message: `Training log with the ID of: ${trainingLogId} was deleted` })
     } catch (error) {
         console.error(`Error: Couldn't delete training log by ID: ${error} `)
         res.json({ status: 500, message: "Couldn't delete training log." })

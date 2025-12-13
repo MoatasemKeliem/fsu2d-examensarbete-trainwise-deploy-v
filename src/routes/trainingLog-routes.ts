@@ -8,7 +8,7 @@ const trainingLogRoutes = Router()
 
 trainingLogRoutes.get("/", authMiddleware, getAllTrainingLogs)
 trainingLogRoutes.get("/:id", authMiddleware, getTrainingLogById)
-trainingLogRoutes.delete("/id", authMiddleware, deletetrainingLogById)
+trainingLogRoutes.delete("/:id", authMiddleware, deletetrainingLogById)
 
 
 

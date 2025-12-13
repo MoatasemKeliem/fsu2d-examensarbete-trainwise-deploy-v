@@ -1,10 +1,11 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import useTrainingLogs from "../hooks/useTrainingLogs"
 import { useEffect } from "react"
 
 const SingleTrainingLog = () => {
-    const { getTrainingLogById, trainingLogById } = useTrainingLogs()
+    const { getTrainingLogById, trainingLogById, deleteTrainingLogById } = useTrainingLogs()
     const { id } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (!id) return
@@ -28,7 +29,8 @@ const SingleTrainingLog = () => {
                 <p>{trainingLogById.aiFeedback}</p>
                 <p>Created at: {trainingLogById.createdAt.slice(0, 10)}</p>
 
-                <button>Delete Training Log</button>
+                <button onClick={() => { deleteTrainingLogById(Number(id)); navigate("/training-logs") }}>Delete training log</button>
+
 
             </div >
         </div>
