@@ -18,7 +18,7 @@ export const getAllTrainingPlans = async (req: Request, res: Response) => {
 
         const allTrainingPlans = await trainingPlanRepository.find({ where: { user: { id: userId } } })
 
-        return res.json({ status: 200, trainingPlan: allTrainingPlans })
+        return res.status(200).json({ trainingPlan: allTrainingPlans })
     } catch (error) {
         console.error(`Error: Couldn't fetch training plans: ${error} `)
         res.json({ status: 500, message: "Couldn't get training plan." })
@@ -42,10 +42,10 @@ export const getTrainingPlanById = async (req: Request, res: Response) => {
         const trainingPlanById = await trainingPlanRepository.findOne({ where: { id: trainingPlanId, user: { id: userId } } })
 
         if (!trainingPlanById) {
-            return res.json({ status: 400, message: "Training plan not found" })
+            return res.status(400).json({ message: "Training plan not found" })
         }
 
-        res.json({ status: 200, trainingPlan: trainingPlanById })
+        res.status(200).json({ trainingPlan: trainingPlanById })
     } catch (error) {
         console.error(`Error: Couldn't fetch training plan by ID: ${error} `)
         res.json({ status: 500, message: "Couldn't get training plan." })
