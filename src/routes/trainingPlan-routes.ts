@@ -8,7 +8,7 @@ const trainingPlanRoutes = Router()
 
 trainingPlanRoutes.get("/", authMiddleware, getAllTrainingPlans)
 trainingPlanRoutes.get("/:id", authMiddleware, getTrainingPlanById)
-trainingPlanRoutes.delete("/id", authMiddleware, deletetrainingPlanById)
+trainingPlanRoutes.delete("/:id", authMiddleware, deletetrainingPlanById)
 
 
 

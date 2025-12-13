@@ -29,10 +29,19 @@ const useTrainingPlan = () => {
         }
     }
 
+    const deleteTrainingPlanById = async (id: string) => {
+        try {
+            await axios.delete(`${Backend_URL}/training-plan/${id}`, { withCredentials: true })
+        } catch (error) {
+            console.error("Couldn't delete training plan", error)
+            throw new Error()
+        }
+    }
+
 
 
     return {
-        getAllTrainingPlans, getTrainingPlanById,
+        getAllTrainingPlans, getTrainingPlanById, deleteTrainingPlanById,
         allTrainingPlans, trainingPlanById
     }
 }

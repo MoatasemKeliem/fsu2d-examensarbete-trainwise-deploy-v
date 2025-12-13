@@ -1,10 +1,11 @@
 import { useEffect } from "react"
 import useTrainingPlan from "../hooks/useTrainingPlan"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const SingleTrainingPlan = () => {
-    const { getTrainingPlanById, trainingPlanById } = useTrainingPlan()
+    const { getTrainingPlanById, trainingPlanById, deleteTrainingPlanById } = useTrainingPlan()
     const { id } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (!id) {
@@ -64,7 +65,7 @@ const SingleTrainingPlan = () => {
                 }
 
             </div>
-            <button>Delete training plan</button>
+            <button onClick={() => { deleteTrainingPlanById(String(id)); navigate("/training-plans") }}>Delete training plan</button>
         </div>
     )
 }
