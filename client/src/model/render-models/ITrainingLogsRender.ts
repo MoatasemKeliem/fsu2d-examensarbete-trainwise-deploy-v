@@ -4,3 +4,4 @@ export interface ITrainingLogsRender {
     aiFeedback: string
     createdAt: string
 }
+
