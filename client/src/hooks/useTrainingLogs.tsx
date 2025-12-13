@@ -18,9 +18,23 @@ const useTrainingLogs = () => {
         }
     }
 
+
+    const getTrainingLogById = async (id: number) => {
+        try {
+            const response = await axios.get(`${Backend_URL}/training-log/${id}`, { withCredentials: true })
+            const data = response.data
+            setTrainingLogById(data.trainingLog)
+        } catch (error) {
+            console.log("Couldn't get training log")
+            throw new Error()
+        }
+    }
+
+
+
     return {
-        getAllTrainingLogs,
-        allTrainingLogs
+        getAllTrainingLogs, getTrainingLogById,
+        allTrainingLogs, trainingLogById
     }
 }
 

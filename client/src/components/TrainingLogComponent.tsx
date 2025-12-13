@@ -14,7 +14,6 @@ const TrainingLogComponent = () => {
         return <p>There is no training logs</p>
     }
 
-    console.log(allTrainingLogs)
 
     return (
         <div>
