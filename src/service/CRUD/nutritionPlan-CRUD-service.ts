@@ -13,12 +13,12 @@ export const getAllNutritionPlans = async (req: Request, res: Response) => {
         const userId = (req as any).userId
 
         if (!userId) {
-            return res.json({ status: 400, message: "user not found" })
+            return res.status(400).json({ message: "user not found" })
         }
 
         const allNutritionPlans = await nutritionPlanRepository.find({ where: { user: { id: userId } } })
 
-        return res.json({ status: 200, nutritionPlan: allNutritionPlans })
+        return res.status(200).json({ nutritionPlan: allNutritionPlans })
     } catch (error) {
         console.error(`Error: Couldn't fetch nutrition plans: ${error} `)
         res.json({ status: 500, message: "Couldn't get nutrition plan." })
