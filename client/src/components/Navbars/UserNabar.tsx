@@ -1,6 +1,9 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from 'react-router-dom'
+import useAccount from '../../hooks/useAccount'
 
-const Navbar = () => {
+const UserNabar = () => {
+    const { LogoutUser } = useAccount()
+
     return (
         <div>
             <nav className="navbar">
@@ -14,12 +17,11 @@ const Navbar = () => {
                 </ul>
 
                 <ul className="nav-list">
-                    <li className="nav-list-item"><NavLink className={"nav-item"} to={"/login"}>Login</NavLink></li>
-                    <li className="nav-list-item"><NavLink className={"nav-item"} to={"/register"}>Register</NavLink></li>
+                    <button onClick={() => { LogoutUser() }}>Logout</button>
                 </ul>
             </nav>
         </div>
     )
 }
 
-export default Navbar
+export default UserNabar
