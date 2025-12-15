@@ -127,7 +127,7 @@ export const veirfyUser = async (req: Request, res: Response) => {
             return res.status(401).json({ message: "user not found" })
         }
 
-        return res.status(200).json({ email: user.email, id: user.id, role: user.role })
+        return res.status(200).json({ email: user.email, id: user.id, role: user.role, name: user.name })
 
     } catch (error) {
         console.error("Couldn't verify user", error)
