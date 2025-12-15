@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Backend_URL } from '../utils'
 import type { IArticle } from '../model/render-models/IArticle'
 
@@ -10,7 +10,7 @@ const useArticle = () => {
     const getAllArticles = async () => {
         try {
             const response = await axios.get(`${Backend_URL}/article`, { withCredentials: true })
-            setAllArticles(response.data)
+            setAllArticles(response.data.articles)
         } catch (error) {
             console.error("Couldn't get articles plan", error)
             throw new Error()
