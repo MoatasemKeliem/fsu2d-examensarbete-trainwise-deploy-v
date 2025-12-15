@@ -4,7 +4,7 @@ import { useEffect } from "react"
 
 const SingleArticle = () => {
     const { id } = useParams()
-    const { getArticleById, deleteArticleById, articleById } = useArticle()
+    const { getArticleById, articleById } = useArticle()
 
 
     useEffect(() => {
