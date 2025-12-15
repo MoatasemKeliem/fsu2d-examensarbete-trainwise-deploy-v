@@ -8,7 +8,7 @@ const nutritionPlanRoutes = Router()
 
 nutritionPlanRoutes.get("/", authMiddleware, getAllNutritionPlans)
 nutritionPlanRoutes.get("/:id", authMiddleware, getNutritionPlanById)
-nutritionPlanRoutes.delete("/id", authMiddleware, deletetNutritionPlanById)
+nutritionPlanRoutes.delete("/:id", authMiddleware, deletetNutritionPlanById)
 
 
 

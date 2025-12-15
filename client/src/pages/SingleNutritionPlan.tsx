@@ -1,8 +1,151 @@
+import { useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import useNutrition from "../hooks/useNutrition"
 
 const SingleNutritionPlan = () => {
+    const { id } = useParams()
+    const { getNutritionPlanById, nutritionById, deleteNutritionPlanById } = useNutrition()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!id) return
+
+        getNutritionPlanById(String(id))
+
+    }, [])
+
+    if (!nutritionById) {
+        return <div>There is no Nutrition plan with the ID of: {id}</div>
+    }
+
+
+    const { meals } = nutritionById
+
+    const weekPlan = Object.entries(meals).filter(([weeks]) => weeks.startsWith("week"));
+
     return (
         <div>
             <h1>Single Nutrition Plan</h1>
+            <h2>{nutritionById.title}</h2>
+            <h3>Created at: {nutritionById.createdAt.slice(0, 10)}</h3>
+
+            <div>
+                <h4>
+                    Calories: {nutritionById.meals.daily_estimates.calories}</h4>
+                <div>
+                    <p>Protein: {nutritionById.meals.daily_estimates.macros.protein}g</p>
+                    <p>Carbs: {nutritionById.meals.daily_estimates.macros.carbs}g</p>
+                    <p>Fat: {nutritionById.meals.daily_estimates.macros.fat}g</p>
+                </div>
+            </div>
+
+            <section>
+                {
+                    weekPlan.map(([weekNumber, weekData]) => {
+                        return (
+                            <div key={weekNumber}>
+                                <h4>{weekNumber}</h4>
+                                {Object.entries(weekData).map(([day, dayMeals]) => {
+                                    return (
+                                        <div key={day}>
+                                            <h5>{day}</h5>
+                                            {
+                                                (dayMeals as any).map((meal: any, index: number) => {
+                                                    return (
+                                                        <div key={index}>
+                                                            <h5>{meal.meal}</h5>
+                                                            <div>
+                                                                {meal.items.map((item: any, index: number) => {
+                                                                    return (
+                                                                        <div key={index}>
+                                                                            <p>{item}</p>
+                                                                        </div>
+                                                                    )
+                                                                })}
+                                                            </div>
+                                                            <p>Calories: {meal.calories}</p>
+                                                            <div>
+                                                                <h5>Macros:</h5>
+                                                                <p>Protein: {meal.macros.protein}</p>
+                                                                <p>Carbs: {meal.macros.carbs}</p>
+                                                                <p>Fat: {meal.macros.fat}</p>
+                                                            </div>
+                                                        </div>
+
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        )
+                    })
+                }
+
+                <section>
+                    <div>
+                        <h2>Snacks</h2>
+                        {meals.snacks.map((snack) => {
+                            return (
+                                <p>{snack}</p>
+                            )
+                        })}
+                    </div>
+                    <div>
+                        <h2>Snack Suggestions</h2>
+                        {meals.snack_suggestions.map((snack) => {
+                            return (
+                                <p>{snack}</p>
+                            )
+                        })}
+                    </div>
+
+                    <div>
+                        <h2>Drinks</h2>
+                        {
+                            meals.drinks.map((drink) => {
+                                return (
+                                    <p>{drink}</p>
+                                )
+                            })
+                        }
+                    </div>
+
+                    <div>
+                        <h2>Drink Suggestions</h2>
+                        {
+                            meals.drink_suggestions.map((drink) => {
+                                return (
+                                    <p>{drink}</p>
+                                )
+                            })
+                        }
+                    </div>
+
+                    <div>
+                        <h2>Meal Prep Tips</h2>
+                        {
+                            meals.meal_prep_tips.map((prep) => {
+                                return (
+                                    <p>{prep}</p>
+                                )
+                            })
+                        }
+                    </div>
+                    <div>
+                        <h2>Motivation Tips</h2>
+                        {
+                            meals.motivation_tips.map((tips) => {
+                                return (
+                                    <p>{tips}</p>
+                                )
+                            })
+                        }
+                    </div>
+                </section>
+            </section>
+            <button onClick={() => { deleteNutritionPlanById(String(id)); navigate("/nutritions") }}>Delete nutrition plan</button>
 
         </div>
     )
