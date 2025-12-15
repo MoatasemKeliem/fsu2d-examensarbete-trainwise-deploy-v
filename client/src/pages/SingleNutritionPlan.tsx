@@ -18,11 +18,8 @@ const SingleNutritionPlan = () => {
         return <div>There is no Nutrition plan with the ID of: {id}</div>
     }
 
-    console.log(nutritionById)
 
     const { meals } = nutritionById
-
-    console.log("This is meal: ", meals)
 
     const weekPlan = Object.entries(meals).filter(([weeks]) => weeks.startsWith("week"));
 
@@ -68,7 +65,7 @@ const SingleNutritionPlan = () => {
                                                             </div>
                                                             <p>Calories: {meal.calories}</p>
                                                             <div>
-                                                                <h6>Macros:</h6>
+                                                                <h5>Macros:</h5>
                                                                 <p>Protein: {meal.macros.protein}</p>
                                                                 <p>Carbs: {meal.macros.carbs}</p>
                                                                 <p>Fat: {meal.macros.fat}</p>
