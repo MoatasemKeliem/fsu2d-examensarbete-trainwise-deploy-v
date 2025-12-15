@@ -57,9 +57,9 @@ export const deleteArticleById = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "article not found" })
         }
 
-        await articleRepository.delete(articleById)
+        await articleRepository.delete(articleId)
 
-        return res.status(400).json({ message: `article with the ID of: ${articleId} was deleted` })
+        return res.status(200).json({ message: `article with the ID of: ${articleId} was deleted` })
     } catch (error) {
         console.error(`Error: Couldn't delete article by ID: ${error} `)
         return res.status(500).json({ message: "Couldn't delete article." })
