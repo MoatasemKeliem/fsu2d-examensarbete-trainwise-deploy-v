@@ -12,10 +12,10 @@ export const getAllArticles = async (req: Request, res: Response) => {
     try {
         const allArticles = await articleRepository.find()
 
-        return res.json({ status: 200, articles: allArticles })
+        return res.status(200).json({ articles: allArticles })
     } catch (error) {
         console.error(`Error: Couldn't fetch articles: ${error} `)
-        res.json({ status: 500, message: "Couldn't get articles." })
+        return res.status(500).json({ message: "Couldn't get articles." })
     }
 }
 
@@ -26,19 +26,19 @@ export const getArticleById = async (req: Request, res: Response) => {
 
 
         if (!articleId) {
-            return res.json({ status: 400, message: "ID for article not found" })
+            return res.status(400).json({ message: "ID for article not found" })
         }
 
         const articleById = await articleRepository.findOne({ where: { id: articleId } })
 
         if (!articleById) {
-            return res.json({ status: 400, message: "Training log not found" })
+            return res.status(400).json({ message: "Training log not found" })
         }
 
-        res.json({ status: 200, article: articleById })
+        return res.status(200).json({ article: articleById })
     } catch (error) {
         console.error(`Error: Couldn't fetch article by ID: ${error} `)
-        res.json({ status: 500, message: "Couldn't get article." })
+        return res.status(500).json({ message: "Couldn't get article." })
     }
 }
 
@@ -48,20 +48,20 @@ export const deleteArticleById = async (req: Request, res: Response) => {
         const articleId = req.params.id;
 
         if (!articleId) {
-            return res.json({ status: 400, message: "ID for article not found" })
+            return res.status(400).json({ message: "ID for article not found" })
         }
 
         const articleById = await articleRepository.findOne({ where: { id: articleId } })
 
         if (!articleById) {
-            return res.json({ status: 400, message: "article not found" })
+            return res.status(400).json({ message: "article not found" })
         }
 
         await articleRepository.delete(articleById)
 
-        res.json({ status: 200, message: `article with the ID of: ${articleId} was deleted` })
+        return res.status(400).json({ message: `article with the ID of: ${articleId} was deleted` })
     } catch (error) {
         console.error(`Error: Couldn't delete article by ID: ${error} `)
-        res.json({ status: 500, message: "Couldn't delete article." })
+        return res.status(500).json({ message: "Couldn't delete article." })
     }
 }
