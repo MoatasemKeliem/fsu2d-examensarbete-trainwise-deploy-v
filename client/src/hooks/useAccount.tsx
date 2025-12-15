@@ -21,8 +21,21 @@ const useAccount = () => {
         try {
             await axios.post(`${Backend_URL}/native-auth/login`, payload, { withCredentials: true })
             navigate("/dashboard")
+            window.location.reload()
         } catch (error) {
             console.error("Couldn't login user", error)
+            throw new Error()
+        }
+    }
+
+
+    const LogoutUser = async () => {
+        try {
+            await axios.post(`${Backend_URL}/native-auth/logout`, {}, { withCredentials: true })
+            navigate("/")
+            window.location.reload()
+        } catch (error) {
+            console.error("Couldn't logout user", error)
             throw new Error()
         }
     }
@@ -36,7 +49,7 @@ const useAccount = () => {
     }
 
 
-    return { registerUser, loginUser, loginWithGoogle, loginWithDiscord }
+    return { registerUser, loginUser, loginWithGoogle, loginWithDiscord, LogoutUser }
 }
 
 export default useAccount
