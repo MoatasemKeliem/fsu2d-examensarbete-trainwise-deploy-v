@@ -1,7 +1,7 @@
 import { useState } from "react"
-import AdminUserCMS from "../components/Admin/AdminUserCMS"
-import ArticleForm from "../components/Admin/ArticleForm"
-import AdminTrainingPlanCMS from "../components/Admin/AdminTrainingPlanCMS"
+import AdminUserCMS from "../../components/Admin/AdminUserCMS"
+import ArticleForm from "../../components/Admin/ArticleForm"
+import AdminTrainingPlanCMS from "../../components/Admin/AdminTrainingPlanCMS"
 
 const Admin = () => {
     const [show, setShow] = useState("article")
