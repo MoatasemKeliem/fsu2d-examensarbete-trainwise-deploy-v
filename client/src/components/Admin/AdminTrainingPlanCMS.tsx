@@ -22,7 +22,7 @@ const AdminTrainingPlanCMS = () => {
                     return (
                         <div key={plan.id}>
                             <h3>{plan.title}</h3>
-                            <p>{plan.createdAt}</p>
+                            <p>{plan.createdAt.slice(0, 10)}</p>
                             <div>
                                 <p>{plan.user.name}</p>
                                 <p>{plan.user.email}</p>

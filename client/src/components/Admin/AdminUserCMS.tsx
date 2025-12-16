@@ -20,7 +20,7 @@ const AdminUserCMS = () => {
                     return (
                         <div key={user.id}>
                             <h2>Name: {user.name}</h2>
-                            <p>email: {user.email}</p>
+                            <p>Email: {user.email}</p>
                             <p>Role: {user.role}</p>
                             <p>Provider: {user.provider}</p>
                             <p>Stripe customer ID: {user.stripeCustomerId}</p>
