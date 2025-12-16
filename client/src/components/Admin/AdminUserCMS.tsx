@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import useUserCMS from '../../hooks/Admin/useUserCMS'
 
 const AdminUserCMS = () => {
-    const { getAllUsers, allUsers } = useUserCMS()
+    const { getAllUsers, allUsers, deleteUsers } = useUserCMS()
 
     useEffect(() => {
         getAllUsers()
@@ -25,7 +25,7 @@ const AdminUserCMS = () => {
                             <p>Provider: {user.provider}</p>
                             <p>Stripe customer ID: {user.stripeCustomerId}</p>
                             <p>Created: {user.createdAt.slice(0, 10)}</p>
-                            <button>Delete User</button>
+                            <button onClick={async () => { await deleteUsers(user.id); await getAllUsers() }}>Delete User</button>
                         </div>
                     )
                 })
