@@ -22,6 +22,7 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Users from "./pages/Users";
 import AdminSingleTrainingPlan from "./pages/Admin/AdminSingleTrainingPlan";
+import AdminSingleNutritionPlan from "./pages/Admin/AdminSingleNutritionPlan";
 
 const ADMIN = "admin"
 
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([{
         }, {
             path: "/admin-training-Plan/:id",
             element: <ProtectedRoutes usersRole={ADMIN}><AdminSingleTrainingPlan /></ProtectedRoutes>
+        }, {
+        }, {
+            path: "/admin-nutrition-Plan/:id",
+            element: <ProtectedRoutes usersRole={ADMIN}><AdminSingleNutritionPlan /></ProtectedRoutes>
         }, {
             path: "/users",
             element: <ProtectedRoutes usersRole={ADMIN}><Users /></ProtectedRoutes>

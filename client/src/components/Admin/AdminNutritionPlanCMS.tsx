@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import useNutritionPlanAdmin from '../../hooks/Admin/useNutritionPlanAdmin'
+import { Link } from 'react-router-dom'
 
 const AdminNutritionPlanCMS = () => {
     const { getAllNutritionPlanAdmin, allNutritionPlansAdmin } = useNutritionPlanAdmin()
@@ -22,7 +23,8 @@ const AdminNutritionPlanCMS = () => {
                                 <p>Email: {plan.user.email}</p>
                                 <p>Role: {plan.user.role}</p>
                             </div>
-                            <button>View Nutrition Plan</button>
+                            <Link to={`/admin-nutrition-Plan/${plan.id}`}><button>View Nutrition Plan</button></Link>
+
                         </div>
                     )
                 })
