@@ -1,8 +1,18 @@
+import type { IUser } from "../Admin/IUsers";
+
 export interface INutritionPlan {
     id: string;
     title: string;
     createdAt: string
 }
+
+export interface INutritionPlanAdmin {
+    id: string;
+    title: string;
+    createdAt: string
+    user: IUser;
+}
+
 
 interface Week {
     day1: Meal[]
