@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Backend_URL } from '../../utils'
 import type { IUser } from '../../model/Admin/IUsers'
 
