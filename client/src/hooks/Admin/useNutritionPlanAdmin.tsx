@@ -2,10 +2,12 @@ import { useState } from 'react'
 import type { INutritionPlanAdmin, INutritionPlans } from '../../model/render-models/InutritionPlans'
 import axios from 'axios'
 import { Backend_URL } from '../../utils'
+import { useNavigate } from 'react-router-dom'
 
 const useNutritionPlanAdmin = () => {
     const [allNutritionPlansAdmin, setAllNutritionPlansAdmin] = useState<INutritionPlanAdmin[]>([])
     const [nutritionPlansByIdAdmin, setNutritionPlansByIdAdmin] = useState<INutritionPlans | null>(null)
+    const navigate = useNavigate()
 
     const getAllNutritionPlanAdmin = async () => {
         try {
@@ -29,8 +31,19 @@ const useNutritionPlanAdmin = () => {
         }
     }
 
+    const deleteNutritionPlanByIdAdmin = async (id: string) => {
+        try {
+            await axios.delete(`${Backend_URL}/admin/nutrition-plan/${id}`, { withCredentials: true })
+            navigate("/admin")
+        } catch (error) {
+            console.error("Couldn't delete nutrition plan for admin: ", error)
+            throw new Error()
+        }
+    }
+
+
     return {
-        getAllNutritionPlanAdmin, getNutritionPlanByIdAdmin,
+        getAllNutritionPlanAdmin, getNutritionPlanByIdAdmin, deleteNutritionPlanByIdAdmin,
         allNutritionPlansAdmin, nutritionPlansByIdAdmin
     }
 }

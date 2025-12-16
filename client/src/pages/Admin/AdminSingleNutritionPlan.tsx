@@ -3,7 +3,7 @@ import useNutritionPlanAdmin from "../../hooks/Admin/useNutritionPlanAdmin"
 import { useEffect } from "react"
 
 const AdminSingleNutritionPlan = () => {
-    const { getNutritionPlanByIdAdmin, nutritionPlansByIdAdmin } = useNutritionPlanAdmin()
+    const { getNutritionPlanByIdAdmin, nutritionPlansByIdAdmin, deleteNutritionPlanByIdAdmin } = useNutritionPlanAdmin()
     const { id } = useParams()
 
     useEffect(() => {
@@ -146,7 +146,7 @@ const AdminSingleNutritionPlan = () => {
                     </div>
                 </section>
             </section>
-            {/* <button onClick={() => { deleteNutritionPlanById(String(id)); navigate("/nutritions") }}>Delete nutrition plan</button> */}
+            <button onClick={() => { deleteNutritionPlanByIdAdmin(String(id)) }}>Delete nutrition plan</button>
 
         </div>
     )
