@@ -1,18 +1,41 @@
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import { articleCaetgory } from '../utils'
 import type { IArticleAdmin } from '../model/Admin/IArticleAdmin'
+import useArticleAdmin from '../hooks/Admin/useArticleAdmin'
 
 const ArticleForm = () => {
     const [createArticle, setCreateArticle] = useState<IArticleAdmin>({
         title: "",
         category: "general_fitness"
     })
+    const { generateArticle } = useArticleAdmin()
+    const [loading, setLoading] = useState(false)
 
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault()
+        setLoading(true)
+        try {
+            await generateArticle(createArticle)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+
+    if (loading) {
+        return (
+            <div>
+                <span className="loader"></span>
+                <h2>Generating article. Please wait...</h2>
+            </div>
+        )
+    }
 
 
     return (
         <div>
-            <form action="">
+            <form onSubmit={handleSubmit}>
                 <br />
                 <label>Title <br />
                     <input type="text" name="title" value={createArticle.title} onChange={(e) => { setCreateArticle({ ...createArticle, title: e.target.value }) }} required />
