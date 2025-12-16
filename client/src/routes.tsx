@@ -23,6 +23,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import Users from "./pages/Users";
 import AdminSingleTrainingPlan from "./pages/Admin/AdminSingleTrainingPlan";
 import AdminSingleNutritionPlan from "./pages/Admin/AdminSingleNutritionPlan";
+import AdminSingleTrainingLog from "./pages/Admin/AdminSingleTrainingLog";
 
 const ADMIN = "admin"
 
@@ -92,6 +93,10 @@ export const router = createBrowserRouter([{
         }, {
             path: "/admin-nutrition-Plan/:id",
             element: <ProtectedRoutes usersRole={ADMIN}><AdminSingleNutritionPlan /></ProtectedRoutes>
+        }, {
+        }, {
+            path: "/admin-training-log/:id",
+            element: <ProtectedRoutes usersRole={ADMIN}><AdminSingleTrainingLog /></ProtectedRoutes>
         }, {
             path: "/users",
             element: <ProtectedRoutes usersRole={ADMIN}><Users /></ProtectedRoutes>
