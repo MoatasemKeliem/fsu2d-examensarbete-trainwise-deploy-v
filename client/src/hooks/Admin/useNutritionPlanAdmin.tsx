@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import type { INutritionPlans } from '../../model/render-models/InutritionPlans'
+import type { INutritionPlanAdmin } from '../../model/render-models/InutritionPlans'
 import axios from 'axios'
 import { Backend_URL } from '../../utils'
 
 const useNutritionPlanAdmin = () => {
-    const [allNutritionPlansAdmin, setAllNutritionPlansAdmin] = useState<INutritionPlans[]>([])
+    const [allNutritionPlansAdmin, setAllNutritionPlansAdmin] = useState<INutritionPlanAdmin[]>([])
 
     const getAllNutritionPlanAdmin = async () => {
         try {

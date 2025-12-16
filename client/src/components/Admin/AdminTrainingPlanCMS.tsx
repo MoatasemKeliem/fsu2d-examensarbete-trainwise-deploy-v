@@ -13,7 +13,6 @@ const AdminTrainingPlanCMS = () => {
         return <h2>There is no training plans for admin</h2>
     }
 
-    console.log(allTrainingPlansAdmin)
 
     return (
         <div>
