@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
-import { articleCaetgory } from '../utils'
-import type { IArticleAdmin } from '../model/Admin/IArticleAdmin'
-import useArticleAdmin from '../hooks/Admin/useArticleAdmin'
+import { articleCaetgory } from '../../utils'
+import type { IArticleAdmin } from '../../model/Admin/IArticleAdmin'
+import useArticleAdmin from '../../hooks/Admin/useArticleAdmin'
 
 const ArticleForm = () => {
     const [createArticle, setCreateArticle] = useState<IArticleAdmin>({
