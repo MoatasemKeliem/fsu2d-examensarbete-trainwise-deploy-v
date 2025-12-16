@@ -1,3 +1,5 @@
+import type { IUser } from "../Admin/IUsers";
+
 export interface IRenderTrainingPlans {
     trainingPlan: TrainingPlans[]
 }
@@ -12,6 +14,15 @@ export interface TrainingPlans {
     plan: TrainingWeek[];
     createdAt: string
 }
+
+export interface IAdminTrainingPlans {
+    id: string;
+    title: string;
+    plan: TrainingWeek[];
+    createdAt: string
+    user: IUser
+}
+
 
 interface TrainingWeek {
     week: string;

@@ -2,7 +2,6 @@ import axios from 'axios'
 import { useState } from 'react'
 import { Backend_URL } from '../../utils'
 import type { IUser } from '../../model/Admin/IUsers'
-import { useNavigate } from 'react-router-dom'
 
 const useUserCMS = () => {
     const [allUsers, setAllUsers] = useState<IUser[]>([])
