@@ -59,3 +59,11 @@ export const dietaryPreferences = [
     { label: "Diabetic-Friendly", value: "diabetic-friendly", icon: <MdSignalCellular1Bar /> },
 ]
 
+export const articleCaetgory = [
+    { label: "General Fitness", value: "general_fitness", icon: <FaRunning /> },
+    { label: "Muscle Gain", value: "muscle_gain", icon: <FaDumbbell /> },
+    { label: "Fat Loss", value: "fat_loss", icon: <FaRunning /> },
+    { label: "Strenght", value: "strength", icon: <GiStrong /> },
+    { label: "Endurance", value: "endurance", icon: <FaRunning /> },
+    { label: "Other", value: "other", icon: <FaRunning /> },
+]
