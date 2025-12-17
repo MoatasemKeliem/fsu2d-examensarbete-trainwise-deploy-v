@@ -2,6 +2,7 @@ export const Backend_URL = "http://localhost:3000"
 import { FaDrumstickBite, FaDumbbell, FaFemale, FaFish, FaHome, FaLeaf, FaMale, FaRunning } from "react-icons/fa"
 import { MdSignalCellular1Bar, MdSignalCellular2Bar, MdSignalCellular3Bar, MdSignalCellular4Bar } from "react-icons/md"
 import { GiBowlOfRice, GiFruitBowl, GiMilkCarton, GiPeanut, GiStrong, GiSugarCane, GiWheat } from "react-icons/gi";
+import { loadStripe } from "@stripe/stripe-js"
 
 
 export const gender = [
@@ -67,3 +68,7 @@ export const articleCaetgory = [
     { label: "Endurance", value: "endurance", icon: <FaRunning /> },
     { label: "Other", value: "other", icon: <FaRunning /> },
 ]
+
+export const stripePromise = loadStripe(
+    "pk_test_51R4HXJ03YBWNs0AcTJl7ysey0rfZBp48ldl6iX9CAJZ8JXCBfC6s6sxmLp2Onvzf2AFUKbbV6PJ5DiNJLQQ9ubct00ORDLXfEa"
+)
