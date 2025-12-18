@@ -66,6 +66,11 @@ export const stripePayment = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "User not found" })
         }
 
+        const activeSubscription = await subscriptionRepository.findOne({ where: { user: { id: user.id }, status: "active" } })
+
+        if (activeSubscription) {
+            return res.json({ message: "You already have an actice subscription" })
+        }
 
         const session = await stripe.subscriptions.create({
             customer: user.stripeCustomerId,
