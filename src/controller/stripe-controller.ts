@@ -95,7 +95,7 @@ export const stripePayment = async (req: Request, res: Response) => {
 
         await subscriptionRepository.save(subscriptionTable);
 
-        return res.json({ subscriptionId: session.id, clientSecret })
+        return res.json({ subscriptionId: session.id, clientSecret, message: "Your payment was successful" })
 
     } catch (error) {
         console.error(error)

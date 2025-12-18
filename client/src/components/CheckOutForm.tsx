@@ -4,12 +4,14 @@ import { useState, type FormEvent } from "react";
 import { Backend_URL } from "../utils";
 import { useNavigate } from "react-router-dom";
 import AlreadySubscribed from "./AlreadySubscribed";
+import SuccessfullPayment from "./SuccessfullPayment";
 
 const CheckOutForm = () => {
     const stripe = useStripe();
     const elements = useElements()
     const navigate = useNavigate()
     const [alreadySubscribed, setAlreadySubscribed] = useState(false)
+    const [successfulSubscription, setSuccessfulSubscription] = useState(false)
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
@@ -35,9 +37,25 @@ const CheckOutForm = () => {
             return
         }
 
+        if (reposne.data.message === "Your payment was successful") {
+            setSuccessfulSubscription(true);
+            setTimeout(() => {
+                navigate("/dashboard")
+            }, 5000)
+            return
+        }
+
         alert("Payment successful")
         navigate("/dashboard")
 
+    }
+
+    if (successfulSubscription) {
+        return (
+            <div>
+                <SuccessfullPayment />
+            </div>
+        )
     }
 
     if (alreadySubscribed) {
