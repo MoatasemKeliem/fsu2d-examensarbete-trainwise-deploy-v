@@ -1,3 +1,4 @@
+import MySubscription from "../components/MySubscription"
 import useAuth from "../hooks/useAuth"
 
 
@@ -10,6 +11,11 @@ const UserDashboard = () => {
             <h1>Dashboard</h1>
             <h1>Hello {name}, you're logged in as {role}
             </h1>
+            <div>
+                <h2>Cancel Subscription</h2>
+                <MySubscription />
+            </div>
+
         </div>
     )
 }

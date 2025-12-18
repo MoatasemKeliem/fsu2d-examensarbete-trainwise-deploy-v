@@ -12,7 +12,6 @@ export const createPayment = async (req: Request, res: Response) => {
 
     try {
         const userRepository = AppDataSource.getRepository(User)
-        const subscriptionRepository = AppDataSource.getRepository(Subscription)
         const user = await userRepository.findOne({ where: { id: userId } })
 
         if (!user) {
@@ -103,6 +102,8 @@ export const stripePayment = async (req: Request, res: Response) => {
 
 export const cancelSubscription = async (req: Request, res: Response) => {
     const { subscriptionId } = req.body
+    const userId = (req as any).userId
+
 
     if (!subscriptionId) {
         return res.json({ status: 400, message: "Subscription ID not found" })
@@ -110,6 +111,18 @@ export const cancelSubscription = async (req: Request, res: Response) => {
 
     try {
         const deleteSubscription = await stripe.subscriptions.update(subscriptionId, { cancel_at_period_end: true })
+
+        const subscriptionRepository = AppDataSource.getRepository(Subscription)
+
+        const userRepository = AppDataSource.getRepository(User)
+
+        const user = await userRepository.findOne({ where: { id: userId } })
+
+        if (!user) {
+            return res.status(400).json({ message: "User not found" })
+        }
+
+
 
         return res.json({
             status: 200,
