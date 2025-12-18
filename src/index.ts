@@ -7,7 +7,6 @@ import OAuthRouter from "./routes/OAuth-routes";
 import passport from "passport";
 import "./config/passport"
 import stripeRoute from "./routes/stripe-routes";
-import { stripeWebhook } from "./controller/stripe-controller";
 import AIroutes from "./routes/AI-routes";
 import trainingPlanRoutes from "./routes/trainingPlan-routes";
 import nutritionPlanRoutes from "./routes/nutritionPlan-routes";
@@ -15,6 +14,7 @@ import trainingLogRoutes from "./routes/trainingLog-routes";
 import articleRoute from "./routes/article-routes";
 import adminRoutes from "./routes/admin-routes";
 import cors from "cors"
+// import { stripeWebhook } from "./controller/stripe-webhook-controller";
 
 const app = express();
 const PORT = 3000;
@@ -24,7 +24,7 @@ app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
 }))
-app.post("/stripe/webhook", express.raw({ type: "application/json" }), stripeWebhook)
+// app.post("/stripe/webhook", express.raw({ type: "application/json" }), stripeWebhook)
 app.use(express.json())
 app.use(cookieParser())
 app.use(passport.initialize())

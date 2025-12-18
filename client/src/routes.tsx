@@ -24,6 +24,7 @@ import Users from "./pages/Users";
 import AdminSingleTrainingPlan from "./pages/Admin/AdminSingleTrainingPlan";
 import AdminSingleNutritionPlan from "./pages/Admin/AdminSingleNutritionPlan";
 import AdminSingleTrainingLog from "./pages/Admin/AdminSingleTrainingLog";
+import Subscription from "./pages/Subscription";
 
 const ADMIN = "admin"
 
@@ -52,6 +53,9 @@ export const router = createBrowserRouter([{
         }, {
             path: "/pricing",
             element: <Pricing />
+        }, {
+            path: "/subscribe",
+            element: <Subscription />
         },
         {
             path: "/my-journey",
