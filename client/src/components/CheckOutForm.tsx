@@ -3,8 +3,9 @@ import axios from "axios";
 import { useState, type FormEvent } from "react";
 import { Backend_URL } from "../utils";
 import { useNavigate } from "react-router-dom";
-import AlreadySubscribed from "./AlreadySubscribed";
-import SuccessfullPayment from "./SuccessfullPayment";
+import SuccessfullPayment from "./stripeMessage/SuccessfullPayment";
+import AlreadySubscribed from "./stripeMessage/AlreadySubscribed";
+
 
 const CheckOutForm = () => {
     const stripe = useStripe();
