@@ -5,6 +5,7 @@ import { User } from "../entities/User";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import { ITokenData } from "../model/Account-model";
+import { Subscription } from "../entities/Subscription";
 
 dotenv.config({ quiet: true })
 
@@ -120,6 +121,7 @@ export const veirfyUser = async (req: Request, res: Response) => {
         }
 
         const userRepository = AppDataSource.getRepository(User)
+        const subscriptionRepository = AppDataSource.getRepository(Subscription);
         const decode = jwt.verify(token, process.env.JWT_SECRET!) as ITokenData
         const user = await userRepository.findOne({ where: { id: decode.userId } })
 
@@ -127,7 +129,13 @@ export const veirfyUser = async (req: Request, res: Response) => {
             return res.status(401).json({ message: "user not found" })
         }
 
-        return res.status(200).json({ email: user.email, id: user.id, role: user.role, name: user.name })
+        const userSubscription = await subscriptionRepository.findOne({ where: { user: { id: user.id } } })
+
+        if (!userSubscription) {
+            return res.status(200).json({ email: user.email, id: user.id, role: user.role, name: user.name, subscriptionStatus: "inactive" })
+        }
+
+        return res.status(200).json({ email: user.email, id: user.id, role: user.role, name: user.name, subscriptionStatus: userSubscription.status })
 
     } catch (error) {
         console.error("Couldn't verify user", error)

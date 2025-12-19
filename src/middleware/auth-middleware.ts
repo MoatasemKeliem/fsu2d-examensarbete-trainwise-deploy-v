@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 
 dotenv.config({ quiet: true })
 
-interface tokenRequest {
+export interface tokenRequest {
     email: string;
     userId: string;
     role: string;
@@ -14,8 +14,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
     const token = req.cookies.token;
 
     if (!token) {
-        return res.json({
-            Status: 401,
+        return res.status(401).json({
             message: "There is no token authorization denied"
         })
     }
@@ -26,8 +25,7 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
         next()
     } catch (error) {
         console.error("Couldn't verify token");
-        return res.json({
-            status: 401,
+        return res.status(500).json({
             message: "Couldn't verify token"
         })
     }
