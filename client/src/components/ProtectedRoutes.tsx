@@ -8,7 +8,8 @@ const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
     const [isAuth, setIsAuth] = useState({
         isAuthenticated: false,
         role: null,
-        loading: true
+        loading: true,
+        subscriptionStatus: "inactive"
     })
 
 
@@ -19,13 +20,16 @@ const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
                 setIsAuth({
                     isAuthenticated: true,
                     role: response.data.role,
-                    loading: false
+                    loading: false,
+                    subscriptionStatus: response.data.subscriptionStatus
                 })
             } catch (error) {
                 setIsAuth({
                     isAuthenticated: false,
                     role: null,
-                    loading: false
+                    loading: false,
+                    subscriptionStatus: "inactive"
+
                 })
             }
         }
@@ -44,6 +48,13 @@ const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
     if (!isAuth.isAuthenticated) {
         return (
             <Navigate to={"/login"} replace />
+        )
+    }
+
+    if (isAuth.role === "user" && isAuth.subscriptionStatus === "inactive") {
+        return (
+            <Navigate to={"/subscribe"} replace />
+
         )
     }
 

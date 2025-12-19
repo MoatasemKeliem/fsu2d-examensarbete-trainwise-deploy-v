@@ -7,7 +7,8 @@ const useAuth = () => {
         isAuthenticated: false,
         role: null,
         loading: true,
-        name: null
+        name: null,
+        subscriptionStatus: "inactive",
     })
 
 
@@ -19,14 +20,16 @@ const useAuth = () => {
                     isAuthenticated: true,
                     role: response.data.role,
                     loading: false,
-                    name: response.data.name
+                    name: response.data.name,
+                    subscriptionStatus: response.data.subscriptionStatus,
                 })
             } catch (error) {
                 setAuth({
                     isAuthenticated: false,
                     role: null,
                     loading: false,
-                    name: null
+                    name: null,
+                    subscriptionStatus: "inactive",
                 })
             }
         }
