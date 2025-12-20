@@ -14,7 +14,6 @@ const SingleTrainingPlan = () => {
         getTrainingPlanById(id)
     }, [])
 
-    console.log(trainingPlanById)
     if (!trainingPlanById) {
         return (
             <div>

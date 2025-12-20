@@ -21,7 +21,7 @@ const TrainingplansComponent = () => {
                         <div key={plan.id}>
                             <h2>{plan.title}</h2>
                             <p>{plan.createdAt.slice(0, 10)}</p>
-                            <div>
+                            {/* <div>
                                 {
                                     plan.plan.map((week) => {
                                         return (
@@ -57,7 +57,7 @@ const TrainingplansComponent = () => {
                                     })
                                 }
 
-                            </div>
+                            </div> */}
                             <Link to={`/training-plans/${plan.id}`}><button>View Training Plan</button></Link>
 
                         </div>

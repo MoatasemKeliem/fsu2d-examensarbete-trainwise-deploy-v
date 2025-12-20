@@ -10,7 +10,6 @@ const ArticlesComponent = () => {
     }, [])
 
 
-    console.log(allArticles)
 
     if (!allArticles) {
         return <h2>There is no articles, at the moment</h2>

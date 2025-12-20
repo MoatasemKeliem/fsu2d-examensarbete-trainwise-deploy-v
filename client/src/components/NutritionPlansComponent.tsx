@@ -9,7 +9,6 @@ const NutritionPlansComponent = () => {
         getAllNutritionPlans()
     }, [])
 
-    console.log(allNutrition)
 
     return (
         <div>
