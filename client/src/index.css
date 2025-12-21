@@ -102,6 +102,35 @@ Link {
   animation: rotation 1s linear infinite;
 }
 
+#about-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#about-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2em;
+  width: 40em;
+  border: 3px solid #10b981;
+  padding: 2em;
+  border-radius: 10px;
+}
+
+#about-container h1 {
+  text-align: center;
+}
+
+#about-container p {
+  margin: 1em 0;
+}
+
+#about-container ul {
+  margin-left: 2em;
+}
 
 @keyframes rotation {
   0% {
