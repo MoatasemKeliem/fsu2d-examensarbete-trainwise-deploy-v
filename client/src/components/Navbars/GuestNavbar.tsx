@@ -1,11 +1,14 @@
 import { NavLink } from 'react-router-dom'
+import logo1 from "../../assets/TrainWise2.png"
 
 const GuestNavbar = () => {
 
     return (
         <div>
             <nav className="navbar">
-                <a id="logo" href="/">TainWise</a>
+                <a id="logo" href="/">
+                    <img id='logo-image' src={logo1} alt="image of trainwise logo" />
+                </a>
                 <ul className="nav-list">
                     <li className="nav-list-item"><NavLink className={"nav-item"} to={"/"}>Home</NavLink></li>
                     <li className="nav-list-item"><NavLink className={"nav-item"} to={"/contact"}>Contact</NavLink></li>

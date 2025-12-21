@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+#logo-image {
+  width: 6em;
+  height: 6em;
+  margin-left: 1em;
+}
 
 .navbar {
   height: 5em;
