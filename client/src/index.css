@@ -44,7 +44,8 @@
 }
 
 input {
-  width: 14em;
+  width: 18em;
+  height: 3em;
   padding: 0.2em;
   border-radius: 10px;
   border: 0.25em solid lightgray;
