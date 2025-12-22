@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import useTrainingPlan from '../hooks/useTrainingPlan'
 import { Link } from 'react-router-dom'
+import "../style/render.css"
 
 const TrainingplansComponent = () => {
     const { getAllTrainingPlans, allTrainingPlans } = useTrainingPlan()
@@ -14,13 +15,13 @@ const TrainingplansComponent = () => {
     }
 
     return (
-        <div>
+        <div className='render-page-div'>
             {
                 allTrainingPlans.map((plan) => {
                     return (
-                        <div key={plan.id}>
-                            <h2>{plan.title}</h2>
-                            <p>{plan.createdAt.slice(0, 10)}</p>
+                        <div className='render-item' key={plan.id}>
+                            <h2 className='render-sub-title'>{plan.title}</h2>
+                            <p className='render-date'>{plan.createdAt.slice(0, 10)}</p>
                             {/* <div>
                                 {
                                     plan.plan.map((week) => {
