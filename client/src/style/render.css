@@ -1,7 +1,7 @@
 .render-page-div {
-    display: flex;
-    justify-content: space-around;
-    margin: 4em 0 2em 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    margin: 4em 3em 2em 3em;
     gap: 2em;
     flex-wrap: wrap;
     min-height: 60vh;
@@ -31,4 +31,8 @@
 
 .render-date {
     margin: 1em 0;
+}
+
+.render-workoutSummary {
+    margin-top: 1.3em;
 }
