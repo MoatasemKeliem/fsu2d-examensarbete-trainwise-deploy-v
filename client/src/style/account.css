@@ -1,0 +1,37 @@
+.account-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+.account-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 20px 20px 20px 20px lightgray;
+    width: 40em;
+    padding: 2em;
+    text-align: center;
+    border-radius: 20px;
+}
+
+
+#google {
+    background-color: white;
+    border: 3px solid lightgray;
+    margin-top: 1em;
+}
+
+#discord {
+    background-color: white;
+    border: 3px solid lightgray;
+}
+
+.button {
+    background-color: white;
+    border: 3px solid lightgray;
+    margin-top: 1em;
+    height: 3em;
+}
