@@ -78,3 +78,33 @@
 .singel-page-date {
     text-align: center;
 }
+
+.singel-page-h4 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.nutrition-plan-macros-div {
+    margin: 1em 0;
+    border: 2px solid #10b981;
+    padding: 2em;
+    border-radius: 10px;
+    width: 70em;
+    text-align: center;
+    align-self: center;
+}
+
+.single-page-title-h1 {
+    text-align: center;
+}
+
+
+.nutrition-info {
+    margin: 1em 0;
+    border: 2px solid #10b981;
+    padding: 2em;
+    border-radius: 10px;
+    width: 70em;
+    text-align: center;
+    align-self: center;
+}
