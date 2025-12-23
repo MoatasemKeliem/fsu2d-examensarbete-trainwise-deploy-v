@@ -16,22 +16,17 @@ const AdminTrainingLogsCMS = () => {
 
 
     return (
-        <div>
+        <div className='render-page-div'>
             {
                 allTrainingLogs.map((log) => {
                     return (
-                        <div key={log.id}>
-                            <h2>Workout summary</h2>
-                            <p>{log.workoutSummary}</p>
+                        <div className='render-user-admin' key={log.id}>
+                            <p className='render-workoutSummary'>{log.workoutSummary.slice(0, 200)}...</p>
+                            <p className='render-date'>{log.createdAt.slice(0, 10)}</p>
 
-                            <h2>Feedback</h2>
-                            <p>{log.aiFeedback.slice(0, 300)}...</p>
-                            <p>{log.createdAt.slice(0, 10)}</p>
-                            <div>
-                                <p>Name: {log.user.name}</p>
-                                <p>Email: {log.user.email}</p>
-                                <p>Role: {log.user.role}</p>
-                            </div>
+                            <p><span className='render-user-info'>Name:</span> {log.user.name}</p>
+                            <p><span className='render-user-info'>Email:</span> {log.user.email}</p>
+                            <p><span className='render-user-info'>Role:</span> {log.user.role}</p>
                             <Link to={`/admin-training-log/${log.id}`}><button>View Training Log</button></Link>
                         </div>
                     )
