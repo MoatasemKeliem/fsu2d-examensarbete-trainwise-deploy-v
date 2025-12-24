@@ -26,7 +26,7 @@ const AdminUserCMS = () => {
                             <p><span className='render-user-info'>Provider:</span> {user.provider}</p>
                             <p><span className='render-user-info'>Stripe customer ID:</span> {user.stripeCustomerId}</p>
                             <p><span className='render-user-info'>Created:</span> {user.createdAt.slice(0, 10)}</p>
-                            <button onClick={async () => { await deleteUsers(user.id); await getAllUsers() }}>Delete User</button>
+                            <button className='delete-button' onClick={async () => { await deleteUsers(user.id); await getAllUsers() }}>Delete User</button>
                         </div>
                     )
                 })

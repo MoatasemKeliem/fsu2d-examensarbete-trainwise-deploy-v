@@ -17,17 +17,23 @@ const AdminSingleTrainingLog = () => {
 
 
     return (
-        <div>
-            <h2>Workout summary</h2>
-            <p>{trainingLogById.workoutSummary}</p>
+        <div className="singel-page-page">
+            <section className="singel-page-log-div">
 
-            <h2>Feedback</h2>
-            <p>{trainingLogById.aiFeedback}</p>
-            <p>{trainingLogById.createdAt.slice(0, 10)}</p>
-            <div>
+                <h2 className="singel-page-h4">Workout summary</h2>
+                <p>{trainingLogById.createdAt.slice(0, 10)}</p>
+                <p className="singel-page-day-exercies">{trainingLogById.workoutSummary}</p>
 
-            </div>
-            <button onClick={() => { deleteTrainingLogByIdAdmin(Number(id)) }}>Delete training log</button>
+                <h2 className="singel-page-h4">Feedback</h2>
+                <p>{trainingLogById.aiFeedback}</p>
+
+                <div>
+
+                </div>
+                <div className='button-div'>
+                    <button className="single-log-button delete-button" onClick={() => { deleteTrainingLogByIdAdmin(Number(id)) }}>Delete training log</button>
+                </div>
+            </section>
         </div>
     )
 }

@@ -108,3 +108,15 @@
     text-align: center;
     align-self: center;
 }
+
+.singel-page-log-div {
+    box-shadow: 20px 20px 20px 20px lightgray;
+    margin: 2em 0 6em 0;
+    padding: 1em 5em 5em 5em;
+    border-radius: 14px;
+    width: 50em;
+}
+
+.single-log-button {
+    margin-top: 1em;
+}
