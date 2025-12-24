@@ -19,20 +19,24 @@ const SingleTrainingLog = () => {
     }
 
     return (
-        <div>
-            <h1>Single Training Log</h1>
-            <div >
-                <h2>Your workout summary</h2>
-                <p>{trainingLogById.workoutSummary}</p>
+        <div className="singel-page-page">
+            <section className="singel-page-log-div">
 
-                <h2>AI feedback</h2>
-                <p>{trainingLogById.aiFeedback}</p>
-                <p>Created at: {trainingLogById.createdAt.slice(0, 10)}</p>
+                <div >
+                    <h2 className="singel-page-h4">Workout summary</h2>
+                    <p className="singel-page-date">{trainingLogById.createdAt.slice(0, 10)}</p>
 
-                <button onClick={() => { deleteTrainingLogById(Number(id)); navigate("/training-logs") }}>Delete training log</button>
+                    <p className="singel-page-day-exercies">{trainingLogById.workoutSummary}</p>
 
+                    <h2 className="singel-page-h4">Feedback</h2>
+                    <p>{trainingLogById.aiFeedback}</p>
 
-            </div >
+                    <div className='button-div'>
+                        <button className="single-log-button delete-button" onClick={() => { deleteTrainingLogById(Number(id)); navigate("/training-logs") }}>Delete training log</button>
+                    </div>
+
+                </div >
+            </section>
         </div>
     )
 }
