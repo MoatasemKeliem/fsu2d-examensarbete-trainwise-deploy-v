@@ -34,10 +34,12 @@ const TrainingPlanForm = () => {
 
     if (loading) {
         return (
-            <div>
-                <span className="loader"></span>
-                <h2>Training plan is loading. Please wait...</h2>
-            </div>
+            <section className="section-loader">
+                <div className="loader-div">
+                    <span className="loader"></span>
+                    <h2>Training plan is loading. Please wait...</h2>
+                </div>
+            </section>
         )
     }
 

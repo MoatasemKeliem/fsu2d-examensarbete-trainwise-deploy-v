@@ -38,10 +38,13 @@ const NutritionPlanForm = () => {
 
     if (loading) {
         return (
-            <div>
-                <span className="loader"></span>
-                <h2>Nutrition plan is loading. Please wait...</h2>
-            </div>
+            <section className="section-loader">
+                <div className="loader-div">
+                    <span className="loader"></span>
+                    <h2>Nutrition plan is loading. Please wait...</h2>
+                </div>
+            </section>
+
         )
     }
 
@@ -142,7 +145,7 @@ const NutritionPlanForm = () => {
                     }</div>
                 <br />
                 <br />
-                <label className="form-span">Available Days Per Week <br />
+                <label className="form-span">Work Out Days Per Week <br />
                     <input className="form-input" type="number" min={1} max={7} name="workoutDaysPerWeek" value={createNutrition.workoutDaysPerWeek} onChange={(e) => { setCreateNutrition({ ...createNutrition, workoutDaysPerWeek: Number(e.target.value) }) }} />
                 </label><br /> <br />
 

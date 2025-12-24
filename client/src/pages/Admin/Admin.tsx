@@ -53,7 +53,8 @@ const Admin = () => {
                         : show === "training-plan" ? <AdminTrainingPlanCMS />
                             : show === "nutrition-plan" ? <AdminNutritionPlanCMS />
                                 : show === "training-log" ? <AdminTrainingLogsCMS />
-                                    : <ArticleForm />
+                                    : show === "view-articles" ? ""
+                                        : <ArticleForm />
             }
 
 

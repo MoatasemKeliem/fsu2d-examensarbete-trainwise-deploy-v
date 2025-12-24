@@ -1,5 +1,5 @@
 export const Backend_URL = "http://localhost:3000"
-import { FaCheck, FaDrumstickBite, FaDumbbell, FaFemale, FaFish, FaHome, FaLeaf, FaMale, FaRunning } from "react-icons/fa"
+import { FaCheck, FaDrumstickBite, FaDumbbell, FaFemale, FaFish, FaGenderless, FaHome, FaLeaf, FaMale, FaRunning } from "react-icons/fa"
 import { MdSignalCellular1Bar, MdSignalCellular2Bar, MdSignalCellular3Bar, MdSignalCellular4Bar } from "react-icons/md"
 import { GiBowlOfRice, GiFruitBowl, GiMilkCarton, GiPeanut, GiStrong, GiSugarCane, GiWheat } from "react-icons/gi";
 import { loadStripe } from "@stripe/stripe-js"
@@ -8,7 +8,7 @@ import { loadStripe } from "@stripe/stripe-js"
 export const gender = [
     { label: "Male", value: "male", icon: <FaMale /> },
     { label: "Female", value: "female", icon: <FaFemale /> },
-    { label: "Other", value: "other", icon: <FaFemale /> }
+    { label: "Other", value: "other", icon: <FaGenderless /> }
 ]
 
 export const level = [

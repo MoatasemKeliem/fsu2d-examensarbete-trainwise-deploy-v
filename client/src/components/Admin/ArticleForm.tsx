@@ -25,10 +25,12 @@ const ArticleForm = () => {
 
     if (loading) {
         return (
-            <div>
-                <span className="loader"></span>
-                <h2>Generating article. Please wait...</h2>
-            </div>
+            <section className="section-loader">
+                <div className="loader-div">
+                    <span className="loader"></span>
+                    <h2>Generating article. Please wait...</h2>
+                </div>
+            </section>
         )
     }
 
@@ -56,7 +58,7 @@ const ArticleForm = () => {
                                         value={createArticle.category}
                                         onChange={() => { setCreateArticle({ ...createArticle, category: option.value as IArticleAdmin["category"] }) }}
                                     />
-                                    <span>{option.icon}</span>
+                                    <span className='form-icon'>{option.icon}</span>
                                     {option.label}
 
                                 </label>

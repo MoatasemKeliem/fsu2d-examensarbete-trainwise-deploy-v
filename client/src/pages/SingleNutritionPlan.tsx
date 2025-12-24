@@ -24,129 +24,167 @@ const SingleNutritionPlan = () => {
     const weekPlan = Object.entries(meals).filter(([weeks]) => weeks.startsWith("week"));
 
     return (
-        <div>
-            <h1>Single Nutrition Plan</h1>
-            <h2>{nutritionById.title}</h2>
-            <h3>Created at: {nutritionById.createdAt.slice(0, 10)}</h3>
+        <div className="singel-page-page">
+            <div className="singel-page-div">
+                <div className="nutrition-plan-macros-div">
+                    <h1>Single Nutrition Plan</h1>
+                    <h2>{nutritionById.title}</h2>
+                    <h3>Created at: {nutritionById.createdAt.slice(0, 10)}</h3>
 
-            <div>
-                <h4>
-                    Calories: {nutritionById.meals.daily_estimates.calories}</h4>
-                <div>
-                    <p>Protein: {nutritionById.meals.daily_estimates.macros.protein}g</p>
-                    <p>Carbs: {nutritionById.meals.daily_estimates.macros.carbs}g</p>
-                    <p>Fat: {nutritionById.meals.daily_estimates.macros.fat}g</p>
+                    <h4>
+                        Calories: {nutritionById.meals.daily_estimates.calories}</h4>
+                    <div>
+                        <p>Protein: {nutritionById.meals.daily_estimates.macros.protein}g</p>
+                        <p>Carbs: {nutritionById.meals.daily_estimates.macros.carbs}g</p>
+                        <p>Fat: {nutritionById.meals.daily_estimates.macros.fat}g</p>
+                    </div>
                 </div>
-            </div>
 
-            <section>
-                {
-                    weekPlan.map(([weekNumber, weekData]) => {
-                        return (
-                            <div key={weekNumber}>
-                                <h4>{weekNumber}</h4>
-                                {Object.entries(weekData).map(([day, dayMeals]) => {
-                                    return (
-                                        <div key={day}>
-                                            <h5>{day}</h5>
-                                            {
-                                                (dayMeals as any).map((meal: any, index: number) => {
-                                                    return (
-                                                        <div key={index}>
-                                                            <h5>{meal.meal}</h5>
-                                                            <div>
-                                                                {meal.items.map((item: any, index: number) => {
-                                                                    return (
-                                                                        <div key={index}>
-                                                                            <p>{item}</p>
-                                                                        </div>
-                                                                    )
-                                                                })}
-                                                            </div>
-                                                            <p>Calories: {meal.calories}</p>
-                                                            <div>
-                                                                <h5>Macros:</h5>
-                                                                <p>Protein: {meal.macros.protein}</p>
-                                                                <p>Carbs: {meal.macros.carbs}</p>
-                                                                <p>Fat: {meal.macros.fat}</p>
-                                                            </div>
-                                                        </div>
-
-                                                    )
-                                                })
-                                            }
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                        )
-                    })
-                }
-
-                <section>
-                    <div>
-                        <h2>Snacks</h2>
-                        {meals.snacks.map((snack) => {
+                <section className="singel-page-container">
+                    {
+                        weekPlan.map(([weekNumber, weekData]) => {
                             return (
-                                <p>{snack}</p>
+                                <div className="singel-page-div" key={weekNumber}>
+                                    <div className="single-page-div">
+                                        <h4 className="singel-page-week">{weekNumber}</h4>
+                                        {Object.entries(weekData).map(([day, dayMeals]) => {
+                                            return (
+                                                <div className="singel-page-day-div" key={day}>
+                                                    <h5 className="singel-page-h4">{day}</h5>
+                                                    {
+                                                        (dayMeals as any).map((meal: any, index: number) => {
+                                                            return (
+                                                                <div className="singel-page-day-exercies-div" key={index}>
+                                                                    <h5 className="singel-page-day-exercies-title">{meal.meal}</h5>
+                                                                    <div>
+                                                                        {meal.items.map((item: any, index: number) => {
+                                                                            return (
+                                                                                <div className="singel-page-day-exercies-div" key={index}>
+                                                                                    <p className="singel-page-day-exercies">{item}</p>
+                                                                                </div>
+                                                                            )
+                                                                        })}
+                                                                    </div>
+                                                                    <p>Calories: {meal.calories}</p>
+                                                                    <div className="singel-page-info">
+                                                                        <h5>Macros:</h5>
+                                                                        <p><span className='render-user-info'> Protein:</span>  {meal.macros.protein}g</p>
+                                                                        <p><span className='render-user-info'> Carbs:</span> Carbs: {meal.macros.carbs}g</p>
+                                                                        <p><span className='render-user-info'> Fat:</span> {meal.macros.fat}g</p>
+                                                                    </div>
+                                                                </div>
+
+                                                            )
+                                                        })
+                                                    }
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
                             )
-                        })}
-                    </div>
-                    <div>
-                        <h2>Snack Suggestions</h2>
-                        {meals.snack_suggestions.map((snack) => {
-                            return (
-                                <p>{snack}</p>
-                            )
-                        })}
-                    </div>
+                        })
+                    }
 
-                    <div>
-                        <h2>Drinks</h2>
-                        {
-                            meals.drinks.map((drink) => {
-                                return (
-                                    <p>{drink}</p>
-                                )
-                            })
-                        }
-                    </div>
+                    <section className="nutrition-info">
+                        <div>
+                            {
+                                meals.snacks && meals.snacks.length > 0 ? <div>
+                                    <h2 className="single-page-title">Snacks</h2>
+                                    {meals.snacks.map((snack) => {
+                                        return (
+                                            <p>{snack}</p>
+                                        )
+                                    })}
+                                </div>
+                                    : ""
+                            }
+                        </div>
+                        <div>
+                            {
+                                meals.snack_suggestions && meals.snack_suggestions.length > 0 ?
+                                    <div>
+                                        <h2 className="single-page-title">Snack Suggestions</h2>
+                                        {meals.snack_suggestions.map((snack) => {
+                                            return (
+                                                <p>{snack}</p>
+                                            )
+                                        })}
+                                    </div>
+                                    : ""
+                            }
+                        </div>
 
-                    <div>
-                        <h2>Drink Suggestions</h2>
-                        {
-                            meals.drink_suggestions.map((drink) => {
-                                return (
-                                    <p>{drink}</p>
-                                )
-                            })
-                        }
-                    </div>
+                        <div>
+                            {meals.drinks && meals.drinks.length > 0 ?
+                                <div>
+                                    <h2>Drinks</h2>
+                                    {
+                                        meals.drinks.map((drink) => {
+                                            return (
+                                                <p>{drink}</p>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                : ""
+                            }
+                        </div>
 
-                    <div>
-                        <h2>Meal Prep Tips</h2>
-                        {
-                            meals.meal_prep_tips.map((prep) => {
-                                return (
-                                    <p>{prep}</p>
-                                )
-                            })
-                        }
-                    </div>
-                    <div>
-                        <h2>Motivation Tips</h2>
-                        {
-                            meals.motivation_tips.map((tips) => {
-                                return (
-                                    <p>{tips}</p>
-                                )
-                            })
-                        }
-                    </div>
+                        <div>
+                            {meals.drink_suggestions && meals.drink_suggestions.length > 0 ?
+                                <div>
+                                    <h2>Drink Suggestions</h2>
+                                    {
+                                        meals.drink_suggestions.map((drink) => {
+                                            return (
+                                                <p>{drink}</p>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                : ""
+                            }
+                        </div>
+
+                        <div>
+                            {
+                                meals.meal_prep_tips && meals.meal_prep_tips.length > 0 ?
+                                    <div>
+                                        <h2>Meal Prep Tips</h2>
+                                        {
+                                            meals.meal_prep_tips.map((prep) => {
+                                                return (
+                                                    <p>{prep}</p>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    :
+                                    ""
+                            }
+                        </div>
+                        <div>
+                            {
+                                meals.motivation_tips && meals.motivation_tips.length > 0 ?
+
+                                    <div>
+                                        <h2>Motivation Tips</h2>
+                                        {
+                                            meals.motivation_tips.map((tips, index: number) => {
+                                                return (
+                                                    <p>{index + 1}. {tips}</p>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    : ""
+                            }
+                        </div>
+                    </section>
                 </section>
-            </section>
-            <button onClick={() => { deleteNutritionPlanById(String(id)); navigate("/nutritions") }}>Delete nutrition plan</button>
-
+                <button className="single-page-button delete-button" onClick={() => { deleteNutritionPlanById(String(id)); navigate("/nutritions") }}>Delete nutrition plan</button>
+            </div>
         </div>
     )
 }
