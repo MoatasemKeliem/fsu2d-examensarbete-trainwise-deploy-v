@@ -75,6 +75,12 @@
     font-size: 2em;
 }
 
+.single-article-title {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
 .singel-page-date {
     text-align: center;
     margin-bottom: 1em;
@@ -120,4 +126,13 @@
 
 .single-log-button {
     margin-top: 1em;
+}
+
+.single-article-category {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.category {
+    font-weight: 600;
 }

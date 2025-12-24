@@ -23,22 +23,20 @@ const SingleArticle = () => {
 
 
     return (
-        <div>
-            <h1>Single Article</h1>
+        <div className="singel-page-page">
 
-            <section>
-                <h2>{articleById.title}</h2>
-                <h3>{articleById.category}</h3>
+            <section className="singel-page-log-div">
+                <h2 className="singel-page-h4">{articleById.title}</h2>
+                <h3 className="single-article-category "><span className="category">Category: </span>{articleById.category}</h3>
 
                 <div>
-                    <h4> {articleById.content.title}</h4>
                     <div>
                         {
                             articleById.content.sections.map((section, index: number) => {
                                 return (
-                                    <div key={index}>
-                                        <h5>{section.heading}</h5>
-                                        <p>{section.content}</p>
+                                    <div className="singel-page-div" key={index}>
+                                        <h5 className="single-article-title">{section.heading}</h5>
+                                        <p className="singel-page-day-exercies">{section.content}</p>
                                     </div>
                                 )
                             })
