@@ -12,6 +12,9 @@ export class Subscription {
     @Column()
     planId!: string;
 
+    @Column()
+    planName!: "basic" | "premium"
+
     @Column({ default: "inactive" })
     status!: "inactive" | "active";
 
