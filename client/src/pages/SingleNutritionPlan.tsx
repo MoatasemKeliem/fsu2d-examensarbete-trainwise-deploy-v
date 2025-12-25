@@ -32,7 +32,7 @@ const SingleNutritionPlan = () => {
                     <h3>Created at: {nutritionById.createdAt.slice(0, 10)}</h3>
 
                     <h4>
-                        Calories: {nutritionById.meals.daily_estimates.calories}</h4>
+                        Calories: {nutritionById.meals.daily_estimates.calories}kcal</h4>
                     <div>
                         <p>Protein: {nutritionById.meals.daily_estimates.macros.protein}g</p>
                         <p>Carbs: {nutritionById.meals.daily_estimates.macros.carbs}g</p>
@@ -65,9 +65,10 @@ const SingleNutritionPlan = () => {
                                                                             )
                                                                         })}
                                                                     </div>
-                                                                    <p>Calories: {meal.calories}</p>
+
                                                                     <div className="singel-page-info">
                                                                         <h5>Macros:</h5>
+                                                                        <p><span className='render-user-info'> Calories:</span> {meal.calories}kcal</p>
                                                                         <p><span className='render-user-info'> Protein:</span>  {meal.macros.protein}g</p>
                                                                         <p><span className='render-user-info'> Carbs:</span> Carbs: {meal.macros.carbs}g</p>
                                                                         <p><span className='render-user-info'> Fat:</span> {meal.macros.fat}g</p>
