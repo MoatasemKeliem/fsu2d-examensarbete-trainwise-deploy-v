@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import useTrainingPlan from "../hooks/useTrainingPlan"
 import { useNavigate, useParams } from "react-router-dom"
+import { ImSad2 } from "react-icons/im"
 
 const SingleTrainingPlan = () => {
     const { getTrainingPlanById, trainingPlanById, deleteTrainingPlanById } = useTrainingPlan()
@@ -16,8 +17,11 @@ const SingleTrainingPlan = () => {
 
     if (!trainingPlanById) {
         return (
-            <div>
-                <h2>Training plan with the ID of: {id} doesn't exist</h2>
+            <div className="no-content-page">
+                <div className="no-content">
+                    <ImSad2 className="no-render-icon" />
+                    <h2 className="no-content-message">Coludn't find a training plan, please try generating a new training plan.</h2>
+                </div>
             </div>
         )
     }

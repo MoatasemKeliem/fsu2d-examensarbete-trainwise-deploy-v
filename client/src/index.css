@@ -212,3 +212,30 @@ Link {
   justify-content: center;
   margin: 3em 0;
 }
+
+.no-content-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10em;
+  margin-bottom: 10em;
+}
+
+
+.no-content {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 20px 20px 20px 20px lightgray;
+  width: 55em;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  border-radius: 20px;
+  margin-bottom: 10em;
+
+}
+
+.no-render-icon {
+  font-size: 3em;
+  color: #10b981;
+}

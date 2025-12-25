@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import useNutrition from "../hooks/useNutrition"
+import { ImSad2 } from "react-icons/im";
 
 const SingleNutritionPlan = () => {
     const { id } = useParams()
@@ -15,7 +16,14 @@ const SingleNutritionPlan = () => {
     }, [])
 
     if (!nutritionById) {
-        return <div>There is no Nutrition plan with the ID of: {id}</div>
+        return (
+            <div className="no-content-page">
+                <div className="no-content">
+                    <ImSad2 className="no-render-icon" />
+                    <h2 className="no-content-message">Coludn't find a nutrition plan, please try generating a new nutrition plan.</h2>
+                </div>
+            </div>
+        )
     }
 
 

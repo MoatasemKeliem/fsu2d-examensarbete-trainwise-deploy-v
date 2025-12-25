@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import useTrainingLogAdmin from '../../hooks/Admin/useTrainingLogAdmin'
+import { ImSad2 } from 'react-icons/im'
 
 const AdminSingleTrainingLog = () => {
     const { id } = useParams()
@@ -12,7 +13,14 @@ const AdminSingleTrainingLog = () => {
     }, [])
 
     if (!trainingLogById) {
-        return <h2>There is no training logs</h2>
+        return (
+            <div className="no-content-page">
+                <div className="no-content">
+                    <ImSad2 className="no-render-icon" />
+                    <h2 className="no-content-message">Coludn't find a training log, please try generating a new training log.</h2>
+                </div>
+            </div>
+        )
     }
 
 

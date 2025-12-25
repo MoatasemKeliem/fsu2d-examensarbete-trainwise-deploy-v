@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import useArticle from "../hooks/useArticle"
 import { useEffect } from "react"
+import { ImSad2 } from "react-icons/im"
 
 const SingleArticle = () => {
     const { id } = useParams()
@@ -18,7 +19,14 @@ const SingleArticle = () => {
     console.log(articleById)
 
     if (!articleById) {
-        return <h2>article with the ID of {id} doesn't exist</h2>
+        return (
+            <div className="no-content-page">
+                <div className="no-content">
+                    <ImSad2 className="no-render-icon" />
+                    <h2 className="no-content-message">Coludn't find a article, please try read another article.</h2>
+                </div>
+            </div>
+        )
     }
 
 

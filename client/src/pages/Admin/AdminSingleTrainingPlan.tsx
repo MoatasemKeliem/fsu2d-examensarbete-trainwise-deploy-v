@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import useTrainingPlanAdmin from "../../hooks/Admin/useTrainingPlanAdmin"
 import { useEffect } from "react"
 import "../../style/singleRender.css"
+import { ImSad2 } from "react-icons/im"
 
 const AdminSingleTrainingPlan = () => {
     const { id } = useParams()
@@ -14,7 +15,14 @@ const AdminSingleTrainingPlan = () => {
     }, [])
 
     if (!trainingPlansByIdAdmin) {
-        return <h2>Training plan doesn't exist</h2>
+        return (
+            <div className="no-content-page">
+                <div className="no-content">
+                    <ImSad2 className="no-render-icon" />
+                    <h2 className="no-content-message">Coludn't find a training plan, please try generating a new training plan.</h2>
+                </div>
+            </div>
+        )
     }
 
 

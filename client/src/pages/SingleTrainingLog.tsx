@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import useTrainingLogs from "../hooks/useTrainingLogs"
 import { useEffect } from "react"
+import { ImSad2 } from "react-icons/im"
 
 const SingleTrainingLog = () => {
     const { getTrainingLogById, trainingLogById, deleteTrainingLogById } = useTrainingLogs()
@@ -15,7 +16,14 @@ const SingleTrainingLog = () => {
 
 
     if (!trainingLogById) {
-        return <p>There is no training log</p>
+        return (
+            <div className="no-content-page">
+                <div className="no-content">
+                    <ImSad2 className="no-render-icon" />
+                    <h2 className="no-content-message">Coludn't find a training log, please try generating a new training log.</h2>
+                </div>
+            </div>
+        )
     }
 
     return (
