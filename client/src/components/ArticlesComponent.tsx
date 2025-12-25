@@ -22,20 +22,8 @@ const ArticlesComponent = () => {
                 allArticles.map((article) => {
                     return (
                         <div key={article.id} className='render-item'>
-                            {/* <h2 className='render-title'>{article.title}</h2> */}
                             <h3 className='render-sub-title'>{article.content?.title}</h3>
                             <h4 className='render-category'>Caetgory: {article.category}</h4>
-                            <div>
-
-                                {/* {article.content.sections.map((section, index: number) => {
-                                    return (
-                                        <div key={index}>
-                                            <h4>{section.heading}</h4>
-                                            <p>{section.content}</p>
-                                        </div>
-                                    )
-                                })} */}
-                            </div>
 
                             <p className='render-date'>{article.createdAt.slice(0, 10)}</p>
                             <Link to={`/articles/${article.id}`}>

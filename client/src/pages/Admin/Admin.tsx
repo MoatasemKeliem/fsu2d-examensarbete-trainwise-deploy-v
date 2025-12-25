@@ -4,6 +4,7 @@ import ArticleForm from "../../components/Admin/ArticleForm"
 import AdminTrainingPlanCMS from "../../components/Admin/AdminTrainingPlanCMS"
 import AdminNutritionPlanCMS from "../../components/Admin/AdminNutritionPlanCMS"
 import AdminTrainingLogsCMS from "../../components/Admin/AdminTrainingLogsCMS"
+import AdminAllArticles from "../../components/Admin/AdminAllArticles"
 
 const Admin = () => {
     const [show, setShow] = useState("article")
@@ -53,7 +54,7 @@ const Admin = () => {
                         : show === "training-plan" ? <AdminTrainingPlanCMS />
                             : show === "nutrition-plan" ? <AdminNutritionPlanCMS />
                                 : show === "training-log" ? <AdminTrainingLogsCMS />
-                                    : show === "view-articles" ? ""
+                                    : show === "view-articles" ? <AdminAllArticles />
                                         : <ArticleForm />
             }
 

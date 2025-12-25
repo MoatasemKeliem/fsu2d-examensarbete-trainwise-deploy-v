@@ -25,6 +25,7 @@ import AdminSingleTrainingPlan from "./pages/Admin/AdminSingleTrainingPlan";
 import AdminSingleNutritionPlan from "./pages/Admin/AdminSingleNutritionPlan";
 import AdminSingleTrainingLog from "./pages/Admin/AdminSingleTrainingLog";
 import Subscription from "./pages/Subscription";
+import AdminSingleArticle from "./pages/Admin/AdminSingleArticle";
 
 const ADMIN = "admin"
 
@@ -104,6 +105,10 @@ export const router = createBrowserRouter([{
         }, {
             path: "/users",
             element: <ProtectedRoutes usersRole={ADMIN}><Users /></ProtectedRoutes>
+        },
+        {
+            path: "/admin-article/:id",
+            element: <ProtectedRoutes usersRole={ADMIN}><AdminSingleArticle /></ProtectedRoutes>
         },
         {
             path: "/unauthorized",
