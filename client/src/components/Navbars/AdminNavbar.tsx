@@ -13,6 +13,7 @@ const AdminNavbar = () => {
                     <img id='logo-image' src={logo1} alt="image of trainwise logo" />
                 </a>
                 <ul className="nav-list">
+                    <li className="nav-list-item"><NavLink className={"nav-item"} to={"/dashboard"}>Home</NavLink></li>
                     <li className="nav-list-item"><NavLink className={"nav-item"} to={"/articles"}>Article</NavLink></li>
                     <li className="nav-list-item"><NavLink className={"nav-item"} to={"/training-plans"}>Training Plan</NavLink></li>
                     <li className="nav-list-item"><NavLink className={"nav-item"} to={"/nutritions"}>Nutrition Plan</NavLink></li>

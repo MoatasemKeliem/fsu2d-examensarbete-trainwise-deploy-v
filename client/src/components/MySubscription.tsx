@@ -52,7 +52,7 @@ const MySubscription = () => {
     return (
         <div>
             <form onSubmit={cancelSubscription}>
-                <button type='submit'>Cancel Subscription</button>
+                <button className='delete-button' type='submit'>Cancel Subscription</button>
             </form>
         </div>
     )

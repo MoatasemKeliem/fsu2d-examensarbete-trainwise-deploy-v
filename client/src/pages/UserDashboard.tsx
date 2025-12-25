@@ -1,20 +1,25 @@
 import MySubscription from "../components/MySubscription"
+import RenderPlansDashboard from "../components/RenderPlansDashboard"
 import useAuth from "../hooks/useAuth"
 
 
 const UserDashboard = () => {
-    const { name, role } = useAuth()
+    const { name } = useAuth()
 
 
     return (
-        <div>
-            <h1>Dashboard</h1>
-            <h1>Hello {name}, you're logged in as {role}
-            </h1>
+        <div className="dashboard-page">
+            <section className="dashboard">
+                <h1>Welcome, {name}</h1>
+                <div>
+                    <h2>Cancel Subscription</h2>
+                    <MySubscription />
+                </div>
+            </section>
             <div>
-                <h2>Cancel Subscription</h2>
-                <MySubscription />
+                <RenderPlansDashboard />
             </div>
+
 
         </div>
     )
