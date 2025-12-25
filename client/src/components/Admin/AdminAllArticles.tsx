@@ -21,7 +21,6 @@ const AdminAllArticles = () => {
         )
     }
 
-    console.log(allAdminArticles)
 
     return (
         <div className='render-page-div'>
