@@ -7,7 +7,7 @@ import type { IArticle } from '../../model/render-models/IArticle'
 
 const useArticleAdmin = () => {
     const [allAdminArticles, setAllAdminArticles] = useState<IArticle[]>([])
-    const [adminArticleByID, setAdminArticleByID] = useState()
+    const [adminArticleByID, setAdminArticleByID] = useState<IArticle | null>(null)
     const navigate = useNavigate()
 
     const generateArticle = async (payload: IArticleAdmin) => {
@@ -45,6 +45,7 @@ const useArticleAdmin = () => {
     const deleteArticleByIdAdmin = async (id: string) => {
         try {
             await axios.delete(`${Backend_URL}/admin/article/${id}`, { withCredentials: true })
+            navigate("admin")
         } catch (error) {
             console.error("Couldn't get article for admin: ", error)
             throw new Error()
