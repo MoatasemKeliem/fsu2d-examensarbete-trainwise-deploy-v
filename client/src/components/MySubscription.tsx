@@ -3,11 +3,13 @@ import { useState, type FormEvent } from 'react'
 import { Backend_URL } from '../utils';
 import { useNavigate } from 'react-router-dom';
 import CancelMessage from './stripeMessage/CancelMessage';
+import useAuth from '../hooks/useAuth';
 
 const MySubscription = () => {
     const [loading, setLoading] = useState(false)
     const [cancelMessage, setCancelMessage] = useState(false)
     const navigate = useNavigate()
+    const { subscriptionId } = useAuth()
 
     const cancelSubscription = async (e: FormEvent) => {
         e.preventDefault()
@@ -15,12 +17,13 @@ const MySubscription = () => {
             setLoading(true);
 
 
-            const reposne = await axios.post(`${Backend_URL}/stripe/cancel-payment`, { subscriptionId: "sub_1Sfh7l03YBWNs0Ac0jN1WgeG" }, { withCredentials: true })
+            const reposne = await axios.post(`${Backend_URL}/stripe/cancel-payment`, { subscriptionId }, { withCredentials: true })
 
             if (reposne.data.message === "Subscription canceled successfully") {
                 setCancelMessage(true);
                 setTimeout(() => {
-                    navigate("/dashboard")
+                    navigate("/")
+                    window.location.reload()
                 }, 5000)
                 return
             }

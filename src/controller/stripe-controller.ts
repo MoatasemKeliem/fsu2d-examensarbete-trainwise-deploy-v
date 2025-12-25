@@ -139,6 +139,20 @@ export const cancelSubscription = async (req: Request, res: Response) => {
         }
 
 
+        const subscription = await subscriptionRepository.findOne({
+            where: {
+                stripeSubscription: subscriptionId,
+                user: { id: userId }
+            }
+        })
+
+        if (!subscription) {
+            return res.status(404).json({ message: "Subscription not found" })
+
+        }
+
+        subscription.status = "inactive"
+        await subscriptionRepository.save(subscription)
 
         return res.json({
             status: 200,
