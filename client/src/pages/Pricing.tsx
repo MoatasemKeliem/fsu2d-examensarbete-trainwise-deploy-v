@@ -15,7 +15,7 @@ const Pricing = () => {
                 </ul>
                 <p className="price">Price: 9.99$</p>
                 <div className="button-div">
-                    <Link to={``}><button className="subscribe-button">Subscribe Now</button></Link>
+                    <Link to={`/subscribe/price_1SaEY403YBWNs0AcBhptjUuj`}><button className="subscribe-button">Subscribe Now</button></Link>
                 </div>            </div>
             <div className="pricing-card" id="premium">
                 <h2 className="pricing-title">Premium</h2>
@@ -28,7 +28,7 @@ const Pricing = () => {
                 </ul>
                 <p className="price">Price: 19.99$</p>
                 <div className="button-div">
-                    <Link to={``}><button className="subscribe-button">Subscribe Now</button></Link>
+                    <Link to={`/subscribe/price_1SaEYU03YBWNs0AckJVboo3e`}><button className="subscribe-button">Subscribe Now</button></Link>
                 </div>
             </div>
         </section>

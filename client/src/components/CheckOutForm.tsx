@@ -2,7 +2,7 @@ import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios";
 import { useState, type FormEvent } from "react";
 import { Backend_URL } from "../utils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import SuccessfullPayment from "./stripeMessage/SuccessfullPayment";
 import AlreadySubscribed from "./stripeMessage/AlreadySubscribed";
 
@@ -13,6 +13,14 @@ const CheckOutForm = () => {
     const navigate = useNavigate()
     const [alreadySubscribed, setAlreadySubscribed] = useState(false)
     const [successfulSubscription, setSuccessfulSubscription] = useState(false)
+    const { priceId } = useParams()
+
+
+    if (!priceId) {
+        navigate("/pricing")
+        return
+    }
+
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
@@ -26,9 +34,10 @@ const CheckOutForm = () => {
             return
         }
 
+
         const paymentMethodId = result.setupIntent?.payment_method;
 
-        const reposne = await axios.post(`${Backend_URL}/stripe/create-payment`, { priceId: "price_1SaEY403YBWNs0AcBhptjUuj", paymentMethodId }, { withCredentials: true })
+        const reposne = await axios.post(`${Backend_URL}/stripe/create-payment`, { priceId, paymentMethodId }, { withCredentials: true })
 
         if (reposne.data.message === "You already have an actice subscription") {
             setAlreadySubscribed(true);
