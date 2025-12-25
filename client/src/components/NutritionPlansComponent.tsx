@@ -11,13 +11,13 @@ const NutritionPlansComponent = () => {
 
 
     return (
-        <div>
+        <div className='render-page-div'>
             {
                 allNutrition.map((plan) => {
                     return (
-                        <div key={plan.id}>
-                            <h2>{plan.title}</h2>
-                            <p>{plan.createdAt.slice(0, 10)}</p>
+                        <div className='render-item' key={plan.id}>
+                            <h2 className='render-sub-title'>{plan.title}</h2>
+                            <p className='render-date'>{plan.createdAt.slice(0, 10)}</p>
                             <Link to={`/nutritions/${plan.id}`}><button>View Nutrition Plan</button></Link>
                         </div>
                     )

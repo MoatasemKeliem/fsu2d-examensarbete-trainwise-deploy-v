@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import useArticle from '../hooks/useArticle'
 import { Link } from 'react-router-dom'
+import "../style/render.css"
 
 const ArticlesComponent = () => {
     const { getAllArticles, allArticles } = useArticle()
@@ -16,14 +17,14 @@ const ArticlesComponent = () => {
     }
 
     return (
-        <div>
+        <div className='render-page-div'>
             {
                 allArticles.map((article) => {
                     return (
-                        <div key={article.id}>
-                            <h2>{article.title}</h2>
-                            <h3>{article.content?.title}</h3>
-                            <h4>Caetgory: {article.category}</h4>
+                        <div key={article.id} className='render-item'>
+                            {/* <h2 className='render-title'>{article.title}</h2> */}
+                            <h3 className='render-sub-title'>{article.content?.title}</h3>
+                            <h4 className='render-category'>Caetgory: {article.category}</h4>
                             <div>
 
                                 {/* {article.content.sections.map((section, index: number) => {
@@ -36,7 +37,7 @@ const ArticlesComponent = () => {
                                 })} */}
                             </div>
 
-                            <p>{article.createdAt.slice(0, 10)}</p>
+                            <p className='render-date'>{article.createdAt.slice(0, 10)}</p>
                             <Link to={`/articles/${article.id}`}>
                                 <button>View Article</button></Link>
                         </div>

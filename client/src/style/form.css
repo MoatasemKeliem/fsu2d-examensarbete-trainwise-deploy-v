@@ -1,0 +1,76 @@
+.form-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-span {
+    font-weight: 600;
+    color: rgb(98, 97, 97);
+    text-align: center;
+}
+
+.form-container {
+    /* border: 2px solid lightgray; */
+    box-shadow: 20px 20px 20px 20px lightgray;
+    padding: 2em;
+    width: 50em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 40px;
+}
+
+.form-radio {
+    border: 2.5px solid lightgray;
+    margin: 0.5em;
+    padding: 0.5em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+    height: 6em;
+    width: 7em;
+    flex-direction: column;
+}
+
+.selected-radio {
+    background-color: #10b981;
+    border: 1px solid #10b981;
+    margin: 0.5em;
+    padding: 0.5em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+    height: 6em;
+    width: 7em;
+    flex-direction: column;
+}
+
+
+.form-radio:hover {
+    background-color: #10b981;
+    border: 1px solid #10b981;
+}
+
+.option {
+    display: none;
+}
+
+.form-icon {
+    font-size: 2em;
+}
+
+.form-workoutSummary {
+    min-width: 20em;
+    min-height: 30em;
+}
+
+/* .form-input {} */

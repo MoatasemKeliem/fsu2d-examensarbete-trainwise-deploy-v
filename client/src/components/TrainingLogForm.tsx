@@ -25,19 +25,22 @@ const TrainingLogForm = () => {
 
     if (loading) {
         return (
-            <div>
-                <span className="loader"></span>
-                <h2>Training Log feedback is loading. Please wait...</h2>
-            </div>
+            <section className="section-loader">
+                <div className="loader-div">
+                    <span className="loader"></span>
+                    <h2>Training Log feedback is loading. Please wait...</h2>
+                </div>
+            </section>
         )
     }
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>Work out summary <br />
-                    <textarea name="workoutSummary" value={createTrainingLog.workoutSummary} onChange={(e) => { setCreateTrainingLog({ ...createTrainingLog, workoutSummary: e.target.value }) }}></textarea>
+        <div className="form-page">
+            <h2 className="form-type">Training Log</h2>
+            <form onSubmit={handleSubmit} className="form-container">
+                <label className='form-span'>Work out summary <br />
+                    <textarea className='form-workoutSummary' name="workoutSummary" value={createTrainingLog.workoutSummary} onChange={(e) => { setCreateTrainingLog({ ...createTrainingLog, workoutSummary: e.target.value }) }}></textarea>
                 </label><br />
                 <button type='submit'>Create Training Log</button>
             </form>

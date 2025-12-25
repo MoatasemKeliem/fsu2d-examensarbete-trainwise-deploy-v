@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import useArticle from "../hooks/useArticle"
 import { useEffect } from "react"
+import { ImSad2 } from "react-icons/im"
 
 const SingleArticle = () => {
     const { id } = useParams()
@@ -18,27 +19,32 @@ const SingleArticle = () => {
     console.log(articleById)
 
     if (!articleById) {
-        return <h2>article with the ID of {id} doesn't exist</h2>
+        return (
+            <div className="no-content-page">
+                <div className="no-content">
+                    <ImSad2 className="no-render-icon" />
+                    <h2 className="no-content-message">Coludn't find a article, please try read another article.</h2>
+                </div>
+            </div>
+        )
     }
 
 
     return (
-        <div>
-            <h1>Single Article</h1>
+        <div className="singel-page-page">
 
-            <section>
-                <h2>{articleById.title}</h2>
-                <h3>{articleById.category}</h3>
+            <section className="singel-page-log-div">
+                <h2 className="singel-page-h4">{articleById.title}</h2>
+                <h3 className="single-article-category "><span className="category">Category: </span>{articleById.category}</h3>
 
                 <div>
-                    <h4> {articleById.content.title}</h4>
                     <div>
                         {
                             articleById.content.sections.map((section, index: number) => {
                                 return (
-                                    <div key={index}>
-                                        <h5>{section.heading}</h5>
-                                        <p>{section.content}</p>
+                                    <div className="singel-page-div" key={index}>
+                                        <h5 className="single-article-title">{section.heading}</h5>
+                                        <p className="singel-page-day-exercies">{section.content}</p>
                                     </div>
                                 )
                             })

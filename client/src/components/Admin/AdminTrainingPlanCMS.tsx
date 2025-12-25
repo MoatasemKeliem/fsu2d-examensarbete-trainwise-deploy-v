@@ -15,18 +15,17 @@ const AdminTrainingPlanCMS = () => {
 
 
     return (
-        <div>
-            <h1>Training Plans</h1>
+        <div className='render-page-div'>
             {
                 allTrainingPlansAdmin.map((plan) => {
                     return (
-                        <div key={plan.id}>
-                            <h3>{plan.title}</h3>
-                            <p>{plan.createdAt.slice(0, 10)}</p>
+                        <div className='render-item-admin' key={plan.id}>
+                            <h2 className='render-sub-title'>{plan.title}</h2>
+                            <p className='render-date'>{plan.createdAt.slice(0, 10)}</p>
                             <div>
-                                <p>{plan.user.name}</p>
-                                <p>{plan.user.email}</p>
-                                <p>{plan.user.role}</p>
+                                <p><span className='render-user-info'>Name:</span> {plan.user.name}</p>
+                                <p><span className='render-user-info'>Email:</span> {plan.user.email}</p>
+                                <p><span className='render-user-info'>Role:</span> {plan.user.role}</p>
                             </div>
                             <Link to={`/admin-training-Plan/${plan.id}`}><button>View Training Plan</button></Link>
                         </div>
