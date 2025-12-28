@@ -1,16 +1,24 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Backend_URL } from '../utils'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import type { IProtectedRoutes } from '../model/IProtectedRoutes'
+import WrongPlan from './WrongPlan'
 
 const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
+    const authirzation = [
+        "basic",
+        "premium",
+        "admin"
+    ]
     const [isAuth, setIsAuth] = useState({
         isAuthenticated: false,
         role: null,
         loading: true,
-        subscriptionStatus: "inactive"
+        subscriptionStatus: "inactive",
+        planName: "basic"
     })
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -21,20 +29,24 @@ const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
                     isAuthenticated: true,
                     role: response.data.role,
                     loading: false,
-                    subscriptionStatus: response.data.subscriptionStatus
+                    subscriptionStatus: response.data.subscriptionStatus,
+                    planName: response.data.planName
+
                 })
             } catch (error) {
                 setIsAuth({
                     isAuthenticated: false,
                     role: null,
                     loading: false,
-                    subscriptionStatus: "inactive"
+                    subscriptionStatus: "inactive",
+                    planName: "basic"
 
                 })
             }
         }
         verifyUser()
     }, [])
+
 
     if (isAuth.loading) {
         return (
@@ -53,17 +65,31 @@ const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
 
     if (isAuth.role === "user" && isAuth.subscriptionStatus === "inactive") {
         return (
-            <Navigate to={"/subscribe"} replace />
+            <Navigate to={"/pricing"} replace />
 
         )
     }
 
-    if (usersRole && isAuth.role !== usersRole) {
-        return (
-            <Navigate to={"/unauthorized"} replace />
-        )
+
+    if (isAuth.role === "admin") {
+        return (<div>
+            {children}
+        </div>)
     }
 
+
+    if (usersRole) {
+        const userLevel = authirzation.indexOf(isAuth.planName)
+        const requiredRole = authirzation.indexOf(usersRole)
+
+        if (userLevel < requiredRole) {
+            setTimeout(() => {
+                navigate("/dashboard")
+            }, 4000)
+            return <WrongPlan />
+        }
+
+    }
 
     return (
         <div>

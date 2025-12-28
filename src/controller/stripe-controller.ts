@@ -85,11 +85,22 @@ export const stripePayment = async (req: Request, res: Response) => {
         const invoice = session.latest_invoice as Stripe.Invoice & { payment_intent?: Stripe.PaymentIntent }
         const clientSecret = invoice.payment_intent?.client_secret
 
+        let planName: "basic" | "premium";
+
+        if (priceId === "price_1SaEY403YBWNs0AcBhptjUuj") {
+            planName = "basic";
+        } else if (priceId === "price_1SaEYU03YBWNs0AckJVboo3e") {
+            planName = "premium"
+        } else {
+            return res.status(400).json({ message: "Invalid plan" })
+        }
+
         const subscriptionTable = subscriptionRepository.create({
             stripeSubscription: session.id,
             stripeCustomerId: user.stripeCustomerId,
             user,
             planId: priceId,
+            planName,
             status: "active"
         })
 
@@ -128,6 +139,20 @@ export const cancelSubscription = async (req: Request, res: Response) => {
         }
 
 
+        const subscription = await subscriptionRepository.findOne({
+            where: {
+                stripeSubscription: subscriptionId,
+                user: { id: userId }
+            }
+        })
+
+        if (!subscription) {
+            return res.status(404).json({ message: "Subscription not found" })
+
+        }
+
+        subscription.status = "inactive"
+        await subscriptionRepository.save(subscription)
 
         return res.json({
             status: 200,

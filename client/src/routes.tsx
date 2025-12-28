@@ -27,6 +27,8 @@ import AdminSingleTrainingLog from "./pages/Admin/AdminSingleTrainingLog";
 import Subscription from "./pages/Subscription";
 import AdminSingleArticle from "./pages/Admin/AdminSingleArticle";
 
+const BASIC = "basic"
+const PREMIUM = "premium"
 const ADMIN = "admin"
 
 export const router = createBrowserRouter([{
@@ -55,39 +57,39 @@ export const router = createBrowserRouter([{
             path: "/pricing",
             element: <Pricing />
         }, {
-            path: "/subscribe",
+            path: "/subscribe/:priceId",
             element: <Subscription />
         },
         {
             path: "/my-journey",
-            element: <ProtectedRoutes><MyJourney /></ProtectedRoutes>
+            element: <ProtectedRoutes usersRole={BASIC}><MyJourney /></ProtectedRoutes>
         }, {
             path: "/dashboard",
-            element: <ProtectedRoutes><UserDashboard /></ProtectedRoutes>
+            element: <ProtectedRoutes usersRole={BASIC}><UserDashboard /></ProtectedRoutes>
         }, {
             path: "/articles",
-            element: <ProtectedRoutes><Articles /></ProtectedRoutes>
+            element: <ProtectedRoutes usersRole={PREMIUM}><Articles /></ProtectedRoutes>
         }, {
             path: "/articles/:id",
-            element: <ProtectedRoutes><SingleArticle /></ProtectedRoutes>
+            element: <ProtectedRoutes usersRole={PREMIUM}><SingleArticle /></ProtectedRoutes>
         }, {
             path: "/training-plans",
-            element: <ProtectedRoutes><TrainingPlans /></ProtectedRoutes>
+            element: <ProtectedRoutes usersRole={BASIC}><TrainingPlans /></ProtectedRoutes>
         }, {
             path: "/training-plans/:id",
-            element: <ProtectedRoutes><SingleTrainingPlan /></ProtectedRoutes>
+            element: <ProtectedRoutes usersRole={BASIC}><SingleTrainingPlan /></ProtectedRoutes>
         }, {
             path: "/nutritions",
-            element: <ProtectedRoutes><NutritionPlans /></ProtectedRoutes>
+            element: <ProtectedRoutes usersRole={BASIC}><NutritionPlans /></ProtectedRoutes>
         }, {
             path: "/nutritions/:id",
-            element: <ProtectedRoutes><SingleNutritionPlan /></ProtectedRoutes>
+            element: <ProtectedRoutes usersRole={BASIC}><SingleNutritionPlan /></ProtectedRoutes>
         }, {
             path: "/training-logs",
-            element: <ProtectedRoutes><TrainingLogs /></ProtectedRoutes>
+            element: <ProtectedRoutes usersRole={BASIC}><TrainingLogs /></ProtectedRoutes>
         }, {
             path: "/training-logs/:id",
-            element: <ProtectedRoutes><SingleTrainingLog /></ProtectedRoutes>
+            element: <ProtectedRoutes usersRole={BASIC}><SingleTrainingLog /></ProtectedRoutes>
         }, {
             path: "/admin",
             element: <ProtectedRoutes usersRole={ADMIN}><Admin /></ProtectedRoutes>

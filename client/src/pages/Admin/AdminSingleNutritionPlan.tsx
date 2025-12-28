@@ -27,7 +27,6 @@ const AdminSingleNutritionPlan = () => {
         )
     }
 
-    console.log(nutritionPlansByIdAdmin)
 
     const { meals } = nutritionPlansByIdAdmin
 

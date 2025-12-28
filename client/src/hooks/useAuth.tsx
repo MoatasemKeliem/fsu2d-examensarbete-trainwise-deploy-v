@@ -9,6 +9,8 @@ const useAuth = () => {
         loading: true,
         name: null,
         subscriptionStatus: "inactive",
+        planName: "basic",
+        subscriptionId: null
     })
 
 
@@ -22,7 +24,10 @@ const useAuth = () => {
                     loading: false,
                     name: response.data.name,
                     subscriptionStatus: response.data.subscriptionStatus,
+                    planName: response.data.planName,
+                    subscriptionId: response.data.subscriptionId
                 })
+
             } catch (error) {
                 setAuth({
                     isAuthenticated: false,
@@ -30,13 +35,16 @@ const useAuth = () => {
                     loading: false,
                     name: null,
                     subscriptionStatus: "inactive",
+                    planName: "basic",
+                    subscriptionId: null
+
                 })
             }
         }
         verifyUser()
     }, [])
 
-
+    console.log(auth)
 
     return auth
 }
