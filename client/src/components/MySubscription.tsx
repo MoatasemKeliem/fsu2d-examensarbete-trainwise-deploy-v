@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState, type FormEvent } from 'react'
-import { Backend_URL } from '../utils';
 import { useNavigate } from 'react-router-dom';
 import CancelMessage from './stripeMessage/CancelMessage';
 import useAuth from '../hooks/useAuth';
@@ -10,6 +9,7 @@ const MySubscription = () => {
     const [cancelMessage, setCancelMessage] = useState(false)
     const navigate = useNavigate()
     const { subscriptionId } = useAuth()
+    const Backend_URL = import.meta.env.VITE_API_URL;
 
     const cancelSubscription = async (e: FormEvent) => {
         e.preventDefault()

@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import type { IAdminTrainingLogsRender, ITrainingLogsRender } from '../../model/render-models/ITrainingLogsRender'
 import axios from 'axios'
-import { Backend_URL } from '../../utils'
 import { useNavigate } from 'react-router-dom'
 
 const useTrainingLogAdmin = () => {
     const [allTrainingLogs, setAllTrainingLogs] = useState<IAdminTrainingLogsRender[]>([])
     const [trainingLogById, setTrainingLogById] = useState<ITrainingLogsRender | null>(null)
     const navigate = useNavigate()
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
 
     const getAllTrainingLogs = async () => {

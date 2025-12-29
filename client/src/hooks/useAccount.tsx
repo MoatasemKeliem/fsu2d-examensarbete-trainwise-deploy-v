@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import type { IRegister } from '../model/IRegister'
 import axios from "axios"
-import { Backend_URL } from '../utils'
 import type { ILogin } from '../model/ILogin'
 
 const useAccount = () => {
     const navigate = useNavigate()
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
     const registerUser = async (payload: IRegister) => {
         try {

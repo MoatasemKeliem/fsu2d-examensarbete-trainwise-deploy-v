@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Backend_URL } from '../utils'
 import { Navigate, useNavigate } from 'react-router-dom'
 import type { IProtectedRoutes } from '../model/IProtectedRoutes'
 import WrongPlan from './WrongPlan'
@@ -18,6 +17,7 @@ const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
         subscriptionStatus: "inactive",
         planName: "basic"
     })
+    const Backend_URL = import.meta.env.VITE_API_URL;
     const navigate = useNavigate()
 
 

@@ -1,10 +1,11 @@
 import type { INutritionPlan, ITrainingLog, ITrainingPlan } from '../model/IPlans'
 import axios from 'axios'
-import { Backend_URL } from '../utils'
 import { useNavigate } from 'react-router-dom'
 
 const useGenerate = () => {
     const navigate = useNavigate()
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
     const generateTrainingPlan = async (payload: ITrainingPlan) => {
         try {
