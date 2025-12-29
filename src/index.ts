@@ -38,7 +38,7 @@ app.use("/training-log", trainingLogRoutes)
 app.use("/article", articleRoute)
 app.use("/admin", adminRoutes)
 
-app.get("/", authMiddleware, (req, res) => {
+app.get("/", (req, res) => {
     res.send("Hello Examensarbetet!")
 })
 
