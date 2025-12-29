@@ -1,7 +1,6 @@
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios";
 import { useState, type FormEvent } from "react";
-import { Backend_URL } from "../utils";
 import { useNavigate, useParams } from "react-router-dom";
 import SuccessfullPayment from "./stripeMessage/SuccessfullPayment";
 import AlreadySubscribed from "./stripeMessage/AlreadySubscribed";
@@ -14,6 +13,7 @@ const CheckOutForm = () => {
     const [alreadySubscribed, setAlreadySubscribed] = useState(false)
     const [successfulSubscription, setSuccessfulSubscription] = useState(false)
     const { priceId } = useParams()
+    const Backend_URL = import.meta.env.VITE_API_URL;
 
 
     if (!priceId) {

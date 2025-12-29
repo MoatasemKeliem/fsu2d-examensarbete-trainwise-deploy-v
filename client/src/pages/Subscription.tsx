@@ -1,12 +1,14 @@
 import { Elements } from "@stripe/react-stripe-js"
 import CheckOutForm from "../components/CheckOutForm"
-import { Backend_URL, stripePromise } from "../utils"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { stripePromise } from "../utils"
 
 
 const Subscription = () => {
     const [clientSecret, setClientSecret] = useState<string | null>(null)
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
     useEffect(() => {
         const createSetupIntent = async () => {
@@ -24,6 +26,8 @@ const Subscription = () => {
             </div>
         )
     }
+
+
 
     return (
         <div>

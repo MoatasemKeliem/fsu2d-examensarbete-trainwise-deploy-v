@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { Backend_URL } from '../utils'
 import type { IArticle } from '../model/render-models/IArticle'
 import { useNavigate } from 'react-router-dom'
 
@@ -8,6 +7,8 @@ const useArticle = () => {
     const [allArticles, setAllArticles] = useState<IArticle[]>([])
     const [articleById, setArticleById] = useState<IArticle | null>(null)
     const navigate = useNavigate()
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
     const getAllArticles = async () => {
         try {

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { Backend_URL } from '../../utils'
 import { useNavigate } from 'react-router-dom'
 import type { IArticleAdmin } from '../../model/Admin/IArticleAdmin'
 import { useState } from 'react'
@@ -9,6 +8,8 @@ const useArticleAdmin = () => {
     const [allAdminArticles, setAllAdminArticles] = useState<IArticle[]>([])
     const [adminArticleByID, setAdminArticleByID] = useState<IArticle | null>(null)
     const navigate = useNavigate()
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
     const generateArticle = async (payload: IArticleAdmin) => {
         try {

@@ -21,7 +21,7 @@ const PORT = 3000;
 
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://trainwise-theta.vercel.app"],
     credentials: true
 }))
 // app.post("/stripe/webhook", express.raw({ type: "application/json" }), stripeWebhook)

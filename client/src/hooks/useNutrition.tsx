@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { Backend_URL } from '../utils'
 import type { INutritionPlan, INutritionPlans } from '../model/render-models/InutritionPlans'
 
 const useNutrition = () => {
     const [allNutrition, setAllNutrition] = useState<INutritionPlan[]>([])
     const [nutritionById, setNutritionById] = useState<INutritionPlans | null>(null)
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
 
     const getAllNutritionPlans = async () => {

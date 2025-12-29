@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { Backend_URL } from '../../utils'
 import type { IUser } from '../../model/Admin/IUsers'
 
 const useUserCMS = () => {
     const [allUsers, setAllUsers] = useState<IUser[]>([])
-    // const [userById, setuserById] = useState<IUser | null>(null)
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
     const getAllUsers = async () => {
         try {

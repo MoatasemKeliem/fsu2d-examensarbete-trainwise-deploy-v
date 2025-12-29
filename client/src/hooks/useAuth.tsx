@@ -1,6 +1,5 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Backend_URL } from "../utils"
 
 const useAuth = () => {
     const [auth, setAuth] = useState({
@@ -12,6 +11,8 @@ const useAuth = () => {
         planName: "basic",
         subscriptionId: null
     })
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
 
     useEffect(() => {

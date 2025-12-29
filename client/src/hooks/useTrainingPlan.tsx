@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { Backend_URL } from '../utils'
 import type { IRenderSingleTrainingPlan, IRenderTrainingPlans, TrainingPlans } from '../model/render-models/ITrainingsPlanRender'
 
 const useTrainingPlan = () => {
     const [allTrainingPlans, setAllTrainingPlans] = useState<TrainingPlans[]>([])
     const [trainingPlanById, setTrainingPlanById] = useState<IRenderSingleTrainingPlan | null>(null)
+    const Backend_URL = import.meta.env.VITE_API_URL;
+
 
     const getAllTrainingPlans = async () => {
         try {
