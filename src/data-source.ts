@@ -31,6 +31,6 @@ export const AppDataSource = new DataSource({
     synchronize: true,
     entities: [User, TrainingPlan, NutritionPlan, TrainingLog, Article, Subscription],
     ssl: {
-        ca: fs.readFileSync("/etc/secret/ca.pem", "utf-8")
+        ca: fs.readFileSync("/etc/secrets/ca.pem", "utf-8")
     }
 })
