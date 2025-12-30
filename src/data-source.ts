@@ -6,6 +6,7 @@ import { TrainingLog } from "./entities/TrainingLog"
 import { Article } from "./entities/Article"
 import { Subscription } from "./entities/Subscription"
 import { User } from "./entities/User"
+import fs from "fs";
 
 dotenv.config({ quiet: true })
 
@@ -28,5 +29,8 @@ export const AppDataSource = new DataSource({
     password: DB_PASSWORD!,
     database: DB_DATABASE,
     synchronize: true,
-    entities: [User, TrainingPlan, NutritionPlan, TrainingLog, Article, Subscription]
+    entities: [User, TrainingPlan, NutritionPlan, TrainingLog, Article, Subscription],
+    ssl: {
+        ca: fs.readFileSync("/etc/secret/ca.pem", "utf-8")
+    }
 })
