@@ -15,12 +15,11 @@ export class TrainingLog {
     @CreateDateColumn()
     createdAt!: Date;
 
-    @Column("uuid")
+    @Column({ type: "varchar", length: 36, collation: "utf8mb4_general_ci" })
     userId!: string;
 
     @ManyToOne(() => User, user => user.trainingLogs, { onDelete: "CASCADE", nullable: false })
     @JoinColumn({ name: "userId" })
     user!: User;
-
 
 }
