@@ -37,12 +37,12 @@ export const createPayment = async (req: Request, res: Response) => {
             automatic_payment_methods: { enabled: true }
         })
 
-        return res.json({ setupIntent, priceId })
+        return res.status(200).json({ setupIntent, priceId })
 
 
     } catch (error) {
         console.error(error)
-        return res.json({ status: 500, message: "Couldn't create payment" })
+        return res.status(500).json({ message: "Couldn't create payment" })
     }
 }
 
@@ -110,7 +110,7 @@ export const stripePayment = async (req: Request, res: Response) => {
 
     } catch (error) {
         console.error(error)
-        return res.json({ status: 500, message: "Couldn't create payment" })
+        return res.status(500).json({ message: "Couldn't create payment" })
     }
 }
 
@@ -122,7 +122,7 @@ export const cancelSubscription = async (req: Request, res: Response) => {
 
 
     if (!subscriptionId) {
-        return res.json({ status: 400, message: "Subscription ID not found" })
+        return res.status(400).json({ message: "Subscription ID not found" })
     }
 
     try {
@@ -154,14 +154,13 @@ export const cancelSubscription = async (req: Request, res: Response) => {
         subscription.status = "inactive"
         await subscriptionRepository.save(subscription)
 
-        return res.json({
-            status: 200,
+        return res.status(200).json({
             message: "Subscription canceled successfully",
             subscription: deleteSubscription
         })
     } catch (error) {
         console.error("Cancel subscription failed", error)
-        return res.json({ status: 500, message: "Couldn't cancel subscription" })
+        return res.status(500).json({ message: "Couldn't cancel subscription" })
     }
 }
 
