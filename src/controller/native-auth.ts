@@ -15,7 +15,7 @@ export const nativeRegister = async (req: Request, res: Response) => {
         const { email, name, password } = req.body;
         const existingUser = await userRepository.findOne({ where: { email } })
         if (existingUser) {
-            return res.json({ status: 400, message: "user already exist" })
+            return res.status(400).json({ message: "user already exist" })
         }
 
         const hashPassword = await bcrypt.hash(password, 10)
@@ -31,8 +31,7 @@ export const nativeRegister = async (req: Request, res: Response) => {
 
         await userRepository.save(newUser)
 
-        return res.json({
-            status: 200,
+        return res.status(200).json({
             message: "User created successfully",
             id: newUser.id,
             email: newUser.email,
@@ -41,8 +40,7 @@ export const nativeRegister = async (req: Request, res: Response) => {
 
     } catch (error) {
         console.error("Couldn't create user", error)
-        return res.json({
-            status: 500,
+        return res.status(500).json({
             message: "Couldn't create user"
         })
     }
@@ -55,12 +53,12 @@ export const nativeLogin = async (req: Request, res: Response) => {
         const { email, password } = req.body;
         const user = await userRepository.findOne({ where: { email } })
         if (!user || !user.password) {
-            return res.json({ status: 401, message: "User doesn't exist" })
+            return res.status(401).json({ message: "User doesn't exist" })
         }
 
         const passwordMatch = await bcrypt.compare(password, user.password)
         if (!passwordMatch) {
-            return res.json({ status: 401, message: "Invalid login credentials" })
+            return res.status(401).json({ message: "Invalid login credentials" })
 
         }
 
@@ -73,8 +71,7 @@ export const nativeLogin = async (req: Request, res: Response) => {
             maxAge: 24 * 60 * 60 * 1000
         })
 
-        return res.json({
-            status: 200,
+        return res.status(200).json({
             message: "User logged in successfully",
             user: {
                 id: user.id,
@@ -84,8 +81,7 @@ export const nativeLogin = async (req: Request, res: Response) => {
         })
     } catch (error) {
         console.error("Couldn't login user")
-        return res.json({
-            status: 500,
+        return res.status(500).json({
             message: "Couldn't login user"
         })
     }
@@ -99,14 +95,12 @@ export const nativeLogout = async (req: Request, res: Response) => {
             sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             maxAge: 0
         })
-        return res.json({
-            status: 200,
+        return res.status(200).json({
             message: "User was logged out successfully"
         })
     } catch (error) {
         console.error("Couldn't logout user")
-        return res.json({
-            status: 500,
+        return res.status(500).json({
             message: "Couldn't logout user"
         })
     }
@@ -142,8 +136,7 @@ export const veirfyUser = async (req: Request, res: Response) => {
 
     } catch (error) {
         console.error("Couldn't verify user", error)
-        return res.json({
-            status: 500,
+        return res.status(500).json({
             message: "Couldn't verify user"
         })
     }
