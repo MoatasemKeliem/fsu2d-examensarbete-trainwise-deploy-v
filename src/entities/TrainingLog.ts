@@ -3,7 +3,7 @@ import { User } from "./User";
 
 @Entity()
 export class TrainingLog {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("uuid")
     id!: string;
 
     @Column("text")
