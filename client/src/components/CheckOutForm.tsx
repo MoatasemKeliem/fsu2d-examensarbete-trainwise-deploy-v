@@ -25,7 +25,10 @@ const CheckOutForm = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
 
-        if (!stripe || !elements) return
+        if (!stripe || !elements) {
+            console.error("Stripe elements or stripe is missing")
+            return
+        }
 
         const result = await stripe.confirmSetup({ elements, redirect: "if_required" })
 

@@ -70,5 +70,5 @@ export const articleCaetgory = [
 ]
 
 export const stripePromise = loadStripe(
-    import.meta.env.STRIPE_PROMISE
+    import.meta.env.VITE_STRIPE_PROMISE
 )
