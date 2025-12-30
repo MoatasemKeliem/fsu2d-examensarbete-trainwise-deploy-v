@@ -42,16 +42,17 @@ app.get("/", (req, res) => {
     res.send("Hello Examensarbetet!")
 })
 
-const startDatabase = async () => {
+const startServer = async () => {
     try {
         await AppDataSource.initialize()
+
+        app.listen(PORT, () => {
+            console.log(`Server is running on Port ${PORT}`)
+        })
     } catch (error) {
         console.error("ERROR: Couldn't connect to database!", error)
     }
 }
 
-startDatabase()
+startServer()
 
-app.listen(PORT, () => {
-    console.log(`Server is running on Port ${PORT}`)
-})
