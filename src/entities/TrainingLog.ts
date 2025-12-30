@@ -16,6 +16,5 @@ export class TrainingLog {
     createdAt!: Date;
 
     @ManyToOne(() => User, user => user.trainingLogs, { onDelete: "CASCADE", nullable: false })
-    @JoinColumn({ name: "userId" })
     user!: User;
 }
