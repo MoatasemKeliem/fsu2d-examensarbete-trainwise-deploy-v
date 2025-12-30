@@ -10,8 +10,10 @@ const useAccount = () => {
 
     const registerUser = async (payload: IRegister) => {
         try {
-            await axios.post(`${Backend_URL}/native-auth/register`, payload, { withCredentials: true })
-            navigate("/login")
+            const response = await axios.post(`${Backend_URL}/native-auth/register`, payload, { withCredentials: true })
+            if (response.status === 200) {
+                navigate("/login")
+            }
         } catch (error) {
             console.error("Couldn't register user", error)
             throw new Error()
@@ -20,9 +22,13 @@ const useAccount = () => {
 
     const loginUser = async (payload: ILogin) => {
         try {
-            await axios.post(`${Backend_URL}/native-auth/login`, payload, { withCredentials: true })
-            navigate("/dashboard")
-            window.location.reload()
+            const response = await axios.post(`${Backend_URL}/native-auth/login`, payload, { withCredentials: true })
+            if (response.status === 200) {
+                navigate("/dashboard");
+                window.location.reload();
+            }
+
+
         } catch (error) {
             console.error("Couldn't login user", error)
             throw new Error()
