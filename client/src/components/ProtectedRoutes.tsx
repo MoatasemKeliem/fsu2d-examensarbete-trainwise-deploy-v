@@ -50,10 +50,15 @@ const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
 
     if (isAuth.loading) {
         return (
-            <div>
-                <span className="loader"></span>
-                <h2>Authenticating user. Please wait...</h2>
-            </div>
+            <section className="section-loader">
+                <div className="loader-div">
+                    <span className="loader"></span>
+                    <h2>Authenticating user. Please wait...</h2>
+                </div>
+            </section>
+
+
+
         )
     }
 
