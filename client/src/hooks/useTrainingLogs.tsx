@@ -20,7 +20,7 @@ const useTrainingLogs = () => {
     }
 
 
-    const getTrainingLogById = async (id: number) => {
+    const getTrainingLogById = async (id: string) => {
         try {
             const response = await axios.get(`${Backend_URL}/training-log/${id}`, { withCredentials: true })
             const data = response.data
@@ -31,7 +31,7 @@ const useTrainingLogs = () => {
         }
     }
 
-    const deleteTrainingLogById = async (id: number) => {
+    const deleteTrainingLogById = async (id: string) => {
         try {
             await axios.delete(`${Backend_URL}/training-log/${id}`, { withCredentials: true })
         } catch (error) {

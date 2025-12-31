@@ -11,7 +11,7 @@ const SingleTrainingLog = () => {
     useEffect(() => {
         if (!id) return
 
-        getTrainingLogById(Number(id))
+        getTrainingLogById(String(id))
     }, [])
 
 
@@ -40,7 +40,7 @@ const SingleTrainingLog = () => {
                     <p>{trainingLogById.aiFeedback}</p>
 
                     <div className='button-div'>
-                        <button className="single-log-button delete-button" onClick={() => { deleteTrainingLogById(Number(id)); navigate("/training-logs") }}>Delete training log</button>
+                        <button className="single-log-button delete-button" onClick={() => { deleteTrainingLogById(String(id)); navigate("/training-logs") }}>Delete training log</button>
                     </div>
 
                 </div >
