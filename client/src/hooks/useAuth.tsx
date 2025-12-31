@@ -45,7 +45,6 @@ const useAuth = () => {
         verifyUser()
     }, [])
 
-    console.log(auth)
 
     return auth
 }

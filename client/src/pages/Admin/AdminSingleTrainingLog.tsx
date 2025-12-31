@@ -9,7 +9,7 @@ const AdminSingleTrainingLog = () => {
 
     useEffect(() => {
         if (!id) return
-        getTrainingLogByIdAdmin(Number(id))
+        getTrainingLogByIdAdmin(String(id))
     }, [])
 
     if (!trainingLogById) {
@@ -39,7 +39,7 @@ const AdminSingleTrainingLog = () => {
 
                 </div>
                 <div className='button-div'>
-                    <button className="single-log-button delete-button" onClick={() => { deleteTrainingLogByIdAdmin(Number(id)) }}>Delete training log</button>
+                    <button className="single-log-button delete-button" onClick={() => { deleteTrainingLogByIdAdmin(String(id)) }}>Delete training log</button>
                 </div>
             </section>
         </div>

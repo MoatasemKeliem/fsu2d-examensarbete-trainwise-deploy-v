@@ -21,6 +21,8 @@ if (!DB_HOST || !DB_PORT || !DB_USERNAME || DB_DATABASE == undefined) {
     throw new Error("Databse is missing env or isn't configured correctly")
 }
 
+const lokalServer = process.env.NODE_ENV === "development";
+
 export const AppDataSource = new DataSource({
     type: "mysql",
     host: DB_HOST,
@@ -30,7 +32,9 @@ export const AppDataSource = new DataSource({
     database: DB_DATABASE,
     synchronize: true,
     entities: [User, TrainingPlan, NutritionPlan, TrainingLog, Article, Subscription],
-    ssl: {
-        ca: fs.readFileSync("/etc/secrets/ca.pem", "utf-8")
-    }
+    ...(!lokalServer && {
+        ssl: {
+            ca: fs.readFileSync("/etc/secrets/ca.pem", "utf-8")
+        }
+    })
 })

@@ -97,10 +97,8 @@ export const router = createBrowserRouter([{
             path: "/admin-training-Plan/:id",
             element: <ProtectedRoutes usersRole={ADMIN}><AdminSingleTrainingPlan /></ProtectedRoutes>
         }, {
-        }, {
             path: "/admin-nutrition-Plan/:id",
             element: <ProtectedRoutes usersRole={ADMIN}><AdminSingleNutritionPlan /></ProtectedRoutes>
-        }, {
         }, {
             path: "/admin-training-log/:id",
             element: <ProtectedRoutes usersRole={ADMIN}><AdminSingleTrainingLog /></ProtectedRoutes>

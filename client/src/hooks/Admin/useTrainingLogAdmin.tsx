@@ -23,7 +23,7 @@ const useTrainingLogAdmin = () => {
     }
 
 
-    const getTrainingLogByIdAdmin = async (id: number) => {
+    const getTrainingLogByIdAdmin = async (id: string) => {
         try {
             const response = await axios.get(`${Backend_URL}/admin/training-log/${id}`, { withCredentials: true })
             const data = response.data
@@ -34,7 +34,7 @@ const useTrainingLogAdmin = () => {
         }
     }
 
-    const deleteTrainingLogByIdAdmin = async (id: number) => {
+    const deleteTrainingLogByIdAdmin = async (id: string) => {
         try {
             await axios.delete(`${Backend_URL}/admin/training-log/${id}`, { withCredentials: true })
             navigate("/admin")
