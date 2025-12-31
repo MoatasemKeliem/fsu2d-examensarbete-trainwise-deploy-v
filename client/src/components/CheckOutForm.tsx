@@ -84,7 +84,7 @@ const CheckOutForm = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <PaymentElement />
-                <button type="submit">Pay</button>
+                <button id="pay-button" type="submit">Pay</button>
             </form>
         </div>
     )
