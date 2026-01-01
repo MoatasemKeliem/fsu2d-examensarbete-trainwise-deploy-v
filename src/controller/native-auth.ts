@@ -66,8 +66,10 @@ export const nativeLogin = async (req: Request, res: Response) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            // secure: process.env.NODE_ENV === "production",
+            secure: true,
+            // sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000
         })
 
@@ -91,8 +93,10 @@ export const nativeLogout = async (req: Request, res: Response) => {
     try {
         res.cookie("token", "", {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            // secure: process.env.NODE_ENV === "production",
+            secure: true,
+            // sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            sameSite: "none",
             maxAge: 0
         })
         return res.status(200).json({
