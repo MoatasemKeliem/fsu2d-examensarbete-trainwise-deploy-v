@@ -74,7 +74,7 @@ export const router = createBrowserRouter([{
             element: <ProtectedRoutes usersRole={BASIC}><MyJourney /></ProtectedRoutes>
         }, {
             path: "/dashboard",
-            element: <ProtectedRoutes usersRole={BASIC}><UserDashboard /></ProtectedRoutes>
+            element: <ProtectedRoutes><UserDashboard /></ProtectedRoutes>
         }, {
             path: "/articles",
             element: <ProtectedRoutes usersRole={PREMIUM}><Articles /></ProtectedRoutes>
