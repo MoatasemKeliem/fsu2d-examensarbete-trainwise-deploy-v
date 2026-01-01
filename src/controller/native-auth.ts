@@ -130,7 +130,7 @@ export const veirfyUser = async (req: Request, res: Response) => {
         const userSubscription = await subscriptionRepository.findOne({ where: { user: { id: user.id } } })
 
         if (!userSubscription) {
-            return res.status(200).json({ email: user.email, id: user.id, role: user.role, name: user.name, subscriptionStatus: "inactive" })
+            return res.status(200).json({ email: user.email, id: user.id, role: user.role, name: user.name, subscriptionStatus: "inactive", planName: "basic" })
         }
 
         return res.status(200).json({
