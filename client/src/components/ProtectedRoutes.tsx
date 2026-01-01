@@ -68,19 +68,24 @@ const ProtectedRoutes = ({ children, usersRole }: IProtectedRoutes) => {
         )
     }
 
-    if (isAuth.role === "user" && isAuth.subscriptionStatus === "inactive") {
-        return (
-            <Navigate to={"/pricing"} replace />
-
-        )
-    }
-
 
     if (isAuth.role === "admin") {
         return (<div>
             {children}
         </div>)
     }
+
+
+
+
+    if (usersRole && isAuth.subscriptionStatus === "inactive") {
+        return (
+            <Navigate to={"/pricing"} replace />
+        )
+    }
+
+
+
 
 
     if (usersRole) {
