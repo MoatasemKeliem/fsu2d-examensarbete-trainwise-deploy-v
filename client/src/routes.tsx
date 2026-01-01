@@ -26,6 +26,8 @@ import AdminSingleNutritionPlan from "./pages/Admin/AdminSingleNutritionPlan";
 import AdminSingleTrainingLog from "./pages/Admin/AdminSingleTrainingLog";
 import Subscription from "./pages/Subscription";
 import AdminSingleArticle from "./pages/Admin/AdminSingleArticle";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 
 const BASIC = "basic"
 const PREMIUM = "premium"
@@ -56,6 +58,13 @@ export const router = createBrowserRouter([{
         }, {
             path: "/pricing",
             element: <Pricing />
+        },
+        {
+            path: "/privacy",
+            element: <Privacy />
+        }, {
+            path: "/terms",
+            element: <Terms />
         }, {
             path: "/subscribe/:priceId",
             element: <Subscription />
