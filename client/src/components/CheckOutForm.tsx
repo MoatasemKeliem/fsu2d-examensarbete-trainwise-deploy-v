@@ -1,17 +1,13 @@
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import axios from "axios";
-import { useState, type FormEvent } from "react";
+import { type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import SuccessfullPayment from "./stripeMessage/SuccessfullPayment";
-import AlreadySubscribed from "./stripeMessage/AlreadySubscribed";
 
 
 const CheckOutForm = () => {
     const stripe = useStripe();
     const elements = useElements()
     const navigate = useNavigate()
-    const [alreadySubscribed, setAlreadySubscribed] = useState(false)
-    const [successfulSubscription, setSuccessfulSubscription] = useState(false)
     const { priceId } = useParams()
     const Backend_URL = import.meta.env.VITE_API_URL;
 
@@ -43,18 +39,16 @@ const CheckOutForm = () => {
         const reposne = await axios.post(`${Backend_URL}/stripe/create-payment`, { priceId, paymentMethodId }, { withCredentials: true })
 
         if (reposne.data.message === "You already have an actice subscription") {
-            setAlreadySubscribed(true);
-            setTimeout(() => {
-                navigate("/dashboard")
-            }, 5000)
+            navigate("/message-page", {
+                state: { messageToShow: "alreadySubscribed" }
+            })
             return
         }
 
         if (reposne.data.message === "Your payment was successful") {
-            setSuccessfulSubscription(true);
-            setTimeout(() => {
-                navigate("/dashboard")
-            }, 5000)
+            navigate("/message-page", {
+                state: { messageToShow: "success" }
+            })
             return
         }
 
@@ -63,21 +57,6 @@ const CheckOutForm = () => {
 
     }
 
-    if (successfulSubscription) {
-        return (
-            <div>
-                <SuccessfullPayment />
-            </div>
-        )
-    }
-
-    if (alreadySubscribed) {
-        return (
-            <div>
-                <AlreadySubscribed />
-            </div>
-        )
-    }
 
 
     return (

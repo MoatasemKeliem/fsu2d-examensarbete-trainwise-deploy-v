@@ -28,6 +28,7 @@ import Subscription from "./pages/Subscription";
 import AdminSingleArticle from "./pages/Admin/AdminSingleArticle";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
+import MessagePage from "./pages/MessagePage";
 
 const BASIC = "basic"
 const PREMIUM = "premium"
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([{
         }, {
             path: "/subscribe/:priceId",
             element: <Subscription />
+        },
+        {
+            path: "/message-page",
+            element: <MessagePage />
         },
         {
             path: "/my-journey",

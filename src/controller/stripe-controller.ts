@@ -141,7 +141,7 @@ export const cancelSubscription = async (req: Request, res: Response) => {
 
         const subscription = await subscriptionRepository.findOne({
             where: {
-                stripeSubscription: subscriptionId,
+                // stripeSubscription: subscriptionId,
                 user: { id: userId }
             }
         })
@@ -151,8 +151,9 @@ export const cancelSubscription = async (req: Request, res: Response) => {
 
         }
 
-        subscription.status = "inactive"
-        await subscriptionRepository.save(subscription)
+        await subscriptionRepository.delete({
+            user: { id: userId }
+        })
 
         return res.status(200).json({
             message: "Subscription canceled successfully",
