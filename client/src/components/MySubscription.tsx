@@ -1,12 +1,10 @@
 import axios from 'axios';
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom';
-import CancelMessage from './stripeMessage/CancelMessage';
 import useAuth from '../hooks/useAuth';
 
 const MySubscription = () => {
     const [loading, setLoading] = useState(false)
-    const [cancelMessage, setCancelMessage] = useState(false)
     const navigate = useNavigate()
     const { subscriptionId } = useAuth()
     const Backend_URL = import.meta.env.VITE_API_URL;
@@ -20,11 +18,9 @@ const MySubscription = () => {
             const reposne = await axios.post(`${Backend_URL}/stripe/cancel-payment`, { subscriptionId }, { withCredentials: true })
 
             if (reposne.data.message === "Subscription canceled successfully") {
-                setCancelMessage(true);
-                setTimeout(() => {
-                    navigate("/")
-                    window.location.reload()
-                }, 5000)
+                navigate("/message-page", {
+                    state: { messageToShow: "cancelled" }
+                })
                 return
             }
         } catch (error) {
@@ -35,13 +31,7 @@ const MySubscription = () => {
 
     }
 
-    if (cancelMessage) {
-        return (
-            <div>
-                <CancelMessage />
-            </div>
-        )
-    }
+
 
     if (loading) {
         return (

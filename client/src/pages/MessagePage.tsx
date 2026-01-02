@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import AlreadySubscribed from '../components/stripeMessage/AlreadySubscribed';
 import SuccessfullPayment from '../components/stripeMessage/SuccessfullPayment';
+import CancelMessage from '../components/stripeMessage/CancelMessage';
 
 const MessagePage = () => {
     const location = useLocation();
@@ -21,6 +22,11 @@ const MessagePage = () => {
 
     if (message === "success") {
         return <SuccessfullPayment />
+
+    }
+
+    if (message === "cancelled") {
+        return <CancelMessage />
     }
 
 
