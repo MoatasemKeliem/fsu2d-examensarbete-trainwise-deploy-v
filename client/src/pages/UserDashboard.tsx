@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth"
 
 
 const UserDashboard = () => {
-    const { name, subscriptionStatus } = useAuth()
+    const { name, subscriptionStatus, role } = useAuth()
 
 
 
@@ -14,7 +14,7 @@ const UserDashboard = () => {
         <div className="dashboard-page">
             <section className="dashboard">
                 <h1>Welcome, {name}</h1>
-                {subscriptionStatus === "active" && (
+                {subscriptionStatus === "active" && role === "user" && (
                     <div>
                         <h2>Cancel Subscription</h2>
                         <MySubscription />
@@ -22,7 +22,14 @@ const UserDashboard = () => {
                 )}
 
                 {
-                    subscriptionStatus === "inactive" && (
+                    role === "admin" && (
+                        <div>
+                            <h3>You're logged in as admin</h3>
+                        </div>
+                    )
+                }
+                {
+                    subscriptionStatus === "inactive" && role === "user" && (
                         <div>
                             <h2>You don't have an active plan, subscribe here</h2>
                             <Link to={`/pricing`}><button>View Plans</button></Link>
@@ -31,7 +38,7 @@ const UserDashboard = () => {
                 }
 
             </section>
-            {subscriptionStatus === "active" && (
+            {subscriptionStatus === "active" || role === "admin" && (
                 <div>
                     <RenderPlansDashboard />
                 </div>
