@@ -3,10 +3,13 @@ import { Router } from "express"
 import passport from "passport"
 import jwt from "jsonwebtoken"
 import { User } from "../entities/User";
+import { AppDataSource } from "../data-source";
+import { Subscription } from "../entities/Subscription";
 
 dotenv.config({ quiet: true })
 
 const OAuthRouter = Router();
+
 
 OAuthRouter.get("/auth/google",
     passport.authenticate("google", { scope: ["profile", "email"] })
@@ -14,7 +17,7 @@ OAuthRouter.get("/auth/google",
 
 OAuthRouter.get("/auth/google/callback",
     passport.authenticate("google", { session: false, failureRedirect: `${process.env.FRONTEND_URL}/login` }),
-    (req, res) => {
+    async (req, res) => {
         const user = req.user as User
 
         if (!user) {
@@ -34,6 +37,15 @@ OAuthRouter.get("/auth/google/callback",
             sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000
         })
+        const subscriptionRepository = AppDataSource.getRepository(Subscription);
+
+        const userSubscription = await subscriptionRepository.findOne({ where: { user: { id: user.id } } })
+
+        if (!userSubscription || userSubscription.status === "inactive") {
+            return res.redirect(`${process.env.FRONTEND_URL}/pricing`)
+
+        }
+
 
         res.redirect(`${process.env.FRONTEND_URL}/dashboard`)
     }
@@ -46,7 +58,7 @@ OAuthRouter.get("/auth/discord",
 
 OAuthRouter.get("/auth/discord/callback",
     passport.authenticate("discord", { session: false }),
-    (req, res) => {
+    async (req, res) => {
         const user = req.user as User
 
         if (!user) {
@@ -66,6 +78,14 @@ OAuthRouter.get("/auth/discord/callback",
             sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000
         })
+        const subscriptionRepository = AppDataSource.getRepository(Subscription);
+
+        const userSubscription = await subscriptionRepository.findOne({ where: { user: { id: user.id } } })
+
+        if (!userSubscription || userSubscription.status === "inactive") {
+            return res.redirect(`${process.env.FRONTEND_URL}/pricing`)
+
+        }
 
         res.redirect(`${process.env.FRONTEND_URL}/dashboard`)
 
