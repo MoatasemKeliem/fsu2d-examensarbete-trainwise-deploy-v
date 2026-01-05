@@ -33,17 +33,17 @@ const LandingPage = () => {
                 <div id='features-container'>
                     <div id='features-card'>
                         <FaDollarSign className='features-icon' />
-                        <h4>Pricing</h4>
+                        <h4>Affordable Plans</h4>
                     </div>
 
                     <div id='features-card'>
                         <LuBrainCircuit className='features-icon' />
-                        <h4>AI-Powered</h4>
+                        <h4>AI-Powered Fitness</h4>
                     </div>
 
                     <div id='features-card'>
                         <IoMdFitness className='features-icon' />
-                        <h4>Fitness</h4>
+                        <h4>Personlized Fitness</h4>
                     </div>
                 </div>
 
@@ -53,8 +53,11 @@ const LandingPage = () => {
                 <h3>Rating</h3>
 
                 <div id='rating-div'>
-                    <h3>User </h3><FaStar className='star-rating' /><FaStar className='star-rating' /><FaStar className='star-rating' /><FaStar className='star-rating' /><FaStar className='star-rating' />
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque rerum nobis dicta autem, itaque doloremque dignissimos atque laborum enim. Recusandae similique quam, eligendi perspiciatis veritatis quibusdam maiores quidem, adipisci, quasi voluptate alias? Temporibus pariatur quas ab non, officia nihil distinctio modi, vitae mollitia hic aut porro sit, ratione similique voluptas!</p>
+                    <h3>"Feels like having a personal coach"</h3><FaStar className='star-rating' /><FaStar className='star-rating' /><FaStar className='star-rating' /><FaStar className='star-rating' /><FaStar className='star-rating' />
+                    <p>
+                        I've Tried many fitness apps, but this one is the best I've used. The app generates fitnnes plans that actually fits my lifestyle. The training log is the best feature for me.
+                        Being able to track my workouts and the receive AI-powered analysis and feedback has helped understand my progress and stay motivated.
+                    </p>
                 </div>
             </section>
 
