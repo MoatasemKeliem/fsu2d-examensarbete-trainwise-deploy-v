@@ -16,7 +16,7 @@ const Subscription = () => {
 
     useEffect(() => {
         const createSetupIntent = async () => {
-            const response = await axios.post(`${Backend_URL}/stripe/create-subscription`, { priceId: "price_1SaEY403YBWNs0AcBhptjUuj" }, { withCredentials: true })
+            const response = await axios.post(`${Backend_URL}/stripe/create-subscription`, { priceId }, { withCredentials: true })
             setClientSecret(response.data.setupIntent.client_secret)
         }
 
@@ -25,10 +25,12 @@ const Subscription = () => {
 
     if (!clientSecret) {
         return (
-            <div>
-                <span className="loader"></span>
-                <h2>Createing payment. Please wait...</h2>
-            </div>
+            <section className="section-loader">
+                <div className="loader-div">
+                    <span className="loader"></span>
+                    <h2>Creating payment. Please wait...</h2>
+                </div>
+            </section>
         )
     }
 

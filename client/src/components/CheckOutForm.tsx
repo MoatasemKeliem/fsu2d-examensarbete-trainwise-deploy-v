@@ -52,7 +52,6 @@ const CheckOutForm = () => {
             return
         }
 
-        alert("Payment successful")
         navigate("/dashboard")
 
     }

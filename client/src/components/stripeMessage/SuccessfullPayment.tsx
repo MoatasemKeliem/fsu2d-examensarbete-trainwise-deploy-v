@@ -20,7 +20,7 @@ const SuccessfullPayment = () => {
             <div className="no-content">
 
                 <IoMdCheckmarkCircle className="no-render-icon" />
-                <h2 className="no-content-message">You payment was successful. Enjoy your fitness journey</h2>
+                <h2 className="no-content-message">Your payment was successful. Enjoy your fitness journey</h2>
             </div>
         </div>
     )
