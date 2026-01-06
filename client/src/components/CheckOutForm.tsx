@@ -4,7 +4,7 @@ import { type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 
-const CheckOutForm = ({ setLoading }: any) => {
+const CheckOutForm = ({ setLoading, loading }: any) => {
     const stripe = useStripe();
     const elements = useElements()
     const navigate = useNavigate()
@@ -72,7 +72,7 @@ const CheckOutForm = ({ setLoading }: any) => {
         <div>
             <form onSubmit={handleSubmit}>
                 <PaymentElement />
-                <button id="pay-button" type="submit">Pay</button>
+                <button id="pay-button" type="submit">{loading ? "Processing Payment..." : "Pay"}</button>
             </form>
         </div>
     )

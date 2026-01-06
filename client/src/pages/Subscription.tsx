@@ -72,7 +72,7 @@ const Subscription = () => {
 
 
                         </div>
-                        <CheckOutForm setLoading={setLoading} />
+                        <CheckOutForm setLoading={setLoading} loading={loading} />
                     </div>
 
                 </Elements>
