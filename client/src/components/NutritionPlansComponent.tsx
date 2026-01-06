@@ -22,19 +22,27 @@ const NutritionPlansComponent = () => {
     }
 
     return (
-        <div className='render-page-div'>
-            {
-                allNutrition.map((plan) => {
-                    return (
-                        <div className='render-item' key={plan.id}>
-                            <h2 className='render-sub-title'>{plan.title}</h2>
-                            <p className='render-date'>{plan.createdAt.slice(0, 10)}</p>
-                            <Link to={`/nutritions/${plan.id}`}><button>View Nutrition Plan</button></Link>
-                        </div>
-                    )
-                })
-            }
+        <div>
+            <div className="plans-page-title">
+                <div className="plans-page-content">
+                    <h2>Nutrition Plans</h2>
+                </div>
+            </div>
+            <div className='render-page-div'>
+                {
+                    allNutrition.map((plan) => {
+                        return (
+                            <div className='render-item' key={plan.id}>
+                                <h2 className='render-sub-title'>{plan.title}</h2>
+                                <p className='render-date'>{plan.createdAt.slice(0, 10)}</p>
+                                <Link to={`/nutritions/${plan.id}`}><button>View Nutrition Plan</button></Link>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </div>
+
     )
 }
 
