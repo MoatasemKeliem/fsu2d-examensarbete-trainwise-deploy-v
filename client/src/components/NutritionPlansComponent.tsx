@@ -9,6 +9,17 @@ const NutritionPlansComponent = () => {
         getAllNutritionPlans()
     }, [])
 
+    if (!allNutrition.length) {
+        return (
+            <div className="no-plans">
+                <div className="admin-content">
+                    <h2>You don't have any nutrition plans</h2>
+                    <p className='no-plans-text'>Generate New Nutrition Plans</p>
+                    <Link to={`/my-journey`}><button>Generate Here</button></Link>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className='render-page-div'>

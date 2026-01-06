@@ -46,7 +46,10 @@ const AdminSingleArticle = () => {
                         }
                     </div>
                 </div>
-                <button className="single-page-button delete-button" onClick={() => { deleteArticleByIdAdmin(String(id)) }}>Delete Article</button>
+                <div className='button-div'>
+                    <button className="single-page-button delete-button" onClick={() => { deleteArticleByIdAdmin(String(id)) }}>Delete Article</button>
+                </div>
+
             </section>
         </div>
     )

@@ -10,10 +10,17 @@ const TrainingLogComponent = () => {
     }, [])
 
 
-    if (!allTrainingLogs) {
-        return <p>There is no training logs</p>
+    if (!allTrainingLogs.length) {
+        return (
+            <div className="no-plans">
+                <div className="admin-content">
+                    <h2>You don't have any training logs</h2>
+                    <p className='no-plans-text'>Generate New Training Logs</p>
+                    <Link to={`/my-journey`}><button>Generate Here</button></Link>
+                </div>
+            </div>
+        )
     }
-
 
     return (
         <div className='render-page-div'>

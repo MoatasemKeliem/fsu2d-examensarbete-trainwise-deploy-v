@@ -192,7 +192,9 @@ const SingleNutritionPlan = () => {
                         </div>
                     </section>
                 </section>
-                <button className="single-page-button delete-button" onClick={() => { deleteNutritionPlanById(String(id)); navigate("/nutritions") }}>Delete nutrition plan</button>
+                <div className='button-div'>
+                    <button className="single-page-button delete-button" onClick={() => { deleteNutritionPlanById(String(id)); navigate("/nutritions") }}>Delete nutrition plan</button>
+                </div>
             </div>
         </div>
     )

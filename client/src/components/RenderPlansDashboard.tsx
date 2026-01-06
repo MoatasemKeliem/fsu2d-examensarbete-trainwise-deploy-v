@@ -30,7 +30,7 @@ const RenderPlansDashboard = () => {
 
     return (
         <div className='dashboard-plans'>
-            <h1>Your Latest Workouts</h1>
+            <h1 className='dashboard-title'>Your Latest Workouts</h1>
             <div className='dashboard-div-plans'>
                 {
                     trainingPlan ?
