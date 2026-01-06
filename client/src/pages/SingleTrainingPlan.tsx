@@ -44,7 +44,9 @@ const SingleTrainingPlan = () => {
                                                 return (
                                                     <div className="singel-page-day-div" key={day.day}>
                                                         <h4 className="singel-page-day">{day.day}</h4>
-                                                        <h5 className="singel-page-day-exercies-title">Exercises</h5>
+
+                                                        {day.exercises.length > 0 ? <h5 className="singel-page-day-exercies-title">Exercises</h5> : <h5 className="singel-page-day-exercies-title">Rest Day</h5>}
+
                                                         <div>
                                                             {
                                                                 day.exercises.map((exercies, index: number) => {
@@ -71,7 +73,10 @@ const SingleTrainingPlan = () => {
                     }
 
                 </div>
-                <button onClick={() => { deleteTrainingPlanById(String(id)); navigate("/training-plans") }}>Delete training plan</button>
+                <div className='button-div'>
+                    <button className="delete-button" onClick={() => { deleteTrainingPlanById(String(id)); navigate("/training-plans") }}>Delete training plan</button>
+                </div>
+
             </div>
         </div>
     )

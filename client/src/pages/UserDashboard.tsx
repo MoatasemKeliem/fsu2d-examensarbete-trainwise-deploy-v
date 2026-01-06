@@ -38,11 +38,11 @@ const UserDashboard = () => {
                 }
 
             </section>
-            {subscriptionStatus === "active" || role === "admin" && (
+            {subscriptionStatus == "active" || role === "admin" ? (
                 <div>
                     <RenderPlansDashboard />
                 </div>
-            )}
+            ) : ""}
 
 
         </div>

@@ -10,62 +10,43 @@ const TrainingplansComponent = () => {
         getAllTrainingPlans()
     }, [])
 
-    if (!allTrainingPlans) {
-        return <p>There is no training plans</p>
+    if (!allTrainingPlans.length) {
+        return (
+            <div className="no-plans">
+                <div className="admin-content">
+                    <h2>You don't have any training plans</h2>
+                    <p className='no-plans-text'>Generate New Training Plans</p>
+                    <Link to={`/my-journey`}><button>Generate Here</button></Link>
+                </div>
+            </div>
+        )
     }
 
     return (
-        <div className='render-page-div'>
-            {
-                allTrainingPlans.map((plan) => {
-                    return (
-                        <div className='render-item' key={plan.id}>
-                            <h2 className='render-sub-title'>{plan.title}</h2>
-                            <p className='render-date'>{plan.createdAt.slice(0, 10)}</p>
-                            {/* <div>
-                                {
-                                    plan.plan.map((week) => {
-                                        return (
-                                            <div key={week.week}>
-                                                <h3>{week.week}</h3>
-                                                {
-                                                    week.days.map((day) => {
-                                                        return (
-                                                            <div key={day.day}>
-                                                                <h4>{day.day}</h4>
-                                                                <h5>Exercises</h5>
-                                                                <div>
-                                                                    {
-                                                                        day.exercises.map((exercies, index: number) => {
-                                                                            return (
-                                                                                <div key={index}>
-                                                                                    <span>{exercies.name} - {exercies.sets} sets - {exercies.reps} reps </span>
-                                                                                </div>
-                                                                            )
-                                                                        })
-                                                                    }
-                                                                </div>
+        <div>
+            <div className="plans-page-title ">
+                <div className="plans-page-content">
+                    <h2>Training Plans</h2>
+                </div>
+            </div>
+            <div className='render-page-div'>
 
-                                                                <p>Calories burned: {day.caloriesBurned} kcal</p>
-                                                                <p>Motivation: {day.motivation}</p>
-                                                                <p>Nutrition tips: {day.nutritionTips}</p>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                        )
-                                    })
-                                }
+                {
+                    allTrainingPlans.map((plan) => {
+                        return (
+                            <div className='render-item' key={plan.id}>
+                                <h2 className='render-sub-title'>{plan.title}</h2>
+                                <p className='render-date'>{plan.createdAt.slice(0, 10)}</p>
 
-                            </div> */}
-                            <Link to={`/training-plans/${plan.id}`}><button>View Training Plan</button></Link>
+                                <Link to={`/training-plans/${plan.id}`}><button>View Training Plan</button></Link>
 
-                        </div>
-                    )
-                })
-            }
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </div>
+
     )
 }
 

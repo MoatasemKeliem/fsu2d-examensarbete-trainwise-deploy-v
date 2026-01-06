@@ -9,21 +9,40 @@ const NutritionPlansComponent = () => {
         getAllNutritionPlans()
     }, [])
 
+    if (!allNutrition.length) {
+        return (
+            <div className="no-plans">
+                <div className="admin-content">
+                    <h2>You don't have any nutrition plans</h2>
+                    <p className='no-plans-text'>Generate New Nutrition Plans</p>
+                    <Link to={`/my-journey`}><button>Generate Here</button></Link>
+                </div>
+            </div>
+        )
+    }
 
     return (
-        <div className='render-page-div'>
-            {
-                allNutrition.map((plan) => {
-                    return (
-                        <div className='render-item' key={plan.id}>
-                            <h2 className='render-sub-title'>{plan.title}</h2>
-                            <p className='render-date'>{plan.createdAt.slice(0, 10)}</p>
-                            <Link to={`/nutritions/${plan.id}`}><button>View Nutrition Plan</button></Link>
-                        </div>
-                    )
-                })
-            }
+        <div>
+            <div className="plans-page-title">
+                <div className="plans-page-content">
+                    <h2>Nutrition Plans</h2>
+                </div>
+            </div>
+            <div className='render-page-div'>
+                {
+                    allNutrition.map((plan) => {
+                        return (
+                            <div className='render-item' key={plan.id}>
+                                <h2 className='render-sub-title'>{plan.title}</h2>
+                                <p className='render-date'>{plan.createdAt.slice(0, 10)}</p>
+                                <Link to={`/nutritions/${plan.id}`}><button>View Nutrition Plan</button></Link>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </div>
+
     )
 }
 
