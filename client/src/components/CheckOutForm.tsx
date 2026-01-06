@@ -4,7 +4,7 @@ import { type FormEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 
-const CheckOutForm = () => {
+const CheckOutForm = ({ setLoading }: any) => {
     const stripe = useStripe();
     const elements = useElements()
     const navigate = useNavigate()
@@ -26,33 +26,43 @@ const CheckOutForm = () => {
             return
         }
 
-        const result = await stripe.confirmSetup({ elements, redirect: "if_required" })
+        setLoading(true)
 
-        if (result.error) {
-            console.error("Couldn't pay for subscription", result.error.message)
-            return
+        try {
+            const result = await stripe.confirmSetup({ elements, redirect: "if_required" })
+
+            if (result.error) {
+                console.error("Couldn't pay for subscription", result.error.message)
+                return
+            }
+
+
+            const paymentMethodId = result.setupIntent?.payment_method;
+
+            const reposne = await axios.post(`${Backend_URL}/stripe/create-payment`, { priceId, paymentMethodId }, { withCredentials: true })
+
+            if (reposne.data.message === "You already have an actice subscription") {
+                navigate("/message-page", {
+                    state: { messageToShow: "alreadySubscribed" }
+                })
+                return
+            }
+
+            if (reposne.data.message === "Your payment was successful") {
+                navigate("/message-page", {
+                    state: { messageToShow: "success" }
+                })
+                return
+            }
+
+            navigate("/dashboard")
+        } catch (error) {
+            console.error("Payment failed", error)
+        } finally {
+            setLoading(false)
+
         }
 
-
-        const paymentMethodId = result.setupIntent?.payment_method;
-
-        const reposne = await axios.post(`${Backend_URL}/stripe/create-payment`, { priceId, paymentMethodId }, { withCredentials: true })
-
-        if (reposne.data.message === "You already have an actice subscription") {
-            navigate("/message-page", {
-                state: { messageToShow: "alreadySubscribed" }
-            })
-            return
-        }
-
-        if (reposne.data.message === "Your payment was successful") {
-            navigate("/message-page", {
-                state: { messageToShow: "success" }
-            })
-            return
-        }
-
-        navigate("/dashboard")
 
     }
 
