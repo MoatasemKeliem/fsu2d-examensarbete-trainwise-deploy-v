@@ -9,7 +9,7 @@ export class User {
     @PrimaryGeneratedColumn("uuid")
     id!: string;
 
-    @Column("varchar", { unique: true, nullable: true })
+    @Column("varchar", { nullable: true })
     email!: string | null;
 
     @Column("varchar", { nullable: true })

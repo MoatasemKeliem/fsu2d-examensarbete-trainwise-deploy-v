@@ -17,16 +17,18 @@ passport.deserializeUser((obj: any, done) => done(null, obj));
 const createOrFetchuser = async (profile: any, provider: string) => {
     const userRepository = AppDataSource.getRepository(User);
     const email = profile.emails?.[0].value || profile.email
+    const providerId = profile.id;
+    const name = profile.displayName || profile.global_name
 
 
-    let user = await userRepository.findOne({ where: { email } })
+    let user = await userRepository.findOne({ where: { provider, providerId } })
 
     if (!user) {
         user = userRepository.create({
             email,
-            name: profile.displayName,
+            name,
             provider,
-            providerId: profile.id
+            providerId
         })
         await userRepository.save(user)
     }
